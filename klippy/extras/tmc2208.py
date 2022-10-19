@@ -9,7 +9,7 @@ from . import tmc, tmc_uart, tmc2130
 TMC_FREQUENCY=12000000.
 
 Registers = {
-    "GCONF": 0x00, "GSTAT": 0x01, "IFCNT": 0x02, "SLAVECONF": 0x03,
+    "GCONF": 0x00, "IFCNT": 0x02, "SLAVECONF": 0x03,
     "OTP_PROG": 0x04, "OTP_READ": 0x05, "IOIN": 0x06, "FACTORY_CONF": 0x07,
     "IHOLD_IRUN": 0x10, "TPOWERDOWN": 0x11, "TSTEP": 0x12, "TPWMTHRS": 0x13,
     "VACTUAL": 0x22, "MSCNT": 0x6a, "MSCURACT": 0x6b, "CHOPCONF": 0x6c,
@@ -17,7 +17,7 @@ Registers = {
 }
 
 ReadRegisters = [
-    "GCONF", "GSTAT", "IFCNT", "OTP_READ", "IOIN", "FACTORY_CONF", "TSTEP",
+    "GCONF", "IFCNT", "OTP_READ", "IOIN", "FACTORY_CONF", "TSTEP",
     "MSCNT", "MSCURACT", "CHOPCONF", "DRV_STATUS",
     "PWMCONF", "PWM_SCALE", "PWM_AUTO"
 ]
@@ -36,11 +36,7 @@ Fields["GCONF"] = {
     "multistep_filt":      0x01 << 8,
     "test_mode":           0x01 << 9
 }
-Fields["GSTAT"] = {
-    "reset":               0x01,
-    "drv_err":             0x01 << 1,
-    "uv_cp":               0x01 << 2
-}
+
 Fields["IFCNT"] = {
     "ifcnt":               0xff
 }
