@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -1388,6 +1394,7 @@
 <p>提交是否没有缺陷，是否准备好广泛部署？提交者应在提交之前测试其更改。审核员会查找提交中的错误，但通常不会测试提交的实际内容。接受的提交通常会在被接受后的几周内部署到数千台打印机。因此，提交的质量极为重要。</p>
 <p>主<a href="https://github.com/Klipper3d/klipper">Klipper3d/klipper</a> GitHub仓库不接受实验性代码。提交者应该在他们自己的仓库中进行实验、调试和测试。<a href="Contact.html">Klipper Discourse</a>论坛可以帮助你找到其他有兴趣的开发者和可以提供真实世界反馈的用户，或者让更多人了解你的工作。</p>
 <p>提交必须通过所有<a href="Debugging.html">回归测试用例</a>。</p>
+<p>When fixing a defect in the code, submitters should have a general understanding of the root cause of that defect, and the fix should target that root cause.</p>
 <p>代码提交不应包含过多的调试代码、调试选项，也不应包含运行时调试日志。</p>
 <p>代码提交中的注释应侧重于增强代码的可维护性。提交不应包含"注释掉的代码"，不应包含描述过去实现的过多注释，也不应包含过多的"待办事项"。</p>
 <p>对文件的更新不应该声明它们是一项正在进行的工作。</p>
@@ -1400,11 +1407,11 @@
 <p>All new modules, config options, commands, command parameters, and documents should have "high impact". We do not want to burden users with options that they can not reasonably configure nor do we want to burden them with options that don't provide a notable benefit.</p>
 <p>评审员可能会要求解释用户该如何配置一个选项，一个理想的答复将包含过程的细节，例如："MegaX500的用户应将选项 X 设置为99.3，而Elite100Y的用户应使用程序校准选项X..." 。</p>
 <p>如果一个选项的目标是使代码更加模块化，那么最好使用代码常量而不是向用户开放的配置选项。</p>
-<p>New modules, new options, and new parameters should not provide similar functionality to existing modules - if the differences are arbitrary than it's preferable to utilize the existing system or refactor the existing code.</p>
+<p>新模块、新选项和新参数不应提供与现有模块类似的功能——如果差异是任意的，那么最好利用现有系统或重构现有代码。</p>
 </li>
 <li>
 <p>提交的版权是否清晰、无偿、兼容？新的 C 文件和 Python 文件应该有一个明确的版权声明。请看现有文件以了解推荐格式。不推荐在对现有文件进行小的修改时对该文件进行版权声明。</p>
-<p>从第三方来源获取的代码必须与 Klipper 的许可证（GNU GPLv3）兼容。大型的第三方代码添加应被添加到<code>lib/</code>目录中（并遵循 &lt;../lib/README&gt;中描述的格式）。</p>
+<p>从第三方来源获取的代码必须与 Klipper 的许可证（GNU GPLv3）兼容。大型的第三方代码添加应被添加到<code>lib/</code>目录中（并遵循<a href="https://github.com/Klipper3d/klipper/blob/master/lib/README">../lib/README</a>中描述的格式）。</p>
 <p>提交者必须提供一个<a href="#format-of-commit-messages">Signed-off-by 行</a>，使用他们的真实全名。它表明提交者同意<a href="developer-certificate-of-origin">开发者源头证书</a>。</p>
 </li>
 <li>
@@ -1430,8 +1437,8 @@
 <p>空格的修改不应该与功能修改混在一起。一般来说，无意义的空格修改是不被接受的，除非是来自被修改代码的既定 "所有者"。</p>
 </li>
 </ol>
-<p>Klipper does not implement a strict "coding style guide", but modifications to existing code should follow the high-level code flow, code indentation style, and format of that existing code. Submissions of new modules and systems have more flexibility in coding style, but it is preferable for that new code to follow an internally consistent style and to generally follow industry wide coding norms.</p>
-<p>It is not a goal of a review to discuss "better implementations". However, if a reviewer struggles to understand the implementation of a submission, then they may ask for changes to make the implementation more transparent. In particular, if reviewers can not convince themselves that a submission is free of defects then changes may be necessary.</p>
+<p>Klipper没有实现严格的“编码风格指南”，但对现有代码的修改应该遵循高级代码流、代码缩进风格和现有代码的格式。新模块和系统的提交在编码风格上具有更大的灵活性，但新代码最好遵循内部一致的风格，并通常遵循行业范围的编码规范。</p>
+<p>讨论“更好的实现”并不是审查的目标。然而，如果审查人员很难理解提交的实现，那么他们可能会要求进行更改，以使实现更加透明。特别是，如果评审员不能说服自己提交的文件没有缺陷，那么可能需要进行更改。</p>
 <p>As part of a review, a reviewer may create an alternate Pull Request for a topic. This may be done to avoid excessive "back and forth" on minor procedural items and thus streamline the submission process. It may also be done because the discussion inspires a reviewer to build an alternative implementation. Both situations are a normal result of a review and should not be considered criticism of the original submission.</p>
 <h3 id="helping-with-reviews">Helping with reviews<a class="headerlink" href="#helping-with-reviews" title="Permanent link">&para;</a></h3>
 <p>We appreciate help with reviews! It is not necessary to be a <a href="#reviewers">listed reviewer</a> to perform a review. Submitters of GitHub Pull Requests are also encouraged to review their own submissions.</p>
@@ -1459,14 +1466,14 @@
 <td>Bed leveling, MCU flashing</td>
 </tr>
 <tr>
+<td>James Hartley</td>
+<td>@JamesH1978</td>
+<td>Configuration files</td>
+</tr>
+<tr>
 <td>Kevin O'Connor</td>
 <td>@KevinOConnor</td>
 <td>Core motion system, Micro-controller code</td>
-</tr>
-<tr>
-<td>Paul McGowan</td>
-<td>@mental405</td>
-<td>Configuration files, documentation</td>
 </tr>
 </tbody>
 </table>

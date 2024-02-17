@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -1465,7 +1471,7 @@ optional arguments:
 
 <p>Possono essere specificati i seguenti campi:</p>
 <ul>
-<li><code>mcu</code>: il tipo di mcu. Questo può essere recuperato dopo aver configurato la build tramite <code>make menuconfig</code> eseguendo <code>cat .config | grep CONFIG_MCU</code>. Questo campo è obbligatorio.</li>
+<li><code>mcu</code>: il tipo di Mcu. Questo può essere recuperato dopo aver configurato la build tramite <code>make menuconfig</code> eseguendo <code>cat .config | grep CONFIG_MCU</code>. Questo campo è obbligatorio.</li>
 <li><code>spi_bus</code>: il bus SPI collegato alla scheda SD. Questo dovrebbe essere recuperato dallo schema della scheda. Questo campo è obbligatorio.</li>
 <li><code>cs_pin</code>: il pin di selezione del chip collegato alla scheda SD. Questo dovrebbe essere recuperato dallo schema della scheda. Questo campo è obbligatorio.</li>
 <li><code>firmware_path</code>: il percorso sulla scheda SD in cui trasferire il firmware. L'impostazione predefinita è <code>firmware.bin</code>.</li>

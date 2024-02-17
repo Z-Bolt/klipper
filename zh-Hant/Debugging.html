@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -1512,7 +1518,7 @@ sudo dpkg -i build/debian/python3-simulavr*.deb
 make menuconfig
 </code></pre></div>
 
-<p>and compile the micro-controller software for an AVR atmega644p and select SIMULAVR software emulation support. Then one can compile Klipper (run <code>make</code>) and then start the simulation with:</p>
+<p>並為 AVR atmega644p 編譯微控制器軟件並選擇 SIMULAVR 軟件仿真支持。然後可以編譯 Klipper（運行 <code>make</code>）然後開始模擬：</p>
 <div class="highlight"><pre><span></span><code>PYTHONPATH=/path/to/simulavr/build/pysimulavr/ ./scripts/avrsim.py out/klipper.elf
 </code></pre></div>
 

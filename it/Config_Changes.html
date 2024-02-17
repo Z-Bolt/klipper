@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -1287,6 +1293,20 @@
 <p>Questo documento copre le modifiche software recenti al file di configurazione che non sono compatibili con le versioni precedenti. È una buona idea rivedere questo documento durante l'aggiornamento del software Klipper.</p>
 <p>Tutte le date in questo documento sono approssimative.</p>
 <h2 id="cambiamenti">Cambiamenti<a class="headerlink" href="#cambiamenti" title="Permanent link">&para;</a></h2>
+<p>20230826: If <code>safe_distance</code> is set or calculated to be 0 in <code>[dual_carriage]</code>, the carriages proximity checks will be disabled as per documentation. A user may wish to configure <code>safe_distance</code> explicitly to prevent accidental crashes of the carriages with each other. Additionally, the homing order of the primary and the dual carriage is changed in some configurations (certain configurations when both carriages home in the same direction, see <a href="Config_Reference.html#dual_carriage">[dual_carriage] configuration reference</a> for more details).</p>
+<p>20230810: The flash-sdcard.sh script now supports both variants of the Bigtreetech SKR-3, STM32H743 and STM32H723. For this, the original tag of btt-skr-3 now has changed to be either btt-skr-3-h743 or btt-skr-3-h723.</p>
+<p>20230729: The exported status for <code>dual_carriage</code> is changed. Instead of exporting <code>mode</code> and <code>active_carriage</code>, the individual modes for each carriage are exported as <code>printer.dual_carriage.carriage_0</code> and <code>printer.dual_carriage.carriage_1</code>.</p>
+<p>20230619: The <code>relative_reference_index</code> option has been deprecated and superceded by the <code>zero_reference_position</code> option. Refer to the <a href="Bed_Mesh.html#the-deprecated-relative_reference_index">Bed Mesh Documentation</a> for details on how to update the configuration. With this deprecation the <code>RELATIVE_REFERENCE_INDEX</code> is no longer available as a parameter for the <code>BED_MESH_CALIBRATE</code> gcode command.</p>
+<p>20230530: The default canbus frequency in "make menuconfig" is now 1000000. If using canbus and using canbus with some other frequency is required, then be sure to select "Enable extra low-level configuration options" and specify the desired "CAN bus speed" in "make menuconfig" when compiling and flashing the micro-controller.</p>
+<p>20230525: <code>SHAPER_CALIBRATE</code> command immediately applies input shaper parameters if <code>[input_shaper]</code> was enabled already.</p>
+<p>20230407: The <code>stalled_bytes</code> counter in the log and in the <code>printer.mcu.last_stats</code> field has been renamed to <code>upcoming_bytes</code>.</p>
+<p>20230323: On tmc5160 drivers <code>multistep_filt</code> is now enabled by default. Set <code>driver_MULTISTEP_FILT: False</code> in the tmc5160 config for the previous behavior.</p>
+<p>20230304: Il comando <code>SET_TMC_CURRENT</code> ora regola correttamente il registro globalscaler per i driver che lo dispongono. Ciò rimuove una limitazione per cui su tmc5160, le correnti non potevano essere aumentate con <code>SET_TMC_CURRENT</code> rispetto al valore <code>run_current</code> impostato nel file di configurazione. Tuttavia, questo ha un effetto collaterale: dopo aver eseguito <code>SET_TMC_CURRENT</code>, lo stepper deve essere tenuto fermo per &gt;130 ms nel caso in cui venga utilizzato StealthChop2 in modo che la calibrazione AT#1 venga eseguita dal driver.</p>
+<p>20230202: il formato delle informazioni sullo stato di <code>printer.screws_tilt_adjust</code> è stato modificato. Le informazioni vengono ora memorizzate come dizionario delle viti con le misurazioni risultanti. Consulta il <a href="Status_Reference.html#screws_tilt_adjust">riferimento sullo stato</a> per i dettagli.</p>
+<p>20230201: Il modulo <code>[bed_mesh]</code> non carica più il profilo <code>default</code> all'avvio. Si consiglia agli utenti che usano il profilo <code>default</code> di aggiungere <code>BED_MESH_PROFILE LOAD=default</code> alla loro macro <code>START_PRINT</code> (o alla configurazione "Start G-Code" del loro slicer quando applicabile).</p>
+<p>20230103: Ora è possibile con lo script flash-sdcard.sh eseguire il flashing di entrambe le varianti di Bigtreetech SKR-2, STM32F407 e STM32F429. Ciò significa che il tag originale di btt-skr2 ora è cambiato in btt-skr-2-f407 o btt-skr-2-f429.</p>
+<p>20221128: rilascio di Klipper v0.11.0.</p>
+<p>20221122: In precedenza, con safe_z_home, era possibile che z_hop dopo l'homing g28 andasse nella direzione z negativa. Ora, uno z_hop viene eseguito dopo g28 solo se risulta in un hop positivo, rispecchiando il comportamento dello z_hop che si verifica prima dell'homing g28.</p>
 <p>20220616: in precedenza era possibile eseguire il flashing di un rp2040 in modalità bootloader eseguendo <code>make flash FLASH_DEVICE=first</code>. Il comando equivalente è ora <code>make flash FLASH_DEVICE=2e8a:0003</code>.</p>
 <p>20220612: Il microcontrollore rp2040 ora ha una soluzione alternativa per l'errata USB "rp2040-e5". Ciò dovrebbe rendere più affidabili le connessioni USB iniziali. Tuttavia, potrebbe comportare un cambiamento nel comportamento del pin gpio15. È improbabile che il cambiamento di comportamento di gpio15 sia evidente.</p>
 <p>20220407: l'opzione di configurazione temperature_fan <code>pid_integral_max</code> è stata rimossa (era deprecata su 20210612).</p>

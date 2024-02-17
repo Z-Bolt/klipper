@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -811,7 +817,7 @@
   
     <li class="md-nav__item">
       <a href="Command_Templates.html" class="md-nav__link">
-        Parancssablonok
+        Parancs sablonok
       </a>
     </li>
   
@@ -1346,11 +1352,11 @@
 <h2 id="z-vegallas-kalibralasa">Z végállás kalibrálása<a class="headerlink" href="#z-vegallas-kalibralasa" title="Permanent link">&para;</a></h2>
 <p>A pontos Z végállás pozíciója kritikus fontosságú a jó minőségű nyomatok elkészítéséhez.</p>
 <p>Vedd figyelembe azonban, hogy maga a Z végálláskapcsoló pontossága korlátozó tényező lehet. Ha Trinamic léptetőmotor-meghajtókat használunk, akkor fontoljuk meg a <a href="Endstop_Phase.html">végstop fázis</a> érzékelés engedélyezését a kapcsoló pontosságának javítása érdekében.</p>
-<p>A Z végpont kalibrálásának végrehajtásához kapcsolja be a nyomtatót, utasítsa a fejet, hogy mozogjon egy Z pozícióba, amely legalább öt milliméterrel a tárgyasztal felett van (ha még nincs), utasítsa a fejet, hogy mozogjon egy X-Y pozícióba, közel a nyomtató közepéhez a tárgyasztalra, majd navigálj az OctoPrint terminál fülre, és futtassa:</p>
+<p>A Z végpont kalibrálásának végrehajtásához kapcsold be a nyomtatót, utasítsd a fejet, hogy mozogjon egy Z pozícióba, amely legalább öt milliméterrel a tárgyasztal felett van (ha még nincs), utasítsd a fejet, hogy mozogjon egy X-Y pozícióba, közel a nyomtató közepéhez a tárgyasztalra, majd navigálj az OctoPrint terminál fülre, és futtasd:</p>
 <div class="highlight"><pre><span></span><code>Z_ENDSTOP_CALIBRATE
 </code></pre></div>
 
-<p>Ezután kövesse a <a href="Bed_Level.html#the-paper-test">"a papírteszt"</a> pontban leírt lépéseket a fúvóka és a tárgyasztal közötti tényleges távolság meghatározásához az adott helyen. Ha ezek a lépések befejeződtek, akkor <code>ACCEPT</code> és elmentheti az eredményeket a config fájlba a következővel:</p>
+<p>Ezután kövesd a <a href="Bed_Level.html#the-paper-test">"a papírteszt"</a> pontban leírt lépéseket a fúvóka és a tárgyasztal közötti tényleges távolság meghatározásához az adott helyen. Ha ezek a lépések befejeződtek, akkor <code>ACCEPT</code> és elmentheted az eredményeket a config fájlba a következővel:</p>
 <div class="highlight"><pre><span></span><code>SAVE_CONFIG
 </code></pre></div>
 
@@ -1366,18 +1372,18 @@ screw3: 150, 100
 </code></pre></div>
 
 <p>Ha egy tárgyasztal csavar a tárgyasztal alatt van, akkor add meg az X-Y pozíciót közvetlenül a csavar felett. Ha a csavar a tárgyasztalon kívül van, akkor add meg a csavarhoz legközelebbi X-Y-pozíciót, amely még a tárgyasztal hatótávolságán belül van.</p>
-<p>Miután a konfigurációs fájl készen áll, futtassa a <code>RESTART</code> parancsot a konfiguráció betöltéséhez, majd elindíthatja az eszközt a következő futtatásával:</p>
+<p>Miután a konfigurációs fájl készen áll, futtasd a <code>RESTART</code> parancsot a konfiguráció betöltéséhez, majd elindíthatod az eszközt a következő futtatásával:</p>
 <div class="highlight"><pre><span></span><code>BED_SCREWS_ADJUST
 </code></pre></div>
 
 <p>Ez az eszköz a nyomtató fúvókát minden egyes csavar X-Y helyére mozgatja, majd a fúvókát Z=0 magasságba mozgatja. Ezen a ponton a "papírteszt" segítségével közvetlenül a fúvóka alatt lehet beállítani a tárgyasztal csavarját. Lásd a <a href="Bed_Level.html#the-paper-test">"a papírteszt"</a>-ben leírtakat. De a fúvóka különböző magasságokba navigálása helyett a tárgyasztalcsavart állítsd be. Addig állítsd a csavart, amíg a papír előre-hátra tolása közben kis súrlódás nem keletkezik.</p>
-<p>Miután a csavart úgy állítottuk be, hogy egy kis súrlódás érezhető legyen, futtassuk az <code>ACCEPT</code> vagy az <code>ADJUSTED</code> parancsot. Használja az <code>ADJUSTED</code> parancsot, ha a szintezőcsavar beállítására van szükség (általában bármi, ami több mint 1/8 csavarfordulat). Használja az <code>ACCEPT</code> parancsot, ha nincs szükség jelentős beállításra. Mindkét parancs hatására a szerszám a következő csavarhoz lép. (Ha az <code>ADJUSTED</code> parancsot használja, a szerszám egy további szintezőcsavar-beállítási ciklust ütemez be. A szerszám sikeresen befejezi, ha az összes szintezőcsavarról bebizonyosodik, hogy nem igényel jelentős beállítást.) Az <code>ABORT</code> paranccsal idő előtt ki lehet lépni a szintezésből.</p>
+<p>Miután a csavart úgy állítottuk be, hogy egy kis súrlódás érezhető legyen, futtassuk az <code>ACCEPT</code> vagy az <code>ADJUSTED</code> parancsot. Használd az <code>ADJUSTED</code> parancsot, ha a szintezőcsavar beállítására van szükség (általában bármi, ami több mint 1/8 csavarfordulat). Használd az <code>ACCEPT</code> parancsot, ha nincs szükség jelentős beállításra. Mindkét parancs hatására a szerszám a következő csavarhoz lép. (Ha az <code>ADJUSTED</code> parancsot használod, a szerszám egy további szintezőcsavar-beállítási ciklust ütemez be. A szerszám sikeresen befejezi, ha az összes szintezőcsavarról bebizonyosodik, hogy nem igényel jelentős beállítást.) Az <code>ABORT</code> paranccsal idő előtt ki lehet lépni a szintezésből.</p>
 <p>Ez a rendszer akkor működik a legjobban, ha a nyomtató sík nyomtatási felülettel (például üveggel) és egyenes sínekkel rendelkezik. A tárgyasztal szintező eszköz sikeres elvégzése után a tárgyasztal készen áll a nyomtatásra.</p>
 <h3 id="finom-menetes-targyasztal-csavar-beallitasok">Finom menetes tárgyasztal csavar beállítások<a class="headerlink" href="#finom-menetes-targyasztal-csavar-beallitasok" title="Permanent link">&para;</a></h3>
 <p>Ha a nyomtató három szintezőcsavart használ, és mindhárom csavar a tárgyasztal alatt van, akkor lehetséges egy második "nagy pontosságú" szintezési lépés elvégzése. Ez úgy történik, hogy a fúvókát olyan helyekre irányítja, ahol a tárgyasztal minden egyes szintezőcsavar beállítással nagyobb távolságot mozdul el.</p>
 <p>Vegyünk például egy tárgyasztalt, amelynek A, B és C helyén csavarok vannak:</p>
 <p><img alt="bed_screws" src="img/bed_screws.svg.png" /></p>
-<p>A C helyen lévő szintezőcsavar minden egyes beállítása esetén a tárgyasztal a fennmaradó két szintezőcsavar által meghatározott inga mentén fog lengeni (itt zöld vonalként látható). Ebben a helyzetben a szintezőcsavar állítása a C helyzetben a tárgyasztalt kissebb a D helyzetben egy nagyobb mértékben mozdítja el.</p>
+<p>A C helyen lévő szintezőcsavar minden egyes beállítása esetén a tárgyasztal a fennmaradó két szintezőcsavar által meghatározott inga mentén fog lengeni (itt zöld vonalként látható). Ebben a helyzetben a szintezőcsavar állítása a C helyzetben a tárgyasztalt kisebb a D helyzetben egy nagyobb mértékben mozdítja el.</p>
 <p>A funkció engedélyezéséhez meg kell határozni a további fúvókakoordinátákat, és hozzá kell adni őket a konfigurációs fájlhoz. Ez például így nézhet ki:</p>
 <div class="highlight"><pre><span></span><code>[bed_screws]
 screw1: 100, 50
@@ -1388,9 +1394,9 @@ screw3: 150, 100
 screw3_fine_adjust: 0, 100
 </code></pre></div>
 
-<p>Ha ez a funkció engedélyezve van, a <code>BED_SCREWS_ADJUST</code> eszköz először közvetlenül az egyes csavarok pozíciói felett kér durva beállításokat, és ha ezeket elfogadta, akkor a további helyeken finom beállításokat kér. Folytassa az <code>ACCEPT</code> és <code>ADJUSTED</code> használatával minden egyes pozícióban.</p>
+<p>Ha ez a funkció engedélyezve van, a <code>BED_SCREWS_ADJUST</code> eszköz először közvetlenül az egyes csavarok pozíciói felett kér durva beállításokat, és ha ezeket elfogadtad, akkor a további helyeken finom beállításokat kér. Folytasd az <code>ACCEPT</code> és <code>ADJUSTED</code> használatával minden egyes pozícióban.</p>
 <h2 id="a-targyasztal-szintezocsavarjainak-beallitasa-meroszonda-segitsegevel">A tárgyasztal szintezőcsavarjainak beállítása mérőszonda segítségével<a class="headerlink" href="#a-targyasztal-szintezocsavarjainak-beallitasa-meroszonda-segitsegevel" title="Permanent link">&para;</a></h2>
-<p>Ez egy másik módja a tárgyasztal szint kalibrálásának a mérőszonda segítségével. Használatához rendelkeznie kell Z-szondával (BL Touch, induktív érzékelő stb.).</p>
+<p>Ez egy másik módja a tárgyasztal szint kalibrálásának a mérőszonda segítségével. Használatához rendelkezned kell Z-szondával (BL Touch, induktív érzékelő stb.).</p>
 <p>A funkció engedélyezéséhez meg kell határozni a fúvóka koordinátáit úgy, hogy a Z szonda a csavarok felett legyen, majd hozzá kell adni a konfigurációs fájlhoz. Ez például így nézhet ki:</p>
 <div class="highlight"><pre><span></span><code>[screws_tilt_adjust]
 screw1: -5, 30
@@ -1406,7 +1412,7 @@ speed: 50.
 screw_thread: CW-M3
 </code></pre></div>
 
-<p>Az 1. csavar mindig a referenciapont a többi csavar számára, így a rendszer feltételezi, hogy az 1. csavar a megfelelő magasságban van. Először mindig futtassa le a <code>G28</code> G-kódot, majd futtassa le a <code>SCREWS_TILT_CALCULATE</code> parancsot. Ennek a következőhöz hasonló kimenetet kell eredményeznie:</p>
+<p>Az 1. csavar mindig a referenciapont a többi csavar számára, így a rendszer feltételezi, hogy az 1. csavar a megfelelő magasságban van. Először mindig futtasd le a <code>G28</code> G-kódot, majd futtasd le a <code>SCREWS_TILT_CALCULATE</code> parancsot. Ennek a következőhöz hasonló kimenetet kell eredményeznie:</p>
 <div class="highlight"><pre><span></span><code>Send: G28
 Recv: ok
 Send: SCREWS_TILT_CALCULATE
@@ -1426,10 +1432,10 @@ Recv: ok
 <li>bal hátsó csavart az óramutató járásával megegyező irányba kell forgatni 2 percnyit (nem kell tökéletesnek lennie)</li>
 </ul>
 <p>Vedd figyelembe, hogy a "percek" az "óra számlapjának perceire" utalnak. Így például 15 perc egy teljes fordulat negyedének felel meg.</p>
-<p>Ismételje meg a folyamatot többször, amíg egy jó vízszintes tárgyasztalt nem kap. Általában akkor jó, ha minden beállítás 6 percnyi fordulat alatt van.</p>
-<p>Ha olyan szondát használ, amely a nyomtatófej oldalára van szerelve (azaz X vagy Y eltolással rendelkezik), akkor vedd figyelembe, hogy a tárgyasztal dőlésének beállítása érvényteleníti a korábbi, dőlésszögű tárgyasztalon végzett szintkalibrálást. A tárgyasztal csavarjainak beállítása után mindenképpen futtassa le a <a href="Probe_Calibrate.html">szonda kalibrálása</a> parancsot.</p>
+<p>Ismételd meg a folyamatot többször, amíg egy jó vízszintes tárgyasztalt nem kapsz. Általában akkor jó, ha minden beállítás 6 percnyi fordulat alatt van.</p>
+<p>Ha olyan szondát használsz, amely a nyomtatófej oldalára van szerelve (azaz X vagy Y eltolással rendelkezik), akkor vedd figyelembe, hogy a tárgyasztal dőlésének beállítása érvényteleníti a korábbi, dőlésszögű tárgyasztalon végzett szintkalibrálást. A tárgyasztal csavarjainak beállítása után mindenképpen futtasd le a <a href="Probe_Calibrate.html">szonda kalibrálása</a> parancsot.</p>
 <p>A <code>MAX_DEVIATION</code> paraméter akkor hasznos, ha egy mentett tárgyasztal hálót használunk, hogy biztosítsuk, hogy a tárgyasztal szintje ne térjen el túlságosan attól a helytől, ahol a háló létrehozásakor volt. Például a <code>SCREWS_TILT_CALCULATE MAX_DEVIATION=0.01</code> hozzáadható a szeletelő egyéni indító G-kódjához a háló betöltése előtt. Ez megszakítja a nyomtatást, ha a beállított határértéket túllépi (ebben a példában 0,01 mm), lehetőséget adva a felhasználónak a csavarok beállítására és a nyomtatás újraindítására.</p>
-<p>A <code>DIRECTION</code> paraméter akkor hasznos, ha a tárgyasztal szintező csavarjait csak egy irányba tudja elfordítani. Például lehetnek olyan csavarjai, amelyek a lehető legalacsonyabb (vagy legmagasabb) pozícióban vannak meghúzva, és csak egy irányba forgathatók a tárgyasztal emeléséhez (vagy süllyesztéséhez). Ha a csavarokat csak az óramutató járásával megegyező irányban tudja elfordítani, futtassa a <code>SCREWS_TILT_CALCULATE DIRECTION=CW</code> parancsot. Ha csak az óramutató járásával ellentétes irányban tudja elforgatni őket, futtassa a <code>SCREWS_TILT_CALCULATE DIRECTION=CCW</code> parancsot. A program kiválaszt egy megfelelő referenciapontot, hogy a tárgyasztalt az összes csavar adott irányba történő elfordításával szintezhesse.</p>
+<p>A <code>DIRECTION</code> paraméter akkor hasznos, ha a tárgyasztal szintező csavarjait csak egy irányba tudod elfordítani. Például lehetnek olyan csavarjaid, amelyek a lehető legalacsonyabb (vagy legmagasabb) pozícióban vannak meghúzva, és csak egy irányba forgathatók a tárgyasztal emeléséhez (vagy süllyesztéséhez). Ha a csavarokat csak az óramutató járásával megegyező irányban tudod elfordítani, futtasd a <code>SCREWS_TILT_CALCULATE DIRECTION=CW</code> parancsot. Ha csak az óramutató járásával ellentétes irányban tudod elforgatni őket, futtasd a <code>SCREWS_TILT_CALCULATE DIRECTION=CCW</code> parancsot. A program kiválaszt egy megfelelő referenciapontot, hogy a tárgyasztalt az összes csavar adott irányba történő elfordításával szintezhesd.</p>
 
               
             </article>

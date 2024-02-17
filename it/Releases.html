@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -364,6 +370,13 @@
       Indice
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#klipper-0110" class="md-nav__link">
+    Klipper 0.11.0
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#klipper-0100" class="md-nav__link">
@@ -1329,6 +1342,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#klipper-0110" class="md-nav__link">
+    Klipper 0.11.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#klipper-0100" class="md-nav__link">
     Klipper 0.10.0
   </a>
@@ -1423,6 +1443,20 @@
 
 <h1 id="versioni">Versioni<a class="headerlink" href="#versioni" title="Permanent link">&para;</a></h1>
 <p>Storico delle versioni di Klipper. Vedi <a href="Installation.html">installation</a> per informazioni sull'installazione di Klipper.</p>
+<h2 id="klipper-0110">Klipper 0.11.0<a class="headerlink" href="#klipper-0110" title="Permanent link">&para;</a></h2>
+<p>Disponibile su 20221128. Modifiche principali in questa versione:</p>
+<ul>
+<li>Ottimizzazione "passo su entrambi i lati" del driver del motore passo-passo Trinamic.</li>
+<li>Supporto per Python3. Il codice host di Klipper verrà eseguito con Python2 o Python3.</li>
+<li>Supporto bus CAN migliorato. Supporto per bus CAN su chip rp2040, stm32g0, stm32h7, same51 e same54. Supporto per la modalità "Bridge da USB a CAN bus".</li>
+<li>Supporto per il bootloader CanBoot.</li>
+<li>Supporto per accelerometri mpu9250 e mpu6050.</li>
+<li>Gestione degli errori migliorata per i sensori di temperatura max31856, max31855, max31865 e max6675.</li>
+<li>Ora è possibile configurare i LED per l'aggiornamento durante i comandi G-Code di lunga durata utilizzando il supporto del "template" LED.</li>
+<li>Diversi miglioramenti del microcontrollore. Nuovo supporto per i chip stm32h743, stm32h750, stm32l412, stm32g0b1, same70, same51 e same54. Supporto per letture i2c su atsamd e stm32f0. Supporto hardware pwm su stm32. Invio di eventi basato sul segnale Linux mcu. Nuovo supporto rp2040 per "make flash", i2c ed errata USB rp2040-e5.</li>
+<li>Aggiunti nuovi moduli: angle, dac084S085, exclude_object, led, mpu9250, pca9632, smart_effector, z_thermal_adjust. Aggiunta nuova cinematica deltesiana. Nuovo strumento dump_mcu aggiunto.</li>
+<li>Correzione di diversi bug e pulizia del codice.</li>
+</ul>
 <h2 id="klipper-0100">Klipper 0.10.0<a class="headerlink" href="#klipper-0100" title="Permanent link">&para;</a></h2>
 <p>Disponibile su 20210929. Principali modifiche in questa versione:</p>
 <ul>

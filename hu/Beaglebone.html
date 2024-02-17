@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -739,7 +745,7 @@
   
     <li class="md-nav__item">
       <a href="Command_Templates.html" class="md-nav__link">
-        Parancssablonok
+        Parancs sablonok
       </a>
     </li>
   
@@ -1365,41 +1371,41 @@ sudo cp ~/OctoPrint/scripts/octoprint.default /etc/default/octoprint
 sudo update-rc.d octoprint defaults
 </code></pre></div>
 
-<p>Módosítani kell az OctoPrint <strong>/etc/default/octoprint</strong> konfigurációs fájlját. Meg kell változtatni a <code>OCTOPRINT_USER</code> felhasználót <code>debian</code>-ra, változtassuk meg a <code>NICELEVEL</code>-t <code>0</code>-ra, vegyük ki a <code>BASEDIR</code> megjegyzést, <code>CONFIGFILE</code>, és <code>DAEMON</code> beállításokat, és módosítsa a hivatkozásokat <code>/home/pi/</code>-ről <code>/home/debian/</code>-re:</p>
+<p>Módosítani kell az OctoPrint <strong>/etc/default/octoprint</strong> konfigurációs fájlját. Meg kell változtatni a <code>OCTOPRINT_USER</code> felhasználót <code>debian</code>-ra, változtassuk meg a <code>NICELEVEL</code>-t <code>0</code>-ra, vegyük ki a <code>BASEDIR</code> megjegyzést, <code>CONFIGFILE</code>, és <code>DAEMON</code> beállításokat, és módosítsd a hivatkozásokat <code>/home/pi/</code>-ről <code>/home/debian/</code>-re:</p>
 <div class="highlight"><pre><span></span><code>sudo nano /etc/default/octoprint
 </code></pre></div>
 
-<p>Ezután indítsa el az Octoprint szolgáltatást:</p>
+<p>Ezután indítsd el az Octoprint szolgáltatást:</p>
 <div class="highlight"><pre><span></span><code>sudo systemctl start octoprint
 </code></pre></div>
 
-<p>Győződjön meg róla, hogy az OctoPrint webszerver elérhető - a következő címen kell lennie: <a href="http://beaglebone:5000/">http://beaglebone:5000/</a></p>
+<p>Győződj meg róla, hogy az OctoPrint webszerver elérhető - a következő címen kell lennie: <a href="http://beaglebone:5000/">http://beaglebone:5000/</a></p>
 <h2 id="a-mikrokontroller-kodjanak-elkeszitese">A mikrokontroller kódjának elkészítése<a class="headerlink" href="#a-mikrokontroller-kodjanak-elkeszitese" title="Permanent link">&para;</a></h2>
 <p>A Klipper mikrokontroller kódjának lefordításához kezdjük a "Beaglebone PRU" konfigurálásával:</p>
 <div class="highlight"><pre><span></span><code>cd ~/klipper/
 make menuconfig
 </code></pre></div>
 
-<p>Az új mikrokontroller kódjának elkészítéséhez és telepítéséhez futtassa a következőt:</p>
+<p>Az új mikrokontroller kódjának elkészítéséhez és telepítéséhez futtasd a következőt:</p>
 <div class="highlight"><pre><span></span><code>sudo service klipper stop
 make flash
 sudo service klipper start
 </code></pre></div>
 
-<p>Szükséges továbbá a mikrokontroller kódjának lefordítása és telepítése egy Linux gazdafolyamathoz. Konfigurálja másodszor is egy "Linux folyamat" számára:</p>
+<p>Szükséges továbbá a mikrokontroller kódjának lefordítása és telepítése egy Linux gazdafolyamathoz. Konfiguráld másodszor is egy "Linux folyamat" számára:</p>
 <div class="highlight"><pre><span></span><code>make menuconfig
 </code></pre></div>
 
-<p>Ezután telepítse ezt a mikrokontroller kódot is:</p>
+<p>Ezután telepítsd ezt a mikrokontroller kódot is:</p>
 <div class="highlight"><pre><span></span><code>sudo service klipper stop
 make flash
 sudo service klipper start
 </code></pre></div>
 
 <h2 id="hatralevo-konfiguracio">Hátralevő konfiguráció<a class="headerlink" href="#hatralevo-konfiguracio" title="Permanent link">&para;</a></h2>
-<p>Fejezze be a telepítést a Klipper és az Octoprint konfigurálásával a <a href="Installation.html#configuring-klipper">Telepítés</a> fődokumentumban található utasítások szerint.</p>
+<p>Fejezd be a telepítést a Klipper és az Octoprint konfigurálásával a <a href="Installation.html#configuring-klipper">Telepítés</a> fődokumentumban található utasítások szerint.</p>
 <h2 id="nyomtatas-a-beaglebone-on">Nyomtatás a Beaglebone-on<a class="headerlink" href="#nyomtatas-a-beaglebone-on" title="Permanent link">&para;</a></h2>
-<p>Sajnos a Beaglebone processzor néha nehezen tudja jól futtatni az OctoPrintet. Előfordult már, hogy összetett nyomtatásoknál a nyomtatás akadozott (a nyomtató gyorsabban mozog, mint ahogy az OctoPrint mozgatási parancsokat tud küldeni). Ha ez előfordul, fontolja meg a "virtual_sdcard" funkció használatát (a részletekért lásd a <a href="Config_Reference.html#virtual_sdcard">konfigurációs hivatkozást</a>), hogy közvetlenül a Klipperből nyomtass.</p>
+<p>Sajnos a Beaglebone processzor néha nehezen tudja jól futtatni az OctoPrintet. Előfordult már, hogy összetett nyomtatásoknál a nyomtatás akadozott (a nyomtató gyorsabban mozog, mint ahogy az OctoPrint mozgatási parancsokat tud küldeni). Ha ez előfordul, fontold meg a "virtual_sdcard" funkció használatát (a részletekért lásd a <a href="Config_Reference.html#virtual_sdcard">konfigurációs hivatkozást</a>), hogy közvetlenül a Klipperből nyomtass.</p>
 
               
             </article>

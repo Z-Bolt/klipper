@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -1388,6 +1394,7 @@
 <p>L'invio è privo di difetti ed è pronto per essere diffuso?I realizzatori dei contributi sono tenuti a testare le loro modifiche prima dell'invio. I revisori cercano gli errori, ma in generale non testano gli invii. Un invio accettato viene spesso distribuito a migliaia di stampanti entro poche settimane dall'accettazione. La qualità degli invii è quindi considerata una priorità.</p>
 <p>Il repository GitHub principale <a href="https://github.com/Klipper3d/klipper">Klipper3d/klipper</a> non accetta lavori sperimentali. I realizzatori di contributi devono eseguire la sperimentazione, il debug e il test nei propri repository. Il server <a href="Contact.html">Klipper Discourse</a> è un buon posto per aumentare la consapevolezza del nuovo lavoro e per trovare utenti interessati a fornire feedback nel mondo reale.</p>
 <p>Gli invii devono superare tutti i <a href="Debugging.html">test di regressione</a>.</p>
+<p>Quando si corregge un difetto nel codice, i submitters dovrebbero avere una comprensione generale della causa principale di tale difetto e la correzione dovrebbe mirare a tale causa principale.</p>
 <p>Gli contributi di codice non devono contenere codice di debug eccessivo, opzioni di debug o registrazione del debug in fase di runtime.</p>
 <p>I commenti negli invii di codice dovrebbero concentrarsi sul miglioramento della manutenzione del codice. Gli invii non devono contenere "codice commentato" né commenti eccessivi che descrivono implementazioni passate. Non dovrebbero esserci commenti "todo" eccessivi.</p>
 <p>Gli aggiornamenti alla documentazione non devono dichiarare che si tratta di un "work in progress".</p>
@@ -1459,14 +1466,14 @@
 <td>Livellamento del piatto, flashing MCU</td>
 </tr>
 <tr>
+<td>James Hartley</td>
+<td>@JamesH1978</td>
+<td>File di configurazione</td>
+</tr>
+<tr>
 <td>Kevin O'Connor</td>
 <td>@KevinOConnor</td>
 <td>Core motion system, codice microcontrollore</td>
-</tr>
-<tr>
-<td>Paul McGowan</td>
-<td>@mental405</td>
-<td>File di configurazione, documentazione</td>
 </tr>
 </tbody>
 </table>
@@ -1491,7 +1498,7 @@
 <div class="highlight"><pre><span></span><code>modulo: Riepilogo breve (50 caratteri o meno) in maiuscolo
 
 Testo esplicativo più dettagliato, se necessario. Incolonna a circa
-75 caratteri o giù di lì. In alcuni contesti, la prima riga è trattata 
+75 caratteri o giù di lì. In alcuni contesti, la prima riga è trattata
 come l&#39;oggetto di un&#39;e-mail e il resto del testo come corpo. La
 riga vuota che separa il riassunto dal corpo è critica (a meno che
 non si ometta del tutto il corpo); strumenti come rebase possono

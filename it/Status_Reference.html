@@ -175,6 +175,12 @@
                   </a>
                 </li>
                 
+                <li class="md-select__item">
+                  <a href="/fr/" hreflang="fr" class="md-select__link">
+                    Français
+                  </a>
+                </li>
+                
             </ul>
           </div>
         </div>
@@ -874,6 +880,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#gcode_button" class="md-nav__link">
+    gcode_button
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gcode_macro" class="md-nav__link">
     gcode_macro
   </a>
@@ -993,8 +1006,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#screws_tilt_adjust" class="md-nav__link">
+    screws_tilt_adjust
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#servo" class="md-nav__link">
     servo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stepper_enable" class="md-nav__link">
+    stepper_enable
   </a>
   
 </li>
@@ -1058,6 +1085,13 @@
         <li class="md-nav__item">
   <a href="#webhooks" class="md-nav__link">
     webhooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#z_thermal_adjust" class="md-nav__link">
+    z_thermal_adjust
   </a>
   
 </li>
@@ -1621,6 +1655,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#gcode_button" class="md-nav__link">
+    gcode_button
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gcode_macro" class="md-nav__link">
     gcode_macro
   </a>
@@ -1740,8 +1781,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#screws_tilt_adjust" class="md-nav__link">
+    screws_tilt_adjust
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#servo" class="md-nav__link">
     servo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stepper_enable" class="md-nav__link">
+    stepper_enable
   </a>
   
 </li>
@@ -1805,6 +1860,13 @@
         <li class="md-nav__item">
   <a href="#webhooks" class="md-nav__link">
     webhooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#z_thermal_adjust" class="md-nav__link">
+    z_thermal_adjust
   </a>
   
 </li>
@@ -1915,6 +1977,7 @@
 <ul>
 <li><code>pressure_advance</code>: il valore corrente di <a href="Pressure_Advance.html">pressure advance</a>.</li>
 <li><code>smooth_time</code>: il tempo di avanzamento graduale della pressure advance corrente.</li>
+<li><code>motion_queue</code>: il nome dell'estrusore con cui è attualmente sincronizzato questo stepper estrusore. Questo viene segnalato come <code>None</code> se lo stepper dell'estrusore non è attualmente associato a un estrusore.</li>
 </ul>
 <h2 id="fan">fan<a class="headerlink" href="#fan" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili negli oggetti <a href="Config_Reference.html#fan">fan</a>, <a href="Config_Reference.html#heater_fan">heater_fan some_name</a> e <a href="Config_Reference.html#controller_fan">controller_fan some_name</a>:</p>
@@ -1938,6 +2001,11 @@
 <p>Le seguenti informazioni sono disponibili nell'oggetto <a href="Config_Reference.html#firmware_retraction">firmware_retraction</a>:</p>
 <ul>
 <li><code>retract_length</code>, <code>retract_speed</code>, <code>unretract_extra_length</code>, <code>unretract_speed</code>: le impostazioni correnti per il modulo firmware_retraction. Queste impostazioni possono differire dal file di configurazione se un comando <code>SET_RETRACTION</code> le altera.</li>
+</ul>
+<h2 id="gcode_button">gcode_button<a class="headerlink" href="#gcode_button" title="Permanent link">&para;</a></h2>
+<p>The following information is available in <a href="Config_Reference.html#gcode_button">gcode_button some_name</a> objects:</p>
+<ul>
+<li><code>state</code>: The current button state returned as "PRESSED" or "RELEASED"</li>
 </ul>
 <h2 id="gcode_macro">gcode_macro<a class="headerlink" href="#gcode_macro" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili negli oggetti <a href="Config_Reference.html#gcode_macro">gcode_macro some_name</a>:</p>
@@ -1976,6 +2044,7 @@
 <ul>
 <li><code>disponibili_riscaldatori</code>: restituisce un elenco di tutti i riscaldatori attualmente disponibili in base ai nomi completi delle sezioni di configurazione, ad es. <code>["extruder", "heater_bed", "heater_generic my_custom_heater"]</code>.</li>
 <li><code>available_sensors</code>: restituisce un elenco di tutti i riscaldatori attualmente disponibili in base ai nomi completi delle sezioni di configurazione, ad es. <code>["extruder", "heater_bed", "heater_generic my_custom_heater"]</code>.</li>
+<li><code>available_monitors</code>: Returns a list of all currently available temperature monitors by their full config section names, e.g. <code>["tmc2240 stepper_x"]</code>. While a temperature sensor is always available to read, a temperature monitor may not be available and will return null in such case.</li>
 </ul>
 <h2 id="idle_timeout">idle_timeout<a class="headerlink" href="#idle_timeout" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili nell'oggetto <a href="Config_Reference.html#idle_timeout">idle_timeout</a> (questo oggetto è sempre disponibile):</p>
@@ -2032,10 +2101,13 @@
 <p>Le seguenti informazioni sono disponibili nell'oggetto <code>print_stats</code> (questo oggetto è automaticamente disponibile se è definita una sezione di configurazione <a href="Config_Reference.html#virtual_sdcard">virtual_sdcard</a>):</p>
 <ul>
 <li><code>filename</code>, <code>total_duration</code>, <code>print_duration</code>, <code>filament_used</code>, <code>state</code>, <code>message</code>: informazioni stimate sulla stampa corrente quando è attiva una stampa da virtual_sdcard.</li>
+<li><code>info.total_layer</code>: Il valore totale del layer dell'ultimo comando G-Code <code>SET_PRINT_STATS_INFO TOTAL_LAYER=&lt;valore&gt;</code>.</li>
+<li><code>info.current_layer</code>: il valore del layer corrente dell'ultimo comando G-Code <code>SET_PRINT_STATS_INFO CURRENT_LAYER=&lt;valore&gt;</code>.</li>
 </ul>
 <h2 id="probe">probe<a class="headerlink" href="#probe" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili nell'oggetto <a href="Config_Reference.html#probe">probe</a> (questo oggetto è disponibile anche se è definita una sezione di configurazione <a href="Config_Reference.html#bltouch">bltouch</a>):</p>
 <ul>
+<li><code>name</code>: restituisce il nome della sonda in uso.</li>
 <li><code>last_query</code>: Restituisce True se il probe è stato segnalato come "attivato" durante l'ultimo comando QUERY_PROBE. Nota, se questo viene utilizzato in una macro, a causa dell'ordine di espansione del modello, il comando QUERY_PROBE deve essere eseguito prima della macro contenente questo riferimento.</li>
 <li><code>last_z_result</code>: Restituisce il valore del risultato Z dell'ultimo comando PROBE. Nota, se questo viene utilizzato in una macro, a causa dell'ordine di espansione del modello, il comando PROBE (o simile) deve essere eseguito prima della macro contenente questo riferimento.</li>
 </ul>
@@ -2049,10 +2121,28 @@
 <ul>
 <li><code>last_query["&lt;endstop&gt;"]</code>: Restituisce True se l'endstop specificato è stato segnalato come "attivato-triggered" durante l'ultimo comando QUERY_ENDSTOP. Nota, se questo viene utilizzato in una macro, a causa dell'ordine di espansione del modello, il comando QUERY_ENDSTOP deve essere eseguito prima della macro contenente questo riferimento.</li>
 </ul>
+<h2 id="screws_tilt_adjust">screws_tilt_adjust<a class="headerlink" href="#screws_tilt_adjust" title="Permanent link">&para;</a></h2>
+<p>Le seguenti informazioni sono disponibili nell'oggetto <code>screws_tilt_adjust</code>:</p>
+<ul>
+<li><code>error</code>: restituisce True se il comando <code>SCREWS_TILT_CALCULATE</code> più recente includeva il parametro <code>MAX_DEVIATION</code> e uno qualsiasi dei punti della vite rilevati superava il <code>MAX_DEVIATION</code> specificato.</li>
+<li><code>max_deviation</code>: Return the last <code>MAX_DEVIATION</code> value of the most recent <code>SCREWS_TILT_CALCULATE</code> command.</li>
+<li><code>results["&lt;screw&gt;"]</code>: un dizionario contenente le seguenti chiavi:<ul>
+<li><code>z</code>: L'altezza Z misurata della posizione della vite.</li>
+<li><code>sign</code>: una stringa che specifica la direzione in cui ruotare la vite per la regolazione necessaria. O "CW" per senso orario o "CCW" per senso antiorario.</li>
+<li><code>adjust</code>: il numero di giri di vite per regolare la vite, dato nel formato "HH:MM", dove "HH" è il numero di giri di vite completi e "MM" è il numero di "minuti di un quadrante di orologio" che rappresenta un giro di vite parziale. (Es. "01:15" significherebbe girare la vite di un giro e un quarto.)</li>
+<li><code>is_base</code>: Restituisce True se questa è la vite di base.</li>
+</ul>
+</li>
+</ul>
 <h2 id="servo">servo<a class="headerlink" href="#servo" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili negli oggetti <a href="Config_Reference.html#servo">servo some_name</a>:</p>
 <ul>
 <li><code>printer["servo &lt;config_name&gt;"].value</code>: l'ultima impostazione del pin PWM (un valore compreso tra 0.0 e 1.0) associata al servo.</li>
+</ul>
+<h2 id="stepper_enable">stepper_enable<a class="headerlink" href="#stepper_enable" title="Permanent link">&para;</a></h2>
+<p>Le seguenti informazioni sono disponibili nell'oggetto <code>stepper_enable</code> (questo oggetto è disponibile se è definito uno stepper):</p>
+<ul>
+<li><code>steppers["&lt;stepper&gt;"]</code>: Restituisce True se lo stepper specificato è abilitato.</li>
 </ul>
 <h2 id="system_stats">system_stats<a class="headerlink" href="#system_stats" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili nell'oggetto <code>system_stats</code> (questo oggetto è sempre disponibile):</p>
@@ -2061,7 +2151,7 @@
 </ul>
 <h2 id="sensori-di-temperatura">sensori di temperatura<a class="headerlink" href="#sensori-di-temperatura" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili in</p>
-<p><a href="Config_Reference.html#bmp280bme280bme680-temperature-sensor">bme280 config_section_name</a>, <a href="Config_Reference.html#htu21d-sensor">htu21d config_section_name</a>, <a href="Config_Reference.html#lm75-temperature-sensor">lm75 config_section_name</a> e <a href="Config_Reference.html#host-temperature-sensor">temperature_host config_section_name </a>:</p>
+<p><a href="Config_Reference.html#bmp280bme280bme680-temperature-sensor">bme280 config_section_name</a>, <a href="Config_Reference.html#htu21d-sensor">htu21d config_section_name</a>, <a href="Config_Reference.html#lm75-temperature-sensor">lm75 config_section_name</a>, <a href="Config_Reference.html#host-temperature-sensor">temperature_host config_section_name</a> and <a href="Config_Reference.html#combined-temperature-sensor">temperature_combined config_section_name</a> objects:</p>
 <ul>
 <li><code>temperature</code>: l'ultima temperatura letta dal sensore.</li>
 <li><code>humidity</code>, <code>pressure</code>, <code>gas</code>: gli ultimi valori letti dal sensore (solo sui sensori bme280, htu21d e lm75).</li>
@@ -2084,6 +2174,7 @@
 <li><code>mcu_phase_offset</code>: La posizione dello stepper del microcontrollore corrispondente alla fase "zero" del driver. Questo campo può essere nullo se l'offset di fase non è noto.</li>
 <li><code>phase_offset_position</code>: La "posizione comandata" corrispondente alla fase "zero" del driver. Questo campo può essere nullo se l'offset di fase non è noto.</li>
 <li><code>drv_status</code>: i risultati dell'ultima query sullo stato del driver. (Sono riportati solo i campi diversi da zero.) Questo campo sarà nullo se il driver non è abilitato (e quindi non viene interrogato periodicamente).</li>
+<li><code>temperature</code>: The internal temperature reported by the driver. This field will be null if the driver is not enabled or if the driver does not support temperature reporting.</li>
 <li><code>run_current</code>: La corrente di esecuzione attualmente impostata.</li>
 <li><code>hold_current</code>: La corrente di mantenimento attualmente impostata.</li>
 </ul>
@@ -2099,10 +2190,10 @@
 <li><code>stalls</code>: il numero totale di volte (dall'ultimo riavvio) che la stampante ha dovuto essere messa in pausa perché la testina si muoveva più velocemente di quanto fosse possibile leggere i movimenti dall'input del G-code.</li>
 </ul>
 <h2 id="dual_carriage">dual_carriage<a class="headerlink" href="#dual_carriage" title="Permanent link">&para;</a></h2>
-<p>Le seguenti informazioni sono disponibili in <a href="Config_Reference.html#dual_carriage">dual_carriage</a> su una macchina hybrid_corexy o hybrid_corexz</p>
+<p>The following information is available in <a href="Config_Reference.html#dual_carriage">dual_carriage</a> on a cartesian, hybrid_corexy or hybrid_corexz robot</p>
 <ul>
-<li><code>mode</code>: la modalità corrente. I valori possibili sono: "FULL_CONTROL"</li>
-<li><code>active_carriage</code>: il carrello attivo corrente. I valori possibili sono: "CARRIAGE_0", "CARRIAGE_1"</li>
+<li><code>carriage_0</code>: The mode of the carriage 0. Possible values are: "INACTIVE" and "PRIMARY".</li>
+<li><code>carriage_1</code>: The mode of the carriage 1. Possible values are: "INACTIVE", "PRIMARY", "COPY", and "MIRROR".</li>
 </ul>
 <h2 id="virtual_sdcard">virtual_sdcard<a class="headerlink" href="#virtual_sdcard" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili nell'oggetto <a href="Config_Reference.html#virtual_sdcard">virtual_sdcard</a>:</p>
@@ -2118,6 +2209,16 @@
 <ul>
 <li><code>state</code>: restituisce una stringa che indica lo stato corrente di Klipper. I valori possibili sono: "ready", "startup", "shutdown", "error".</li>
 <li><code>state_message</code>: una stringa leggibile dall'uomo che fornisce un contesto aggiuntivo sullo stato corrente di Klipper.</li>
+</ul>
+<h2 id="z_thermal_adjust">z_thermal_adjust<a class="headerlink" href="#z_thermal_adjust" title="Permanent link">&para;</a></h2>
+<p>Le seguenti informazioni sono disponibili nell'oggetto <code>z_thermal_adjust</code> (questo oggetto è disponibile se <a href="Config_Reference.html#z_thermal_adjust">z_thermal_adjust</a> è definito).</p>
+<ul>
+<li><code>enabled</code>: Restituisce True se la regolazione è abilitata.</li>
+<li><code>temperature</code>: temperatura attuale (livellata) del sensore definito. [grado C]</li>
+<li><code>measured_min_temp</code>: temperatura minima misurata. [degC]</li>
+<li><code>measured_max_temp</code>: Temperatura massima misurata. [degC]</li>
+<li><code>current_z_adjust</code>: Ultima regolazione Z calcolata [mm].</li>
+<li><code>z_adjust_ref_temperature</code>:Temperatura di riferimento corrente utilizzata per il calcolo di Z <code>current_z_adjust</code> [degC].</li>
 </ul>
 <h2 id="z_tilt">z_tilt<a class="headerlink" href="#z_tilt" title="Permanent link">&para;</a></h2>
 <p>Le seguenti informazioni sono disponibili nell'oggetto <code>z_tilt</code> (questo oggetto è disponibile se z_tilt è definito):</p>
