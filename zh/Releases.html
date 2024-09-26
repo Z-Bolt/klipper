@@ -9,11 +9,11 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
-        <title>版本发布 - Klipper 文档</title>
+        <title>发行说明 - Klipper 文档</title>
       
     
     
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              版本发布
+              发行说明
             
           </span>
         </div>
@@ -348,12 +348,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          版本发布
+          发行说明
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="Releases.html" class="md-nav__link md-nav__link--active">
-        版本发布
+        发行说明
       </a>
       
         
@@ -525,10 +525,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         安装
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint for Klipper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -727,6 +774,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         限位相位
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        轴扭曲补偿
       </a>
     </li>
   
@@ -1258,8 +1319,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        引导加载程序条目
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CAN 总线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CanBus故障排除
       </a>
     </li>
   
@@ -1288,6 +1377,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         霍尔耗材线径传感器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Eddy 感应涡流探针
       </a>
     </li>
   
@@ -1441,7 +1544,7 @@
 </a>
 
 
-<h1 id="_1">版本发布<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="_1">发行说明<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>Klipper版本发布。如何安装Klipper ，请查看<a href="Installation.html">installation</a>。</p>
 <h2 id="klipper-0110">Klipper 0.11.0<a class="headerlink" href="#klipper-0110" title="Permanent link">&para;</a></h2>
 <p>发布于2022年11月28日。此版本的主要更新：</p>
@@ -1452,9 +1555,9 @@
 <li>添加了对CanBoot bootloader的支持。</li>
 <li>添加了对mpu9250以及mpu6050 加速度计的支持。</li>
 <li>改进了对温度传感器max31856 max31855 max31865 max6675的错误处理。</li>
-<li>It is now possible to configure LEDs to update during long running G-Code commands using LED "template" support.</li>
+<li>现在可以使用LED“模板”支持将LED配置为在长时间运行G-Code命令期间更新。</li>
 <li>多项微控制器改进。 新增对 stm32h743 stm32h750 stm32l412 stm32g0b1 same70 same51 same54 芯片的支持。在 atsamd 和 stm32f0 上支持 i2c 读取。在 stm32 上支持硬件 pwm。基于 Linux mcu 信号的事件分派。 新的 rp2040 支持 "make flash" i2c 以及 rp2040-e5 USB 勘误。</li>
-<li>New modules added: angle, dac084S085, exclude_object, led, mpu9250, pca9632, smart_effector, z_thermal_adjust. New deltesian kinematics added. New dump_mcu tool added.</li>
+<li>新增模块：ANGLE、DAC084S085、EXCLUDE_OBJECT、LED、mpu9250、pca9632、SMART_EFECTOR、Z_HEARTER_ADJUST。添加了新的Deltesian运动学。添加了新的Dump_MCU工具。</li>
 <li>几个错误的修复和代码的清理。</li>
 </ul>
 <h2 id="klipper-0100">Klipper 0.10.0<a class="headerlink" href="#klipper-0100" title="Permanent link">&para;</a></h2>

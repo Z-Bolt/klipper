@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -410,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         Installazione
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint for Klipper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -612,6 +659,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         Fase di fine corsa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        Compensazione torsione assi
       </a>
     </li>
   
@@ -1153,8 +1214,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader Entry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CANBUS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        Risoluzione dei problemi CANBUS
       </a>
     </li>
   
@@ -1183,6 +1272,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         Sensore di Hall per larghezza del filamento
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Eddy Current Inductive probe
       </a>
     </li>
   
@@ -1251,7 +1354,8 @@
 <p>L' 'overshoot' si verifica a causa di possibili ritardi nella trasmissione del messaggio tra il microcontrollore che controlla il finecorsa e i microcontrollori che muovono i motori passo-passo. Il codice Klipper è progettato per limitare questo ritardo a non più di 25 ms. (Quando è attivato l'homing multi-mcu, i microcontrollori inviano messaggi di stato periodici e controllano che i messaggi di stato corrispondenti vengano ricevuti entro 25 ms.)</p>
 <p>Quindi, ad esempio, se si esegue l'homing a 10 mm/s, è possibile un superamento fino a 0,250 mm (10 mm/s * .025s == 0,250 mm). È necessario prestare attenzione durante la configurazione dell'homing multi-mcu per tenere conto di questo tipo di overshoot. L'uso di velocità di riferimento o di sonda più lente può ridurre la sovraelongazione (overshot).</p>
 <p>La sovraelongazione 'overshot' del motore passo-passo non dovrebbe influire negativamente sulla precisione della procedura di homing e di sonda. Il codice Klipper rileverà il superamento e ne terrà conto nei suoi calcoli. Tuttavia, è importante che il design dell'hardware sia in grado di gestire l'overshoot senza causare danni alla macchina.</p>
-<p>Se Klipper dovesse rilevare un problema di comunicazione tra i microcontrollori durante l'homing multi-mcu, genererà un errore "Timeout di comunicazione durante l'homing".</p>
+<p>In order to use this "multi-mcu homing" capability the hardware must have predictably low latency between the host computer and all of the micro-controllers. Typically the round-trip time must be consistently less than 10ms. High latency (even for short periods) is likely to result in homing failures.</p>
+<p>Should high latency result in a failure (or if some other communication issue is detected) then Klipper will raise a "Communication timeout during homing" error.</p>
 <p>Si noti che un asse con più stepper (ad esempio, <code>stepper_z</code> e <code>stepper_z1</code>) deve trovarsi sullo stesso microcontrollore per poter utilizzare l'homing multi-mcu. Ad esempio, se un endstop si trova su un microcontrollore separato da <code>stepper_z</code> allora <code>stepper_z1</code> deve trovarsi sullo stesso microcontrollore di <code>stepper_z</code>.</p>
 
               

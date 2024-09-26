@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -410,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         Installation
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint for Klipper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -612,6 +659,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         Phase de fin de course
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        Compensation de torsion de l'axe
       </a>
     </li>
   
@@ -1153,8 +1214,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Entrée du bootloader
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         BUS CAN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        Dépannage du CANBUS
       </a>
     </li>
   
@@ -1183,6 +1272,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         Détecteur de largeur de filament à effet hall
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Eddy Current Inductive probe
       </a>
     </li>
   
@@ -1251,7 +1354,8 @@
 <p>Cette possibilité de "dépassement" peut arriver à cause des délais de transmission entre le microcontrôleur des endstop et le microcontrôleur qui déplce les moteurs pas à pas. Le code de Klipper a été conçu pour limiter ce délai a moins de 25 ms. (Quand la mise à l'origine multi contrôleurs est active, les microcontrôleurs envoient des messages d'état périodiquement et il y a une vérification que ces messages sont bien reçus dans la limite des 25 ms.)</p>
 <p>Donc, par exemple, si l'on fait une mise à l'origine à 10 mm/s, il est alors possible de dépasser de 0.250 mm maximum (10 mm/s * 0.25 s = 0.250 mm).Il faut bien faire attention à cette possibilité de "dépassement" lors de la configuration d'une mise à l'origine avec multiples contrôleurs. Une mise à l'origine ou un palpage plus lent peut réduite le "dépassement".</p>
 <p>Ce dépassement des moteurs pas à pas ne nuit pas à la précision de la procédure de mise à l'origine et de palpage. Le code de Klipper détectera le dépassement et en tiendra compte dans ses calculs. Cependant, il est important que la conception matérielle soit capable de gérer les dépassements sans endommager la machine.</p>
-<p>Si Klipper détecte un problème de communication entre les microcontrôleurs lors de la mise à l'origine multi-mcu, il déclenchera une erreur "Délai de communication pendant la mise à l'origine".</p>
+<p>In order to use this "multi-mcu homing" capability the hardware must have predictably low latency between the host computer and all of the micro-controllers. Typically the round-trip time must be consistently less than 10ms. High latency (even for short periods) is likely to result in homing failures.</p>
+<p>Should high latency result in a failure (or if some other communication issue is detected) then Klipper will raise a "Communication timeout during homing" error.</p>
 <p>Notez qu'un axe avec plusieurs steppers (par exemple, <code>stepper_z</code> et <code>stepper_z1</code>) doit avoir tous les meteeurs pas à pas sur le même microcontrôleur afin d'utiliser le référencement multi-mcu. Par exemple, si une fin de course est sur un microcontrôleur distinct de <code>stepper_z</code> alors <code>stepper_z1</code> doit être sur le même microcontrôleur que <code>stepper_z</code>.</p>
 
               

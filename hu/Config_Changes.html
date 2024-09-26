@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -449,10 +449,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         Telepítés
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint a Klipper-hez
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -651,6 +698,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         Végállás fázis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        Tengely fordulat kompenzáció
       </a>
     </li>
   
@@ -1182,8 +1243,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader belépés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CANBUS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CANBUS Hibaelhárítás
       </a>
     </li>
   
@@ -1212,6 +1301,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         Hall nyomtatószál szélesség érzékelő
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Örvényáramú induktív szonda
       </a>
     </li>
   
@@ -1293,14 +1396,24 @@
 <p>Ez a dokumentum a konfigurációs fájl legújabb szoftveres változtatásait tartalmazza, amelyek nem kompatibilisek visszafelé. A Klipper szoftver frissítésekor érdemes áttanulmányozni ezt a dokumentumot.</p>
 <p>A dokumentumban szereplő valamennyi dátum hozzávetőleges.</p>
 <h2 id="valtozasok">Változások<a class="headerlink" href="#valtozasok" title="Permanent link">&para;</a></h2>
-<p>20230826: If <code>safe_distance</code> is set or calculated to be 0 in <code>[dual_carriage]</code>, the carriages proximity checks will be disabled as per documentation. A user may wish to configure <code>safe_distance</code> explicitly to prevent accidental crashes of the carriages with each other. Additionally, the homing order of the primary and the dual carriage is changed in some configurations (certain configurations when both carriages home in the same direction, see <a href="Config_Reference.html#dual_carriage">[dual_carriage] configuration reference</a> for more details).</p>
-<p>20230810: The flash-sdcard.sh script now supports both variants of the Bigtreetech SKR-3, STM32H743 and STM32H723. For this, the original tag of btt-skr-3 now has changed to be either btt-skr-3-h743 or btt-skr-3-h723.</p>
-<p>20230729: The exported status for <code>dual_carriage</code> is changed. Instead of exporting <code>mode</code> and <code>active_carriage</code>, the individual modes for each carriage are exported as <code>printer.dual_carriage.carriage_0</code> and <code>printer.dual_carriage.carriage_1</code>.</p>
-<p>20230619: The <code>relative_reference_index</code> option has been deprecated and superceded by the <code>zero_reference_position</code> option. Refer to the <a href="Bed_Mesh.html#the-deprecated-relative_reference_index">Bed Mesh Documentation</a> for details on how to update the configuration. With this deprecation the <code>RELATIVE_REFERENCE_INDEX</code> is no longer available as a parameter for the <code>BED_MESH_CALIBRATE</code> gcode command.</p>
-<p>20230530: The default canbus frequency in "make menuconfig" is now 1000000. If using canbus and using canbus with some other frequency is required, then be sure to select "Enable extra low-level configuration options" and specify the desired "CAN bus speed" in "make menuconfig" when compiling and flashing the micro-controller.</p>
-<p>20230525: <code>SHAPER_CALIBRATE</code> command immediately applies input shaper parameters if <code>[input_shaper]</code> was enabled already.</p>
-<p>20230407: The <code>stalled_bytes</code> counter in the log and in the <code>printer.mcu.last_stats</code> field has been renamed to <code>upcoming_bytes</code>.</p>
-<p>20230323: On tmc5160 drivers <code>multistep_filt</code> is now enabled by default. Set <code>driver_MULTISTEP_FILT: False</code> in the tmc5160 config for the previous behavior.</p>
+<p>20240415: A <code>[virtual_sdcard]</code> konfigurációs szakaszban az <code>on_error_gcode</code> paraméter mostantól alapértelmezett. Ha ez a paraméter nincs megadva, az alapértelmezett érték mostantól <code>TURN_OFF_HEATERS</code>. Ha a korábbi viselkedést szeretnénk (hiba esetén a virtual_sdcard nyomtatása során nem teszünk alapértelmezett lépéseket), akkor a <code>on_error_gcode</code> paramétert üres értékkel definiáljuk.</p>
+<p>20240313: A <code>[nyomtató]</code> konfigurációs szakaszban található <code>max_accel_to_decel</code> paramétert elavultnak nyilvánítottuk. A <code>SET_VELOCITY_LIMIT</code> parancs <code>ACCEL_TO_DECEL</code> paramétere elavult. A <code>printer.toolhead.max_accel_to_decel</code> állapot eltávolításra került. Használd helyette a <a href="Config_Reference.html#printer">minimum_cruise_ratio paramétert</a>. Az elavult funkciók a közeljövőben eltávolításra kerülnek, és az időközbeni használatuk finoman eltérő viselkedést eredményezhet.</p>
+<p>20240215: Számos elavult funkciót eltávolítottunk. Az "NTC 100K beta 3950" használata termisztor névként megszűnt (elavult a 20211110 oldalon). A <code>SYNC_STEPPER_TO_EXTRUDER</code> és a <code>SET_EXTRUDER_STEP_DISTANCE</code> parancsok eltávolításra kerültek, és az extruder <code>shared_heater</code> konfigurációs opciója eltávolításra került (deprecated on 20220210). A bed_mesh <code>relative_reference_index</code> opció eltávolításra került (deprecated on 20230619).</p>
+<p>20240123: Az output_pin SET_PIN CYCLE_TIME paramétert eltávolítottuk. Használd az új <a href="Config_Reference.html#pwm_cycle_time">pwm_cycle_time</a> modult, ha egy PWM tű ciklusidejét dinamikusan kell megváltoztatni.</p>
+<p>20240123: Az output_pin <code>maximum_mcu_duration</code> paraméter elavult. Használd helyette a <a href="Config_Reference.html#pwm_tool">pwm_tool config section</a>. Az opciót a közeljövőben eltávolítjuk.</p>
+<p>20240123: Az output_pin <code>static_value</code> paraméter elavult. Helyettesítsük a <code>value</code> és <code>shutdown_value</code> paraméterekkel. Az opciót a közeljövőben eltávolítjuk.</p>
+<p>20231216: The <code>[hall_filament_width_sensor]</code> is changed to trigger filament runout when the thickness of the filament exceeds <code>max_diameter</code>. The maximum diameter defaults to <code>default_nominal_filament_diameter + max_difference</code>. See <a href="Config_Reference.html#hall_filament_width_sensor">[hall_filament_width_sensor] configuration
+reference</a> for more details.</p>
+<p>20231207: Több nem dokumentált konfigurációs paramétert eltávolítottunk a <code>[printer]</code> konfigurációs szakaszban (a buffer_time_low, buffer_time_high, buffer_time_start és move_flush_time paramétereket).</p>
+<p>20231110: Klipper v0.12.0 megjelent.</p>
+<p>20230826: Ha a <code>[dual_carriage]-ben a</code>safe_distance<code>értéke 0-ra van beállítva vagy kiszámítva, akkor a dokumentáció szerint a kocsik közelségének ellenőrzése le lesz tiltva. A felhasználónak érdemes a</code>safe_distance`-t explicit módon beállítani, hogy megakadályozza a kocsik véletlen ütközését egymással. Ezen kívül az elsődleges és a kettős kocsi indulási sorrendje bizonyos konfigurációkban megváltozik (bizonyos konfigurációk, amikor mindkét kocsi ugyanabba az irányba indul, további részletekért lásd a <a href="Config_Reference.html#dual_carriage">[dual_carriage] konfigurációs hivatkozás</a>).</p>
+<p>20230810: A flash-sdcard.sh szkript mostantól támogatja a Bigtreetech SKR-3 mindkét változatát, az STM32H743-at és az STM32H723-at. Ennek érdekében az eredeti btt-skr-3 címke mostantól btt-skr-3-h743 vagy btt-skr-3-h723-ra változott.</p>
+<p>20230729: A <code>dual_carriage</code> exportált állapota megváltozott. A <code>mode</code> és az <code>active_carriage</code> exportálása helyett az egyes kocsik egyedi üzemmódjai <code>printer.dual_carriage.carriage_0</code> és <code>printer.dual_carriage.carriage_1</code> néven kerülnek exportálásra.</p>
+<p>20230619: A <code>relative_reference_index</code> opció elavult, és helyébe a <code>zero_reference_position</code> opció lépett. A konfiguráció frissítésének részleteiért olvasd el az <a href="Bed_Mesh.html#the-deprecated-relative_reference_index">Ágyháló</a> című dokumentumot. Ezzel a deprecationnel a <code>RELATIVE_REFERENCE_INDEX</code> már nem áll rendelkezésre a <code>BED_MESH_CALIBRATE</code> G-kód parancs paramétereként.</p>
+<p>20230530: A "make menuconfig" alapértelmezett canbus frekvenciája mostantól 1000000. Ha a canbus használata és a canbus valamilyen más frekvenciával történő használata szükséges, akkor a mikrokontroller fordításakor és égetésekor mindenképpen válaszd az "Enable extra low-level configuration options" opciót, és add meg a kívánt "CAN bus speed" értéket a "make menuconfig"-ben.</p>
+<p>20230525: A <code>SHAPER_CALIBRATE</code> parancs azonnal alkalmazza a bemeneti alakító paramétereket, ha az <code>[input_shaper]</code> már engedélyezve volt.</p>
+<p>20230407: A <code>stalled_bytes</code> számláló a naplóban és a <code>printer.mcu.last_stats</code> mezőben <code>upcoming_bytes</code>-ra lett átnevezve.</p>
+<p>20230323: A TMC5160 motorvezérlőkön a <code>multistep_filt</code> mostantól alapértelmezés szerint engedélyezve van. Állítsuk be a <code>driver_MULTISTEP_FILT: False</code> értéket a TMC5160 konfigurációjában a korábbi viselkedéshez.</p>
 <p>20230304: A <code>SET_TMC_CURRENT</code> parancs mostantól megfelelően beállítja a globális skálázó regisztert az ezzel rendelkező meghajtók esetében. Ez megszünteti azt a korlátozást, amikor a TMC5160 esetében az áramok nem voltak növelhetők magasabbra a <code>SET_TMC_CURRENT</code> paranccsal, mint a konfigurációs fájlban beállított <code>run_current</code> érték. Ennek azonban van egy mellékhatása: A <code>SET_TMC_CURRENT</code> futtatása után a StealthChop2 használata esetén &gt;130 ms-ig álló helyzetben kell tartani a léptetőt, hogy az AT#1 kalibrációt a meghajtó végre tudja hajtani.</p>
 <p>20230202: A <code>printer.screws_tilt_adjust</code> állapotinformáció formátuma megváltozott. Az információ mostantól a csavarok szótáraként kerül tárolásra, a kapott mérésekkel együtt. A részletekért lásd a <a href="Status_Reference.html#screws_tilt_adjust">Referencia állapot</a> című dokumentumot.</p>
 <p>20230201: A <code>[bed_mesh]</code> modul már nem tölti be az <code>alapértelmezett</code> profilt indításkor. Az <code>alapértelmezett</code> profilt használó felhasználóknak ajánlott a <code>BED_MESH_PROFILE LOAD=default</code> hozzáadni a <code>START_PRINT</code> makróhoz (vagy adott esetben a szeletelő "Start G-Code" konfigurációjához).</p>

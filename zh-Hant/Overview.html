@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -470,10 +470,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         安裝
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint for Klipper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -672,6 +719,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         限位相位
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        Axis Twist Compensation
       </a>
     </li>
   
@@ -1203,8 +1264,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader Entry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CAN 匯流排
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CANBUS Troubleshooting
       </a>
     </li>
   
@@ -1233,6 +1322,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         霍爾耗材線徑感測器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Eddy Current Inductive probe
       </a>
     </li>
   
@@ -1343,7 +1446,10 @@
 </ul>
 <h2 id="_3">安裝和配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="Installation.html">安裝</a>：Klipper 安裝指南。</li>
+<li><a href="Installation.html">安裝</a>：Klipper 安裝指南。<ul>
+<li><a href="OctoPrint.html">Octoprint</a>: Guide to installing Octoprint with Klipper.</li>
+</ul>
+</li>
 <li><a href="Config_Reference.html">配置參考</a>：配置參數說明。<ul>
 <li><a href="Rotation_Distance.html">旋轉距離</a>：計算旋轉距離(rotation_distance)步進參數。</li>
 </ul>
@@ -1356,7 +1462,7 @@
 <li><a href="Manual_Level.html">手動調平</a>：校準 Z 限位和調整熱床調平螺絲。</li>
 <li><a href="Bed_Mesh.html">床網</a>：基於 XY 位置的列印床高度補償。</li>
 <li><a href="Endstop_Phase.html">限位相位</a>：使用步進電機相位輔助 Z 限位定位。</li>
-<li><a href="Axis_Twist_Compensation.html">Axis Twist Compensation</a>: A tool to compensate for inaccurate probe readings due to twist in X gantry.</li>
+<li><a href="Axis_Twist_Compensation.html">軸扭曲補償</a>：用於補償由於 X 機架扭曲而導致不準確的探頭讀數的工具。</li>
 </ul>
 </li>
 <li><a href="Resonance_Compensation.html">共振補償</a>：減少列印震紋的工具。<ul>
@@ -1374,7 +1480,7 @@
 <li><a href="Slicers.html">切片</a>：為 Klipper 配置切片軟體。</li>
 <li><a href="Skew_Correction.html">偏斜校正</a>：調整不完全垂直的軸（不完美的方形）。</li>
 <li><a href="Using_PWM_Tools.html">PWM 工具</a>：關於如何使用 PWM 控制的工具，例如鐳射器或電鉆頭。</li>
-<li><a href="Exclude_Object.html">Exclude Object</a>: The guide to the Exclude Objects implementation.</li>
+<li><a href="Exclude_Object.html">排除物件</a>：排除物件實現的指南。</li>
 </ul>
 <h2 id="_4">開發者文檔<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1396,13 +1502,14 @@
 <li><a href="RPi_microcontroller.html">將樹莓派作為微控制器</a>：關於如何控制與樹莓派 GPIO 引腳連線的裝置。</li>
 <li><a href="Beaglebone.html">Beaglebone</a>：在 Beaglebone PRU 上執行 Klipper 的詳細資訊。</li>
 <li><a href="Bootloaders.html">底層載入程式</a>：有關於微控制器刷寫的開發者資訊。</li>
-<li><a href="Bootloader_Entry.html">Bootloader Entry</a>: Requesting the bootloader.</li>
+<li><a href="Bootloader_Entry.html">啟動程式入口</a>：正在請求啟動程式。</li>
 <li><a href="CANBUS.html">CAN 匯流排</a>：有關於 Klipper 使用 CAN 匯流排的資訊。<ul>
-<li><a href="CANBUS_Troubleshooting.html">CAN bus troubleshooting</a>: Tips for troubleshooting CAN bus.</li>
+<li><a href="CANBUS_Troubleshooting.html">CAN 匯流排故障排除</a>：CAN 匯流排故障排除的提示。</li>
 </ul>
 </li>
 <li><a href="TSL1401CL_Filament_Width_Sensor.html">TSL1401CL 耗材線徑感測器</a></li>
 <li><a href="Hall_Filament_Width_Sensor.html">霍爾列印絲寬度感測器</a></li>
+<li><a href="Eddy_Probe.html">Eddy Current Inductive probe</a></li>
 </ul>
 
               

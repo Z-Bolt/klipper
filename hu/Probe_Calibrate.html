@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -410,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         Telepítés
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint a Klipper-hez
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -683,6 +730,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         Végállás fázis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        Tengely fordulat kompenzáció
       </a>
     </li>
   
@@ -1214,8 +1275,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader belépés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CANBUS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CANBUS Hibaelhárítás
       </a>
     </li>
   
@@ -1244,6 +1333,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         Hall nyomtatószál szélesség érzékelő
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Örvényáramú induktív szonda
       </a>
     </li>
   
@@ -1373,7 +1476,7 @@
 <p>A pontos z_offset beállítása kritikus fontos a jó minőségű nyomatok előállításához. A z_offset a fúvóka és a tárgyasztal közötti távolság, amikor a szonda működésbe lép. A Klipper <code>PROBE_CALIBRATE</code> eszköz használható ennek az értéknek a meghatározására - ez egy automatikus szondát futtat a szonda Z kioldási pozíciójának mérésére, majd egy kézi szondát indít a fúvóka Z magasságának meghatározására. A szonda z_offset értékét ezután ezekből a mérésekből számítja ki.</p>
 <p>Kezd a nyomtató alaphelyzetbe állításával, majd mozgasd a fejet a tárgyasztal közepéhez közeli pozícióba. Navigálj az OctoPrint terminál fülre, és futtasd a <code>PROBE_CALIBRATE</code> parancsot az eszköz indításához.</p>
 <p>Ez az eszköz automatikus mérést hajt végre, majd felemeli a fejet, mozgatja a fúvókát a mérőpont helye fölé, és elindítja a kézi mérést. Ha a fúvóka nem mozdul el az automatikus mérőpont feletti pozícióba, akkor <code>ABORT</code> a kézi mérőeszközzel, hajtsd végre a fent leírt X-Y szondaeltolás kalibrálását.</p>
-<p>Miután a kézi mérő eszköz elindult, kövesd a <a href="Bed_Level.html#the-paper-test">"a papírteszt"</a>] pontban leírt lépéseket a fúvóka és a tárgyasztal közötti tényleges távolság meghatározásához az adott helyen. Ha ezek a lépések befejeződtek, akkor <code>ACCEPT</code> a pozíció és elmentheted az eredményeket a config fájlba a következővel:</p>
+<p>Miután a kézi szondás eszköz elindult, kövesd a <a href="Bed_Level.html#the-paper-test">"a papírteszt"</a> pontban leírt lépéseket a fúvóka és az ágy közötti tényleges távolság meghatározásához az adott helyen. Ha ezek a lépések befejeződtek, <code>ELFOGAD-hatjuk</code> a pozíciót és elmenthetjük az eredményeket a config fájlba a következővel:</p>
 <div class="highlight"><pre><span></span><code>SAVE_CONFIG
 </code></pre></div>
 

@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -410,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         Installazione
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint for Klipper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -612,6 +659,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         Fase di fine corsa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        Compensazione torsione assi
       </a>
     </li>
   
@@ -1443,8 +1504,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader Entry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CANBUS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        Risoluzione dei problemi CANBUS
       </a>
     </li>
   
@@ -1473,6 +1562,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         Sensore di Hall per larghezza del filamento
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Eddy Current Inductive probe
       </a>
     </li>
   
@@ -2088,7 +2191,7 @@ GND+SCL
 <h3 id="installazione-software">Installazione software<a class="headerlink" href="#installazione-software" title="Permanent link">&para;</a></h3>
 <p>Si noti che le misurazioni della risonanza e la calibrazione automatica dello shaper richiedono dipendenze software aggiuntive non installate per impostazione predefinita. Innanzitutto, esegui sul tuo Raspberry Pi i seguenti comandi:</p>
 <div class="highlight"><pre><span></span><code>sudo apt update
-sudo apt install python3-numpy python3-matplotlib libatlas-base-dev
+sudo apt install python3-numpy python3-matplotlib libatlas-base-dev libopenblas-dev
 </code></pre></div>
 
 <p>Quindi, per installare NumPy nell'ambiente Klipper, esegui il comando:</p>
@@ -2251,7 +2354,7 @@ probe_points: ...
 <div class="highlight"><pre><span></span><code>TEST_RESONANCES AXIS=Y
 </code></pre></div>
 
-<p>Questo genererà 2 file CSV (<code>/tmp/resonances_x_*.csv</code> e <code>/tmp/resonances_y_*.csv</code>). Questi file possono essere elaborati con lo script autonomo su un Raspberry Pi. Per farlo, esegui i seguenti comandi:</p>
+<p>This will generate 2 CSV files (<code>/tmp/resonances_x_*.csv</code> and <code>/tmp/resonances_y_*.csv</code>). These files can be processed with the stand-alone script on a Raspberry Pi. This script is intended to be run with a single CSV file for each axis measured, although it can be used with multiple CSV files if you desire to average the results. Averaging results can be useful, for example, if resonance tests were done at multiple test points. Delete the extra CSV files if you do not desire to average them.</p>
 <div class="highlight"><pre><span></span><code>~/klipper/scripts/calibrate_shaper.py /tmp/resonances_x_*.csv -o /tmp/shaper_calibrate_x.png
 ~/klipper/scripts/calibrate_shaper.py /tmp/resonances_y_*.csv -o /tmp/shaper_calibrate_y.png
 </code></pre></div>
@@ -2373,6 +2476,11 @@ max_smoothing: 0.25  # un esempio
 <p>Poiché l'input shaper può creare un po' di smussamento nelle parti, specialmente ad accelerazioni elevate, sarà comunque necessario scegliere il valore <code>max_accel</code> che non crei troppo smussamento "smoothing" nelle parti stampate. Uno script di calibrazione fornisce una stima per il parametro <code>max_accel</code> che non dovrebbe creare un smoothing eccessivo. Si noti che il <code>max_accel</code> visualizzato dallo script di calibrazione è solo un massimo teorico al quale il rispettivo shaper è ancora in grado di lavorare senza produrre troppo smoothing. Non è affatto una raccomandazione impostare questa accelerazione per la stampa. L'accelerazione massima che la stampante è in grado di sostenere dipende dalle sue proprietà meccaniche e dalla coppia massima dei motori passo-passo utilizzati. Pertanto, si suggerisce di impostare <code>max_accel</code> nella sezione <code>[printer]</code> che non superi i valori stimati per gli assi X e Y, probabilmente con un margine di sicurezza conservativo.</p>
 <p>In alternativa, segui <a href="Resonance_Compensation.html#selecting-max_accel">questa</a> parte della guida all'ottimizzazione dello input shaper e stampa il modello di test per scegliere sperimentalmente il parametro <code>max_accel</code>.</p>
 <p>Lo stesso avviso vale per lo input shaper <a href="#input-shaper-auto-calibration">auto-calibration</a> con il comando <code>SHAPER_CALIBRATE</code>: è comunque necessario scegliere il giusto valore di <code>max_accel</code> dopo l'auto-calibrazione, e il i limiti di accelerazione non verranno applicati automaticamente.</p>
+<p>Keep in mind that the maximum acceleration without too much smoothing depends on the <code>square_corner_velocity</code>. The general recommendation is not to change it from its default value 5.0, and this is the value used by default by the <code>calibrate_shaper.py</code> script. If you did change it though, you should inform the script about it by passing <code>--square_corner_velocity=...</code> parameter, e.g.</p>
+<div class="highlight"><pre><span></span><code>~/klipper/scripts/calibrate_shaper.py /tmp/resonances_x_*.csv -o /tmp/shaper_calibrate_x.png --square_corner_velocity=10.0
+</code></pre></div>
+
+<p>so that it can calculate the maximum acceleration recommendations correctly. Note that the <code>SHAPER_CALIBRATE</code> command already takes the configured <code>square_corner_velocity</code> parameter into account, and there is no need to specify it explicitly.</p>
 <p>Se stai eseguendo una ricalibrazione dello shaper e lo smoothing riportato per la configurazione dello shaper suggerita è quasi lo stesso di quello ottenuto durante la calibrazione precedente, questo passaggio può essere saltato.</p>
 <h3 id="test-di-assi-personalizzati">Test di assi personalizzati<a class="headerlink" href="#test-di-assi-personalizzati" title="Permanent link">&para;</a></h3>
 <p>Il comando <code>TEST_RESONANCES</code> supporta assi personalizzati. Anche se questo non è molto utile per la calibrazione del input shaper, può essere utilizzato per studiare in profondità le risonanze della stampante e per controllare, ad esempio, la tensione della cinghia.</p>

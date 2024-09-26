@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -410,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         安裝
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint for Klipper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -612,6 +659,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         限位相位
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        Axis Twist Compensation
       </a>
     </li>
   
@@ -987,6 +1048,13 @@
         <li class="md-nav__item">
   <a href="#probe" class="md-nav__link">
     probe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwm_cycle_time" class="md-nav__link">
+    pwm_cycle_time
   </a>
   
 </li>
@@ -1487,8 +1555,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader Entry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CAN 匯流排
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CANBUS Troubleshooting
       </a>
     </li>
   
@@ -1517,6 +1613,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         霍爾耗材線徑感測器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Eddy Current Inductive probe
       </a>
     </li>
   
@@ -1767,6 +1877,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pwm_cycle_time" class="md-nav__link">
+    pwm_cycle_time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quad_gantry_level" class="md-nav__link">
     quad_gantry_level
   </a>
@@ -1942,7 +2059,10 @@
 <h2 id="exclude_object">exclude_object<a class="headerlink" href="#exclude_object" title="Permanent link">&para;</a></h2>
 <p>The following information is available in the <a href="Exclude_Object.html">exclude_object</a> object:</p>
 <ul>
-<li><code>objects</code>: An array of the known objects as provided by the <code>EXCLUDE_OBJECT_DEFINE</code> command. This is the same information provided by the <code>EXCLUDE_OBJECT VERBOSE=1</code> command. The <code>center</code> and <code>polygon</code> fields will only be present if provided in the original <code>EXCLUDE_OBJECT_DEFINE</code>Here is a JSON sample:</li>
+<li>
+<p><code>objects</code>: An array of the known objects as provided by the <code>EXCLUDE_OBJECT_DEFINE</code> command. This is the same information provided by the <code>EXCLUDE_OBJECT VERBOSE=1</code> command. The <code>center</code> and <code>polygon</code> fields will only be present if provided in the original <code>EXCLUDE_OBJECT_DEFINE</code></p>
+<p>Here is a JSON sample:</p>
+</li>
 </ul>
 <div class="highlight"><pre><span></span><code>[
   {
@@ -2111,6 +2231,11 @@
 <li><code>last_query</code>：如果探針在上一個 QUERY_PROBE 命令期間報告為"已觸發"，則返回 True。請注意，如果在宏中使用它，根據模板展開的順序，必須在包含此引用的宏之前執行 QUERY_PROBE 命令。</li>
 <li><code>last_z_result</code>：返回上一次 PROBE 命令的結果 Z 值。請注意，由於模板展開的順序，在宏中使用時必須在包含此引用的宏之前執行 PROBE（或類似）命令。</li>
 </ul>
+<h2 id="pwm_cycle_time">pwm_cycle_time<a class="headerlink" href="#pwm_cycle_time" title="Permanent link">&para;</a></h2>
+<p>The following information is available in <a href="Config_Reference.html#pwm_cycle_time">pwm_cycle_time some_name</a> objects:</p>
+<ul>
+<li><code>value</code>：由<code>SET_PIN</code>指令設定的引腳「值」。</li>
+</ul>
 <h2 id="quad_gantry_level">quad_gantry_level<a class="headerlink" href="#quad_gantry_level" title="Permanent link">&para;</a></h2>
 <p><code>quad_gantry_level</code> 對像提供了以下資訊（如果定義了 quad_gantry_level，則該對象可用）：</p>
 <ul>
@@ -2151,10 +2276,10 @@
 </ul>
 <h2 id="_3">溫度感測器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>以下資訊可在</p>
-<p><a href="Config_Reference.html#bmp280bme280bme680-temperature-sensor">bme280 config_section_name</a>, <a href="Config_Reference.html#htu21d-sensor">htu21d config_section_name</a>, <a href="Config_Reference.html#lm75-temperature-sensor">lm75 config_section_name</a>, <a href="Config_Reference.html#host-temperature-sensor">temperature_host config_section_name</a> and <a href="Config_Reference.html#combined-temperature-sensor">temperature_combined config_section_name</a> objects:</p>
+<p><a href="Config_Reference.html#bmp280bme280bme680-temperature-sensor">bme280 config_section_name</a>, <a href="Config_Reference.html#htu21d-sensor">htu21d config_section_name</a>, <a href="Config_Reference.html#sht31-sensor">sht3x config_section_name</a>, <a href="Config_Reference.html#lm75-temperature-sensor">lm75 config_section_name</a>, <a href="Config_Reference.html#host-temperature-sensor">temperature_host config_section_name</a> and <a href="Config_Reference.html#combined-temperature-sensor">temperature_combined config_section_name</a> objects:</p>
 <ul>
 <li><code>temperature</code>：上一次從感測器讀取的溫度。</li>
-<li><code>hemidity</code>、<code>pressure</code>和<code>gas</code>：感測器上一次讀取的值（僅在bme280、htu21d和lm75感測器上）。</li>
+<li><code>humidity</code>, <code>pressure</code>, <code>gas</code>: The last read values from the sensor (only on bme280, htu21d, sht3x and lm75 sensors).</li>
 </ul>
 <h2 id="temperature_fan">temperature_fan<a class="headerlink" href="#temperature_fan" title="Permanent link">&para;</a></h2>
 <p><a href="Config_Reference.html#temperature_fan">temperature_fan some_name</a> 對像提供了以下資訊：</p>
@@ -2186,7 +2311,7 @@
 <li><code>homed_axes</code>：目前被認為處於「已歸位」狀態的車軸。這是一個包含一個或多個"x"、"y"、"z"的字串。</li>
 <li><code>axis_minimum</code>、<code>axis_maximum</code>：歸位后的軸的行程限制（毫米）。可以訪問此極限值的 x、y、z 份量（例如，<code>axis_minimum.x</code>、<code>axis_maximum.z</code>）。</li>
 <li>For Delta printers the <code>cone_start_z</code> is the max z height at maximum radius (<code>printer.toolhead.cone_start_z</code>).</li>
-<li><code>max_velocity</code>、<code>max_accel</code>、<code>max_accel_to_decel</code>和<code>square_corner_velocity</code>：目前生效的印表機限制。如果 <code>SET_VELOCITY_LIMIT</code>（或 <code>M204</code>）命令在執行時改變它們，這些值可能與配置檔案設定不同。</li>
+<li><code>max_velocity</code>, <code>max_accel</code>, <code>minimum_cruise_ratio</code>, <code>square_corner_velocity</code>: The current printing limits that are in effect. This may differ from the config file settings if a <code>SET_VELOCITY_LIMIT</code> (or <code>M204</code>) command alters them at run-time.</li>
 <li><code>stalls</code>：由於工具頭移動速度快于從 G 程式碼輸入讀取的移動速度，因此印表機必須暫停的總次數（自上次重新啟動以來）。</li>
 </ul>
 <h2 id="dual_carriage">dual_carriage<a class="headerlink" href="#dual_carriage" title="Permanent link">&para;</a></h2>

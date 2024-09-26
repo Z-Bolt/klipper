@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -410,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         Telepítés
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint a Klipper-hez
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -688,16 +735,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuring-the-zero-reference-position" class="md-nav__link">
-    Configuring the zero reference position
+  <a href="#a-nulla-referenciapozicio-beallitasa" class="md-nav__link">
+    A nulla referenciapozíció beállítása
   </a>
   
-    <nav class="md-nav" aria-label="Configuring the zero reference position">
+    <nav class="md-nav" aria-label="A nulla referenciapozíció beállítása">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-deprecated-relative_reference_index" class="md-nav__link">
-    The deprecated relative_reference_index
+  <a href="#az-elavult-relative_reference_index" class="md-nav__link">
+    Az elavult relative_reference_index
   </a>
   
 </li>
@@ -710,6 +757,40 @@
           <li class="md-nav__item">
   <a href="#hibas-regiok" class="md-nav__link">
     Hibás régiók
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adaptiv-halok" class="md-nav__link">
+    Adaptív hálók
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feluleti-meresek" class="md-nav__link">
+    Felületi mérések
+  </a>
+  
+    <nav class="md-nav" aria-label="Felületi mérések">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meresi-magassag" class="md-nav__link">
+    Mérési magasság
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gyors-folyamatos-meres" class="md-nav__link">
+    Gyors (folyamatos) mérés
   </a>
   
 </li>
@@ -780,6 +861,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#agy-halo-webhooks-api-k" class="md-nav__link">
+    Ágy háló Webhooks API-k
+  </a>
+  
+    <nav class="md-nav" aria-label="Ágy háló Webhooks API-k">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#haloadatok-kiuritese" class="md-nav__link">
+    Hálóadatok kiürítése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vizualizacio-es-elemzes" class="md-nav__link">
+    Vizualizáció és elemzés
+  </a>
+  
+    <nav class="md-nav" aria-label="Vizualizáció és elemzés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elofeltetelek" class="md-nav__link">
+    Előfeltételek
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haloadatok-abrazolasa" class="md-nav__link">
+    Hálóadatok ábrázolása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agy-halo-elemzes" class="md-nav__link">
+    Ágy háló elemzés
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-haloadatok-mentese-fajlba" class="md-nav__link">
+    A hálóadatok mentése fájlba
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -797,6 +939,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         Végállás fázis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        Tengely fordulat kompenzáció
       </a>
     </li>
   
@@ -1328,8 +1484,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        Bootloader belépés
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CANBUS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CANBUS Hibaelhárítás
       </a>
     </li>
   
@@ -1358,6 +1542,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         Hall nyomtatószál szélesség érzékelő
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Örvényáramú induktív szonda
       </a>
     </li>
   
@@ -1468,16 +1666,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuring-the-zero-reference-position" class="md-nav__link">
-    Configuring the zero reference position
+  <a href="#a-nulla-referenciapozicio-beallitasa" class="md-nav__link">
+    A nulla referenciapozíció beállítása
   </a>
   
-    <nav class="md-nav" aria-label="Configuring the zero reference position">
+    <nav class="md-nav" aria-label="A nulla referenciapozíció beállítása">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-deprecated-relative_reference_index" class="md-nav__link">
-    The deprecated relative_reference_index
+  <a href="#az-elavult-relative_reference_index" class="md-nav__link">
+    Az elavult relative_reference_index
   </a>
   
 </li>
@@ -1490,6 +1688,40 @@
           <li class="md-nav__item">
   <a href="#hibas-regiok" class="md-nav__link">
     Hibás régiók
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adaptiv-halok" class="md-nav__link">
+    Adaptív hálók
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feluleti-meresek" class="md-nav__link">
+    Felületi mérések
+  </a>
+  
+    <nav class="md-nav" aria-label="Felületi mérések">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meresi-magassag" class="md-nav__link">
+    Mérési magasság
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gyors-folyamatos-meres" class="md-nav__link">
+    Gyors (folyamatos) mérés
   </a>
   
 </li>
@@ -1560,6 +1792,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#agy-halo-webhooks-api-k" class="md-nav__link">
+    Ágy háló Webhooks API-k
+  </a>
+  
+    <nav class="md-nav" aria-label="Ágy háló Webhooks API-k">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#haloadatok-kiuritese" class="md-nav__link">
+    Hálóadatok kiürítése
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vizualizacio-es-elemzes" class="md-nav__link">
+    Vizualizáció és elemzés
+  </a>
+  
+    <nav class="md-nav" aria-label="Vizualizáció és elemzés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elofeltetelek" class="md-nav__link">
+    Előfeltételek
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haloadatok-abrazolasa" class="md-nav__link">
+    Hálóadatok ábrázolása
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agy-halo-elemzes" class="md-nav__link">
+    Ágy háló elemzés
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-haloadatok-mentese-fajlba" class="md-nav__link">
+    A hálóadatok mentése fájlba
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1595,7 +1888,7 @@ probe_count: 5, 3
 <li><code>speed: 120</code> * Alapértelmezett érték: 50* A sebesség, amellyel a fej a pontok között mozog.</li>
 <li><code>horizontal_move_z: 5</code> <em>Alapértelmezett érték: 5</em> A Z koordináta, amelyre a szonda a mérőpontok közötti utazás előtt emelkedik.</li>
 <li><code>mesh_min: 35, 6</code> <em>Ajánlott</em> Az első, az origóhoz legközelebbi koordináta. Ez a koordináta a szonda helyéhez képest relatív.</li>
-<li><code>mesh_max: 240, 198</code> <em>Kötelező</em> Az origótól legtávolabb eső szondázott koordináta. Ez nem feltétlenül az utolsó szondázott pont, mivel a szondázás cikcakkos módon történik. A <code>mesh_min</code> koordinátához hasonlóan ez a koordináta is a szonda helyéhez képest relatív.</li>
+<li><code>mesh_max: 240, 198</code> <em>Ajánlott</em> Az origótól legtávolabb eső koordináta. Ez nem feltétlenül az utolsó mért pont, mivel a mérés cikcakkos módon történik. A <code>mesh_min</code> koordinátához hasonlóan ez a koordináta is a szonda helyéhez képest relatív.</li>
 <li><code>probe_count: 5, 3</code> <em>Alapértelmezett érték: 3,3</em> Az egyes tengelyeken mérendő pontok száma, X, Y egész értékben megadva. Ebben a példában az X tengely mentén 5 pont lesz mérve, az Y tengely mentén 3 pont, összesen 15 mért pont. Vedd figyelembe, hogy ha négyzetrácsot szeretnél, például 3x3, akkor ezt egyetlen egész számértékként is megadhatod, amelyet mindkét tengelyre használsz, azaz <code>probe_count: 3</code>. Vedd figyelembe, hogy egy hálóhoz mindkét tengely mentén legalább 3 darab mérési számra van szükség.</li>
 </ul>
 <p>Az alábbi ábra azt mutatja, hogy a <code>mesh_min</code>, <code>mesh_max</code> és <code>probe_count</code> opciók hogyan használhatók a mérőpontok létrehozására. A nyilak jelzik a mérési eljárás irányát, kezdve a <code>mesh_min</code> ponttól. Hivatkozásképpen, amikor a szonda a <code>mesh_min</code> pontnál van, a fúvóka a (11, 1) pontnál lesz, és amikor a szonda a <code>mesh_max</code> pontnál van, a fúvóka a (206, 193) pontnál lesz.</p>
@@ -1674,8 +1967,8 @@ fade_target: 0
 <li><code>fade_end: 10</code> <em>Alapértelmezett érték: 0</em> A Z magasság, amelyben a fade-nek be kell fejeződnie. Ha ez az érték kisebb, mint <code>fade_start</code> akkor a fade le van tiltva. Ezt az értéket a nyomtatási felület torzulásától függően lehet módosítani. Egy jelentősen görbült felületnek hosszabb távon kell elhalványulnia. Egy közel sík felület esetében ez az érték csökkenthető, hogy gyorsabban fakuljon ki. A 10 mm egy ésszerű érték, ha a <code>fade_start</code> alapértelmezett 1 értékét használjuk.</li>
 <li><code>fade_target: 0</code> <em>Alapértelmezett érték: A háló átlagos Z-értéke</em> A <code>fade_target</code> úgy tekinthető, mint egy további Z-eltolás, amelyet a teljes ágyra alkalmaznak a fade befejezése után. Általánosságban azt szeretnénk, ha ez az érték 0 lenne, azonban vannak olyan körülmények, amikor ez nem kell, hogy így legyen. Tegyük fel például, hogy az ágyon a kezdőpont pozíciója egy kiugró érték, amely 0,2 mm-rel alacsonyabb, mint az ágy átlagos mért magassága. Ha a <code>fade_target</code> értéke 0, akkor a fade átlagosan 0,2 mm-rel zsugorítja a nyomtatást az ágyon. Ha a <code>fade_target</code> értéket .2-re állítja, a homed terület .2 mm-rel fog tágulni, azonban az ágy többi része pontosan lesz mérve. Általában jó ötlet a <code>fade_target</code> elhagyása a konfigurációból, így a háló átlagos magassága kerül felhasználásra, azonban kívánatos lehet a fade target kézi beállítása, ha az ágy egy bizonyos részére szeretnénk nyomtatni.</li>
 </ul>
-<h3 id="configuring-the-zero-reference-position">Configuring the zero reference position<a class="headerlink" href="#configuring-the-zero-reference-position" title="Permanent link">&para;</a></h3>
-<p>Many probes are susceptible to "drift", ie: inaccuracies in probing introduced by heat or interference. This can make calculating the probe's z-offset challenging, particularly at different bed temperatures. As such, some printers use an endstop for homing the Z axis and a probe for calibrating the mesh. In this configuration it is possible offset the mesh so that the (X, Y) <code>reference position</code> applies zero adjustment. The <code>reference postion</code> should be the location on the bed where a <a href="./Manual_Level#calibrating-a-z-endstop">Z_ENDSTOP_CALIBRATE</a> paper test is performed. The bed_mesh module provides the <code>zero_reference_position</code> option for specifying this coordinate:</p>
+<h3 id="a-nulla-referenciapozicio-beallitasa">A nulla referenciapozíció beállítása<a class="headerlink" href="#a-nulla-referenciapozicio-beallitasa" title="Permanent link">&para;</a></h3>
+<p>Sok szonda hajlamos a "driftre", azaz: a hő vagy interferencia által okozott pontatlanságokra. Ez kihívássá teheti a szonda Z-eltolásának kiszámítását, különösen különböző ágyhőmérsékleteken. Ezért egyes nyomtatók a Z tengely beállításához végállást, a háló kalibrálásához pedig szondát használnak. Ebben a konfigurációban lehetséges a háló eltolása úgy, hogy az (X, Y) <code>referenciapozíció</code> nullpontbeállításra vonatkozik. A <code>referenciapozíciónak</code> az ágyon annak a helynek kell lennie, ahol a <a href="./Manual_Level#calibrating-a-z-endstop">Z_ENDSTOP_CALIBRATE</a> papírtesztet végzik. A bed_mesh modul biztosítja a <code>zero_reference_position</code> opciót e koordináta megadásához:</p>
 <div class="highlight"><pre><span></span><code>[bed_mesh]
 speed: 120
 horizontal_move_z: 5
@@ -1686,22 +1979,22 @@ probe_count: 5, 3
 </code></pre></div>
 
 <ul>
-<li><code>zero_reference_position:</code> <em>Default Value: None (disabled)</em> The <code>zero_reference_position</code> expects an (X, Y) coordinate matching that of the <code>reference position</code> described above. If the coordinate lies within the mesh then the mesh will be offset so the reference position applies zero adjustment. If the coordinate lies outside of the mesh then the coordinate will be probed after calibration, with the resulting z-value used as the z-offset. Note that this coordinate must NOT be in a location specified as a <code>faulty_region</code> if a probe is necessary.</li>
+<li><code>zero_reference_position:</code> *Alapértelmezett érték: A <code>zero_reference_position</code> egy olyan (X, Y) koordinátát vár el, amely megfelel a fent leírt <code>reference position</code> koordinátának. Ha a koordináta a hálóban van, akkor a háló eltolódik, így a referenciapozíció nulla korrekciót alkalmaz. Ha a koordináta a hálón kívül esik, akkor a koordinátát a kalibrálás után meg kell vizsgálni, és az így kapott Z-értéket kell Z-eltolásként használni. Vedd figyelembe, hogy ez a koordináta NEM lehet olyan helyen, amelyet <code>faulty_region</code>-ként határoztak meg, ahol mérésre van szükség.</li>
 </ul>
-<h4 id="the-deprecated-relative_reference_index">The deprecated relative_reference_index<a class="headerlink" href="#the-deprecated-relative_reference_index" title="Permanent link">&para;</a></h4>
-<p>Existing configurations using the <code>relative_reference_index</code> option must be updated to use the <code>zero_reference_position</code>. The response to the <a href="#output">BED_MESH_OUTPUT PGP=1</a> gcode command will include the (X, Y) coordinate associated with the index; this position may be used as the value for the <code>zero_reference_position</code>. The output will look similar to the following:</p>
-<div class="highlight"><pre><span></span><code>// bed_mesh: generated points
-// Index | Tool Adjusted | Probe
+<h4 id="az-elavult-relative_reference_index">Az elavult relative_reference_index<a class="headerlink" href="#az-elavult-relative_reference_index" title="Permanent link">&para;</a></h4>
+<p>A <code>relative_reference_index</code> opciót használó meglévő konfigurációkat frissíteni kell a <code>zero_reference_position</code> használatához. A <a href="#output">BED_MESH_OUTPUT PGP=1</a> G-kód parancsra adott válasz tartalmazza az indexhez tartozó (X, Y) koordinátát; ez a pozíció használható a <code>zero_reference_position</code> értékeként. A kimenet az alábbiakhoz hasonlóan fog kinézni:</p>
+<div class="highlight"><pre><span></span><code>// bed_mesh: generált pontok
+// Index | Szerszámbeállítás | Szonda
 // 0 | (1.0, 1.0) | (24.0, 6.0)
 // 1 | (36.7, 1.0) | (59.7, 6.0)
 // 2 | (72.3, 1.0) | (95.3, 6.0)
 // 3 | (108.0, 1.0) | (131.0, 6.0)
-... (additional generated points)
+... (további generált pontok)
 // bed_mesh: relative_reference_index 24 is (131.5, 108.0)
 </code></pre></div>
 
-<p><em>Note: The above output is also printed in <code>klippy.log</code> during initialization.</em></p>
-<p>Using the example above we see that the <code>relative_reference_index</code> is printed along with its coordinate. Thus the <code>zero_reference_position</code> is <code>131.5, 108</code>.</p>
+<p><em>Figyelem: A fenti kimenet az inicializálás során a <code>klippy.log</code>-ban is megjelenik.</em></p>
+<p>A fenti példa alapján láthatjuk, hogy a <code>relative_reference_index</code> a koordinátával együtt kerül kiírásra. Így a <code>zero_reference_position</code> a <code>131.5, 108</code>.</p>
 <h3 id="hibas-regiok">Hibás régiók<a class="headerlink" href="#hibas-regiok" title="Permanent link">&para;</a></h3>
 <p>Előfordulhat, hogy a tárgyasztal egyes területei pontatlan eredményeket jeleznek a mérés során, mivel bizonyos helyeken "hiba" van. Erre a legjobb példa a levehető acéllemezek rögzítésére használt integrált mágnesek sorozatával ellátott tárgyasztalok. Ezeknél a mágneseknél és körülöttük lévő mágneses mező hatására az induktív szonda magasabb vagy alacsonyabb távolságban mérhet, mint egyébként tenné, ami azt eredményezi, hogy a háló nem pontosan reprezentálja a felületet ezeken a helyeken. <strong>Figyelem: Ez nem tévesztendő össze a szonda helyének torzításával, amely pontatlan eredményeket eredményez az egész tárgyasztalon.</strong></p>
 <p>A <code>faulty_region</code> opciókat úgy lehet beállítani, hogy kompenzálják ezt a hatást. Ha egy generált pont egy hibás régióba esik, akkor a bed mesh megpróbál akár 4 pontot is megvizsgálni a régió határainál. Ezeket a mért értékeket átlagolja és beilleszti a hálóba Z értékben a generált (X, Y) koordinátán.</p>
@@ -1726,11 +2019,64 @@ faulty_region_4_max: 45.0, 210.0
 </ul>
 <p>Az alábbi kép azt szemlélteti, hogyan generálódnak a cserepontok, ha egy generált pont egy hibás területen belül van. Az ábrázolt régiók megegyeznek a fenti mintakonfigurációban szereplő régiókkal. A cserepontok és koordinátáik zöld színnel vannak jelölve.</p>
 <p><img alt="bedmesh_interpolated" src="img/bedmesh_faulty_regions.svg" /></p>
+<h3 id="adaptiv-halok">Adaptív hálók<a class="headerlink" href="#adaptiv-halok" title="Permanent link">&para;</a></h3>
+<p>Az adaptív ágyrácsozás egy olyan módszer, amely felgyorsítja az ágyrács generálását azáltal, hogy csak az ágynak a nyomtatandó tárgyak által használt területét vizsgálja. Használatakor a módszer automatikusan beállítja a háló paramétereit a meghatározott nyomtatási objektumok által elfoglalt terület alapján.</p>
+<p>Az adaptált háló területe az összes meghatározott nyomtatási objektum határai által meghatározott területből kerül kiszámításra, így minden objektumot lefed, beleértve a konfigurációban meghatározott margókat is. A terület kiszámítása után a mérőpontok száma az alapértelmezett hálóterület és az adaptált hálóterület aránya alapján lesz kicsinyítve. Ennek szemléltetésére nézd meg a következő példát:</p>
+<p>Egy 150mm x 150mm-es ágy esetében, ahol a "mesh_min" értéke "25,25" és a "mesh_max" értéke "125,125", az alapértelmezett hálóterület egy 100mm x 100mm-es négyzet. Az <code>50,50</code> adaptált hálóterület azt jelenti, hogy az adaptált terület és az alapértelmezett hálóterület közötti arány <code>0,5x0,5</code>.</p>
+<p>Ha a <code>bed_mesh</code> konfigurációban a <code>probe_count</code> értéke <code>7x7</code>, akkor az adaptív ágyháló 4x4 próbapontot fog használni (7 * 0,5 felfelé kerekítve).</p>
+<p><img alt="adaptive_bedmesh" src="img/adaptive_bed_mesh.svg" /></p>
+<div class="highlight"><pre><span></span><code>[bed_mesh]
+speed: 120
+horizontal_move_z: 5
+mesh_min: 35, 6
+mesh_max: 240, 198
+probe_count: 5, 3
+adaptive_margin: 5
+</code></pre></div>
+
+<ul>
+<li>
+<p><code>adaptive_margin</code> <em>Alapértelmezett érték: 0</em> Az ágy meghatározott objektumok által használt területe köré hozzáadandó margó (mm-ben). Az alábbi ábra az adaptív ágy hálóterületét mutatja, ha az <code>adaptive_margin</code> értéke 5 mm. Az adaptív hálóterület (zöld színű terület) a használt ágyterület (kék színű terület) és a meghatározott margó összegeként kerül kiszámításra.</p>
+<p><img alt="adaptive_bedmesh_margin" src="img/adaptive_bed_mesh_margin.svg" /></p>
+</li>
+</ul>
+<p>Az adaptív ágyrácsok természetüknél fogva a nyomtatás alatt álló G-Kód fájlban meghatározott objektumokat használják. Ezért várható, hogy minden egyes G-Kód fájl olyan hálót generál, amely a nyomtatóágy különböző területét vizsgálja. Ezért az adaptív ágyhálót nem szabad újra felhasználni. Az adaptív hálózás használata esetén elvárás, hogy minden egyes nyomtatáshoz új hálót generáljon.</p>
+<p>Azt is fontos figyelembe venni, hogy az adaptív ágyhálózást olyan gépeken lehet a legjobban alkalmazni, amelyek általában a teljes ágyat meg tudják tapogatni, és 1 rétegmagasságnál kisebb vagy azzal egyenlő maximális eltérést érnek el. Az olyan mechanikai problémákkal küzdő gépek, amelyeket a teljes ágyháló általában kompenzál, nemkívánatos eredményeket hozhatnak, amikor a nyomtatási mozgásokat a szondázott területen <strong>kívül</strong> próbálják végrehajtani. Ha a teljes ágyháló eltérése nagyobb, mint 1 rétegmagasság, akkor óvatosan kell eljárni, amikor adaptív ágyhálót használunk, és a hálózott területen kívüli nyomtatási mozgásokat kísérelünk meg.</p>
+<h2 id="feluleti-meresek">Felületi mérések<a class="headerlink" href="#feluleti-meresek" title="Permanent link">&para;</a></h2>
+<p>Egyes szondák, mint például az <a href="Eddy_Probe.html">Örvényáramú szonda</a>, képesek az ágy felületének "letapogatására". Azaz ezek a szondák anélkül képesek háló mintát készíteni, hogy a fejet a minták között felemelnék. A pásztázó üzemmód aktiválásához a <code>METHOD=scan</code> vagy <code>METHOD=rapid_scan</code> szonda paramétert kell átadni a <code>BED_MESH_CALIBRATE</code> G-kód parancsban.</p>
+<h3 id="meresi-magassag">Mérési magasság<a class="headerlink" href="#meresi-magassag" title="Permanent link">&para;</a></h3>
+<p>A pásztázási magasságot a <code>[bed_mesh]-ben a</code>horizontal_move_z<code>opció határozza meg. Ezenkívül a</code>BED_MESH_CALIBRATE<code>G-kód parancs a</code>HORIZONTAL_MOVE_Z` paraméteren keresztül is megadható.</p>
+<p>A mérési magasságnak kellően alacsonynak kell lennie a beolvasási hibák elkerülése érdekében. Általában 2 mm-es magasság (azaz: <code>HORIZONTAL_MOVE_Z=2</code>) jól működik, feltéve, hogy a szonda megfelelően van felszerelve.</p>
+<p>Meg kell jegyezni, hogy ha a szonda több mint 4 mm-rel a felszín felett van, akkor az eredmények érvénytelenek lesznek. Így a mérés nem lehetséges olyan ágyaknál, ahol a felület nagymértékben eltérő vagy extrém dőlésszögű, amelyeket nem korrigáltak.</p>
+<h3 id="gyors-folyamatos-meres">Gyors (folyamatos) mérés<a class="headerlink" href="#gyors-folyamatos-meres" title="Permanent link">&para;</a></h3>
+<p>A <code>rapid_scan</code> elvégzésekor szem előtt kell tartani, hogy az eredmények némi hibával fognak rendelkezni. Ennek a hibának elég alacsonynak kell lennie ahhoz, hogy nagy nyomtatási területeken, viszonylag vastag rétegmagassággal hasznos legyen. Egyes szondák hajlamosabbak lehetnek a hibára, mint mások.</p>
+<p>Nem ajánlott a gyors üzemmód használata "sűrű" háló beolvasására. A gyors pásztázás során keletkező hiba egy része az érzékelő gauss-zajából származhat, és a sűrű háló ezt a zajt fogja tükrözni (azaz: lesznek csúcsok és völgyek).</p>
+<p>Az Ágy háló megpróbálja optimalizálni az útvonalat, hogy a konfiguráció alapján a lehető legjobb eredményt érje el. Ez magában foglalja a hibás régiók elkerülését a minták gyűjtésekor és a háló "túllövését" irányváltáskor. Ez a túllövés javítja a mintavételt a háló széleinél, azonban megköveteli, hogy a hálót úgy konfigurálják, hogy a szerszám a hálón kívülre kerüljön.</p>
+<div class="highlight"><pre><span></span><code>[bed_mesh]
+speed: 120
+horizontal_move_z: 5
+mesh_min: 35, 6
+mesh_max: 240, 198
+probe_count: 5
+scan_overshoot: 8
+</code></pre></div>
+
+<ul>
+<li><code>scan_overshoot</code> <em>Alapértelmezett érték: 0 (letiltva)</em> A hálón kívül rendelkezésre álló maximális elmozdulás (mm-ben). Téglalap alakú ágyak esetén ez az X tengelyen történő mozgásra vonatkozik, kerek ágyak esetén pedig a teljes sugárra. A fejnek képesnek kell lennie a megadott mértékű mozgásra a hálómezőn kívül. Ez az érték a "gyors mérés" végrehajtása során a mozgási útvonal optimalizálására szolgál. A minimálisan megadható érték 1. Az alapértelmezett érték a túllövés hiánya.</li>
+</ul>
+<p>Ha nincs beállítva mérési túllövés, akkor az útvonal-optimalizálás nem kerül alkalmazásra az irányváltozásokkor.</p>
 <h2 id="targyasztal-halo-g-kodok">Tárgyasztal háló G-kódok<a class="headerlink" href="#targyasztal-halo-g-kodok" title="Permanent link">&para;</a></h2>
 <h3 id="kalibracio">Kalibráció<a class="headerlink" href="#kalibracio" title="Permanent link">&para;</a></h3>
-<p><code>BED_MESH_CALIBRATE PROFILE=&lt;name&gt; METHOD=[manual | automatic] [&lt;probe_parameter&gt;=&lt;value&gt;] [&lt;mesh_parameter&gt;=&lt;value&gt;]</code> * Alapértelmezett profil: alapértelmezett<em> </em>Alapértelmezett módszer: automatikus, ha érzékelőt észlel, egyébként manuális*</p>
+<p><code>BED_MESH_CALIBRATE PROFILE=&lt;name&gt; METHOD=[manual | automatic | scan | rapid_scan] \ [&lt;probe_parameter&gt;=&lt;value&gt;] [&lt;mesh_parameter&gt;=&lt;value&gt;] [ADAPTIVE=[0|1] \ [ADAPTIVE_MARGIN=&lt;value&gt;]</code> <em>Alapértelmezett profil: alapértelmezett</em> <em>Alapértelmezett módszer: automatikus, ha szondát észlel, egyébként manuális</em> <em>Alapértelmezett adaptív: 0</em> <em>Alapértelmezett adaptív margó: 0</em></p>
 <p>Mérési eljárást indítása a tárgyasztal háló kalibrálásához.</p>
-<p>A háló a <code>PROFILE</code> paraméter által megadott profilba kerül mentésre, vagy <code>default</code>, ha nincs megadva. Ha a <code>METHOD=manual</code> paramétert választjuk, akkor kézi mérés történik. Az automatikus és a kézi mérés közötti váltáskor a generált hálópontok automatikusan kiigazításra kerülnek.</p>
+<p>A háló a <code>PROFILE</code> paraméter által megadott profilba lesz mentve, vagy a <code>default</code>, ha nincs megadva. A <code>METHOD</code> paraméter a következő értékek egyikét veszi fel:</p>
+<ul>
+<li><code>METHOD=manual</code>: lehetővé teszi a kézi mérést a fúvókával és a papírlappal</li>
+<li><code>METHOD=automatic</code>: Automatikus (szabvány) mérés. Ez az alapértelmezett.</li>
+<li><code>METHOD=scan</code>: Engedélyezi a felületi mérést. A fej minden egyes pozíció felett megáll, hogy mérést végezzen.</li>
+<li><code>METHOD=rapid_scan</code>: Engedélyezi a folyamatos felületi mérést.</li>
+</ul>
+<p>Az XY pozíciók automatikusan beállítódnak az X és Y eltolások figyelembevételével, ha a <code>kézi</code>-től eltérő mérési módszert választunk.</p>
 <p>Lehetőség van hálóparaméterek megadására a mért terület módosítására. A következő paraméterek állnak rendelkezésre:</p>
 <ul>
 <li>Téglalap alakú tárgyasztalok (cartesian):<ul>
@@ -1746,7 +2092,10 @@ faulty_region_4_max: 45.0, 210.0
 </ul>
 </li>
 <li>Minden tárgyasztal:<ul>
+<li><code>MESH_PPS</code></li>
 <li><code>ALGORITHM</code></li>
+<li><code>ADAPTIVE</code></li>
+<li><code>ADAPTIVE_MARGIN</code></li>
 </ul>
 </li>
 </ul>
@@ -1795,8 +2144,121 @@ faulty_region_4_max: 45.0, 210.0
 <p><code>BED_MESH_CLEAR</code></p>
 <p>Ez a G-kód használható a belső háló állapotának törlésére.</p>
 <h3 id="xy-eltolasok-alkalmazasa">X/Y eltolások alkalmazása<a class="headerlink" href="#xy-eltolasok-alkalmazasa" title="Permanent link">&para;</a></h3>
-<p><code>BED_MESH_OFFSET [X=&lt;value&gt;] [Y=&lt;value&gt;]</code></p>
-<p>Ez több független extruderrel rendelkező nyomtatóknál hasznos, mivel a szerszámcsere utáni helyes Z-beállításhoz szükség van egy eltolásra. Az eltolásokat az elsődleges extruderhez képest kell megadni. Vagyis pozitív X eltolást kell megadni, ha a másodlagos extruder az elsődleges extrudertől jobbra van felszerelve, és pozitív Y eltolást kell megadni, ha a másodlagos extruder az elsődleges extruder mögött van felszerelve.</p>
+<p><code>BED_MESH_OFFSET [X=&lt;value&gt;] [Y=&lt;value&gt;] [ZFADE=&lt;value&gt;]</code></p>
+<p>Ez több független extruderrel rendelkező nyomtatóknál hasznos, mivel a szerszámcsere utáni helyes Z-beállításhoz szükség van egy eltolásra. Az eltolásokat az elsődleges extruderhez képest kell megadni. Vagyis pozitív X eltolást kell megadni, ha a másodlagos extruder az elsődleges extruder jobb oldalán van felszerelve, pozitív Y eltolást kell megadni, ha a másodlagos extruder az elsődleges extruder "mögött" van felszerelve, és pozitív ZFADE eltolást kell megadni, ha a másodlagos extruder fúvókája az elsődleges extruder fúvókája felett van.</p>
+<p>Vedd figyelembe, hogy a ZFADE eltolás <em>NEM</em> alkalmaz közvetlenül további beállításokat. Ez a <code>gcode offset</code> kompenzálására szolgál, amikor a <a href="#mesh-fade">mesh fade</a> engedélyezve van. Például, ha egy másodlagos extruder magasabb, mint az elsődleges, és negatív G-Kód eltolásra van szüksége, azaz: <code>SET_GCODE_OFFSET Z=-.2</code>, azt a <code>bed_mesh</code>-ben a <code>BED_MESH_OFFSET ZFADE=.2</code>-vel lehet figyelembe venni.</p>
+<h2 id="agy-halo-webhooks-api-k">Ágy háló Webhooks API-k<a class="headerlink" href="#agy-halo-webhooks-api-k" title="Permanent link">&para;</a></h2>
+<h3 id="haloadatok-kiuritese">Hálóadatok kiürítése<a class="headerlink" href="#haloadatok-kiuritese" title="Permanent link">&para;</a></h3>
+<p><code>{"id": 123, "method": "bed_mesh/dump_mesh"}</code></p>
+<p>Kitölti az aktuális háló és az összes mentett profil konfigurációját és állapotát.</p>
+<p>A <code>dump_mesh</code> végpontnak egy opcionális paramétere van, a <code>mesh_args</code>. Ennek a paraméternek egy objektumnak kell lennie, ahol a kulcsok és az értékek a <a href="#bed_mesh_calibrate">BED_MESH_CALIBRATE</a> számára elérhető paraméterek. Ez frissíti a háló konfigurációját és a mérési pontokat a megadott paraméterek segítségével, mielőtt visszaküldi az eredményt. A hálóparaméterek elhagyása ajánlott, kivéve, ha a <code>BED_MESH_CALIBRATE</code> végrehajtása előtt a mérési pontokat és/vagy a haladási útvonalat kívánod megjeleníteni.</p>
+<h2 id="vizualizacio-es-elemzes">Vizualizáció és elemzés<a class="headerlink" href="#vizualizacio-es-elemzes" title="Permanent link">&para;</a></h2>
+<p>A legtöbb felhasználó valószínűleg úgy találja, hogy az olyan alkalmazásokhoz, mint a Mainsail, a Fluidd és az Octoprint mellékelt vizualizátorok elegendőek az alapvető elemzésekhez. A Klipper <code>scripts</code> mappája azonban tartalmazza a <code>graph_mesh.py</code> szkriptet, amely további vizualizációk és részletesebb elemzések elvégzéséhez használható, különösen hasznos a hardver vagy a <code>bed_mesh</code> által előállított eredmények hibakereséséhez:</p>
+<div class="highlight"><pre><span></span><code>usage: graph_mesh.py [-h] {list,plot,analyze,dump} ...
+
+Ágy háló adatok grafikonja
+
+pozícionális érvek:
+  {list,plot,analyze,dump}
+    list                Elérhető parcellatípusok listája
+    plot                Megadott típus ábrázolása
+    analyze             Elemzés elvégzése a hálóadatokon
+    dump                API-válasz kiürítése json fájlba
+
+options:
+  -h, --help            megjeleníti a súgóüzenetet és kilép
+</code></pre></div>
+
+<h3 id="elofeltetelek">Előfeltételek<a class="headerlink" href="#elofeltetelek" title="Permanent link">&para;</a></h3>
+<p>A Klipper által biztosított legtöbb grafikus eszközhöz hasonlóan a <code>graph_mesh.py</code>-nak is szüksége van a <code>matplotlib</code> és a <code>numpy</code> python függőségekre. Ezen kívül a Klipper-hez a Moonraker websocketjén keresztül történő csatlakozáshoz a <code>websockets</code> python függőségre van szükség. Bár az összes vizualizáció kimenete <code>svg</code> fájlban is megjeleníthető, a <code>graph_mesh.py</code> által kínált legtöbb vizualizáció jobb, ha élő előnézeti módban, asztali számítógépen nézzük meg. Például a 3D-s megjelenítések előnézeti módban forgathatók és nagyíthatók, az útvonalak megjelenítése pedig opcionálisan animálható előnézeti módban.</p>
+<h3 id="haloadatok-abrazolasa">Hálóadatok ábrázolása<a class="headerlink" href="#haloadatok-abrazolasa" title="Permanent link">&para;</a></h3>
+<p>A <code>graph_mesh.py</code> eszköz többféle vizualizáció készítésére képes. A rendelkezésre álló típusok a <code>graph_mesh.py list</code> futtatásával jeleníthetők meg:</p>
+<div class="highlight"><pre><span></span><code>graph_mesh.py list
+points    Eredeti generált pontok ábrázolása
+path      Szonda útvonalának megrajzolása
+rapid     Gyors mérési útvonal megrajzolása
+probedz   Vizsgált Z-értékek ábrázolása
+meshz     Háló Z-értékeinek ábrázolása
+overlay   Aktuális szondázott hálót egy profillal átfedve ábrázolja
+delta     Aktuális szondázott háló és egy profil közötti delta ábrázolása
+</code></pre></div>
+
+<p>A megjelenítések ábrázolásakor számos lehetőség áll rendelkezésre:</p>
+<div class="highlight"><pre><span></span><code>usage: graph_mesh.py plot [-h] [-a] [-s] [-p PROFILE_NAME] [-o OUTPUT] &lt;plot type&gt; &lt;input&gt;
+
+pozícionális érvek:
+  &lt;plot type&gt;           Grafikusan ábrázolandó adatok típusa
+  &lt;input&gt;               A Klipper Socket elérési útvonala/url vagy a json fájl elérési útvonala
+
+opciók:
+  -h, --help            megjeleníti a súgóüzenetet és kilép
+  -a, --animate         Útvonalak animálása élő előnézetben
+  -s, --scale-plot      A Klipper által jelentett tengelyhatárok használata a plot X/Y skálázásához
+  -p PROFILE_NAME, --profile-name PROFILE_NAME
+                        A &#39;probedz&#39; számára ábrázolandó profil opcionális neve
+  -o OUTPUT, --output OUTPUT
+                        Kimeneti fájl elérési útja
+</code></pre></div>
+
+<p>Az alábbiakban az egyes érvek leírása következik:</p>
+<ul>
+<li><code>plot type</code>: A létrehozandó vizualizáció típusát jelölő kötelező pozicionális argumentum. A <code>graph_mesh.py list</code> parancs által kiadott típusok egyikének kell lennie.</li>
+<li><code>bemenet</code>: A bemeneti forrás elérési útvonalát vagy URL-címét tartalmazó, kötelezően megadandó pozicionális argumentum. Ennek az alábbiak egyikének kell lennie:<ul>
+<li>A Klipper Unix Domain Socket elérési útvonala</li>
+<li>Moonraker egy példányának URL-je</li>
+<li>A <code>graph_mesh.py dump &lt;input&gt;</code> által előállított json fájl elérési útvonala</li>
+</ul>
+</li>
+<li><code>-a</code>: Az <code>útvonal</code> és a <code>gyors</code> vizualizációs típusokhoz választható animáció. Az animációk csak az élő előnézetre vonatkoznak.</li>
+<li><code>-s</code>: A Klipper <code>toolhead</code> objektuma által a dump fájl létrehozásakor jelentett <code>axis_minimum</code> és <code>axis_maximum</code> értékek segítségével méretezi a diagramot.</li>
+<li><code>-p</code>: Egy profilnév, amelyet a <code>probedz</code> 3D háló vizualizáció generálásakor lehet megadni. Az <code>overlay</code> vagy <code>delta</code> vizualizáció generálásakor ezt az argumentumot meg kell adni.</li>
+<li><code>-o</code>: Egy opcionális fájl elérési útja, amely jelzi, hogy a szkriptnek a vizualizációt erre a helyre kell mentenie, nem pedig előnézeti módban futtatnia. A képek <code>svg</code> formátumban kerülnek mentésre.</li>
+</ul>
+<p>Például egy animált gyors útvonal megrajzolásához, a Klipper unix foglalatán keresztül csatlakozva:</p>
+<div class="highlight"><pre><span></span><code>graph_mesh.py plot -a rapid ~/printer_data/comms/klippy.sock
+</code></pre></div>
+
+<p>A háló 3D-s vizualizációjának megrajzolásához, a Moonraker segítségével csatlakozva:</p>
+<div class="highlight"><pre><span></span><code>graph_mesh.py plot meshz http://my-printer.local
+</code></pre></div>
+
+<h3 id="agy-halo-elemzes">Ágy háló elemzés<a class="headerlink" href="#agy-halo-elemzes" title="Permanent link">&para;</a></h3>
+<p>A <code>graph_mesh.py</code> eszköz használható a <a href="#dumping-mesh-data">bed_mesh/dump_mesh</a> API által szolgáltatott adatok elemzéséhez is:</p>
+<div class="highlight"><pre><span></span><code>graph_mesh.py analyze &lt;input&gt;
+</code></pre></div>
+
+<p>A <code>plot</code> parancshoz hasonlóan az <code>&lt;input&gt;</code> a Klipper unix socketjének elérési útvonala, a Moonraker egy példányának URL címe, vagy a dump parancs által generált json fájl elérési útvonala kell, hogy legyen.</p>
+<p>Kezdetben az elemzés különböző ellenőrzéseket végez a <code>bed_mesh</code> által a dump idején generált pontokon és mérések útvonalain. Ezek közé tartozik a következő:</p>
+<ul>
+<li>A generált mérési pontok száma, kiegészítések nélkül</li>
+<li>A generált mérési pontok száma, beleértve a hibás területek és a konfigurált nulla referenciapozíció eredményeként generált pontokat is.</li>
+<li>A gyors mérések során generált mérőpontok száma.</li>
+<li>A gyors méréshez generált mozgások teljes száma.</li>
+<li>Annak igazolása, hogy a gyors méréshez generált mérőpontok megegyeznek a szabvány mérési eljáráshoz generált mérőpontokkal.</li>
+<li>A "visszalépés" ellenőrzése mind a szabványos mérőút, mind a gyors mérési útvonal esetében. A visszalépés úgy definiálható, hogy a mérési eljárás során többször is elmozdul ugyanabba a pozícióba. A visszalépés soha nem fordulhat elő normál mérés során. A hibás régiók <em>visszalépést</em> eredményezhetnek a gyors mérés során, hogy elkerüljék a hibás régióba való belépést, amikor megközelítik vagy elhagyják a mérési helyet, de soha nem fordulhat elő másként.</li>
+</ul>
+<p>Ezután minden, a dump-ban lévő mért háló elemzésre kerül, kezdve a kiíráskor betöltött hálóval (ha van), majd az esetleges mentett profilokkal. A következő adatok kerülnek kinyerésre:</p>
+<ul>
+<li>Háló alakja (min. X,Y, max. X,Y mérésszám)</li>
+<li>Háló Z tartomány, (Minimum Z, Maximum Z)</li>
+<li>Átlagos Z érték a hálóban</li>
+<li>A szabvány Z-értékek szórása a hálóban</li>
+</ul>
+<p>A fentieken kívül delta-analízist végeznek az azonos alakú hálók között, amely a következőket jelenti:</p>
+<ul>
+<li>A delta tartománya a hálók között (Minimum és Maximum)</li>
+<li>Az átlagos delta</li>
+<li>A delta szabványos szórása</li>
+<li>Az abszolút maximális különbség</li>
+<li>Az abszolút átlag</li>
+</ul>
+<h3 id="a-haloadatok-mentese-fajlba">A hálóadatok mentése fájlba<a class="headerlink" href="#a-haloadatok-mentese-fajlba" title="Permanent link">&para;</a></h3>
+<p>A <code>dump</code> paranccsal a válasz menthető egy fájlba, amely megosztható elemzés céljából a hibaelhárítás során:</p>
+<div class="highlight"><pre><span></span><code>graph_mesh.py dump -o &lt;output file name&gt; &lt;input&gt;
+</code></pre></div>
+
+<p>A <code>&lt;input&gt;</code> a Klipper unix socketjének elérési útja, vagy a Moonraker egy példányának URL-je. A "-o" opció használható a kimeneti fájl elérési útjának megadására. Ha kihagyod, a fájl a munkakönyvtárba kerül mentésre, a következő formátumú fájlnévvel:</p>
+<p><code>klipper-bedmesh-{year}{month}{day}{hour}{minute}{second}.json</code></p>
 
               
             </article>

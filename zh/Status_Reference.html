@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+      <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-8.1.3">
     
     
       
@@ -46,8 +46,8 @@
   
 
 
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-138371409-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-VEN1PGNQL4"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-VEN1PGNQL4",{page_path:e.pathname})})})</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEN1PGNQL4"></script>
 
 
     
@@ -339,7 +339,7 @@
   
     <li class="md-nav__item">
       <a href="Releases.html" class="md-nav__link">
-        版本发布
+        发行说明
       </a>
     </li>
   
@@ -410,10 +410,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="Installation.html" class="md-nav__link">
         安装
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OctoPrint.html" class="md-nav__link">
+        OctoPrint for Klipper
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -612,6 +659,20 @@
     <li class="md-nav__item">
       <a href="Endstop_Phase.html" class="md-nav__link">
         限位相位
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Axis_Twist_Compensation.html" class="md-nav__link">
+        轴扭曲补偿
       </a>
     </li>
   
@@ -987,6 +1048,13 @@
         <li class="md-nav__item">
   <a href="#probe" class="md-nav__link">
     probe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwm_cycle_time" class="md-nav__link">
+    pwm_cycle_time
   </a>
   
 </li>
@@ -1487,8 +1555,36 @@
   
   
     <li class="md-nav__item">
+      <a href="Bootloader_Entry.html" class="md-nav__link">
+        引导加载程序条目
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CANBUS.html" class="md-nav__link">
         CAN 总线
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CANBUS_Troubleshooting.html" class="md-nav__link">
+        CanBus故障排除
       </a>
     </li>
   
@@ -1517,6 +1613,20 @@
     <li class="md-nav__item">
       <a href="Hall_Filament_Width_Sensor.html" class="md-nav__link">
         霍尔耗材线径传感器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Eddy_Probe.html" class="md-nav__link">
+        Eddy 感应涡流探针
       </a>
     </li>
   
@@ -1767,6 +1877,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pwm_cycle_time" class="md-nav__link">
+    pwm_cycle_time
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quad_gantry_level" class="md-nav__link">
     quad_gantry_level
   </a>
@@ -1942,7 +2059,10 @@
 <h2 id="exclude_object">exclude_object<a class="headerlink" href="#exclude_object" title="Permanent link">&para;</a></h2>
 <p>以下信息可在<a href="Exclude_Object.html">exclude_object</a>对象中找到：</p>
 <ul>
-<li><code>objects</code>：<code>EXCLUDE_OBJECT_DEFINE</code> 命令提供的已知对象数组。这与 <code>EXCLUDE_OBJECT VERBOSE=1</code> 命令提供的信息相同。 <code>center</code> 和 <code>polygon</code> 字段只有在原始 <code>EXCLUDE_OBJECT_DEFINE</code> 中提供时才会出现这里有一个JSON样本：</li>
+<li>
+<p><code>objects</code>：<code>EXCLUDE_OBJECT_DEFINE</code> 命令提供的已知对象数组。这与 <code>EXCLUDE_OBJECT VERBOSE=1</code> 命令提供的信息相同。 <code>center</code> 和 <code>polygon</code> 字段只有在原始 <code>EXCLUDE_OBJECT_DEFINE</code> 中提供时才会出现</p>
+<p>这里有一个JSON样本：</p>
+</li>
 </ul>
 <div class="highlight"><pre><span></span><code>[
   {
@@ -2003,9 +2123,9 @@
 <li><code>retract_length</code>、<code>retract_speed</code>、<code>unretract_extra_length</code>、<code>unretract_speed</code>：firmware_retraction 模块的当前设置。如果 <code>SET_RETRACTION</code> 命令改变它们，这些设置可能与配置文件不同。</li>
 </ul>
 <h2 id="gcode_button">gcode_button<a class="headerlink" href="#gcode_button" title="Permanent link">&para;</a></h2>
-<p>The following information is available in <a href="Config_Reference.html#gcode_button">gcode_button some_name</a> objects:</p>
+<p>在<a href="Config_Reference.html#gcode_Button">Gcode_Button Some_NAME</a>对象中提供了以下信息：</p>
 <ul>
-<li><code>state</code>: The current button state returned as "PRESSED" or "RELEASED"</li>
+<li><code>state</code>：当前返回的按钮状态为按下或释放</li>
 </ul>
 <h2 id="gcode_macro">gcode_macro<a class="headerlink" href="#gcode_macro" title="Permanent link">&para;</a></h2>
 <p><a href="Config_Reference.html#gcode_macro">gcode_macro &lt;名称&gt;</a> 对象提供了以下信息：</p>
@@ -2044,7 +2164,7 @@
 <ul>
 <li><code>available_heaters</code>：返回所有当前可用加热器的完整配置分段名称，例如 <code>["extruder"、"heater_bed"、"heater_generic my_custom_heater"]</code>。</li>
 <li><code>available_sensors</code>：返回所有当前可用的温度传感器的完整配置分段名称列表，例如：<code>["extruder", "heater_bed", "heater_generic my_custom_heater", "temperature_sensor electronics_temp"]</code>。</li>
-<li><code>available_monitors</code>: Returns a list of all currently available temperature monitors by their full config section names, e.g. <code>["tmc2240 stepper_x"]</code>. While a temperature sensor is always available to read, a temperature monitor may not be available and will return null in such case.</li>
+<li><code>available_monitor ors</code>：按配置节全名返回当前所有可用的温度监视器的列表，例如<code>[“tmc2240 Steper_x”]</code>。虽然温度传感器始终可用于读取，但温度监视器可能不可用，在这种情况下将返回NULL。</li>
 </ul>
 <h2 id="idle_timeout">idle_timeout<a class="headerlink" href="#idle_timeout" title="Permanent link">&para;</a></h2>
 <p><a href="Config_Reference.html#idle_timeout">idle_timeout</a> 对象中提供了以下信息（该对象始终可用）：</p>
@@ -2111,6 +2231,11 @@
 <li><code>last_query</code>：如果探针在上一个 QUERY_PROBE 命令期间报告为"已触发"，则返回 True。请注意，如果在宏中使用它，根据模板展开的顺序，必须在包含此引用的宏之前运行 QUERY_PROBE 命令。</li>
 <li><code>last_z_result</code>：返回上一次 PROBE 命令的结果 Z 值。请注意，由于模板展开的顺序，在宏中使用时必须在包含此引用的宏之前运行 PROBE（或类似）命令。</li>
 </ul>
+<h2 id="pwm_cycle_time">pwm_cycle_time<a class="headerlink" href="#pwm_cycle_time" title="Permanent link">&para;</a></h2>
+<p>The following information is available in <a href="Config_Reference.html#pwm_cycle_time">pwm_cycle_time some_name</a> objects:</p>
+<ul>
+<li><code>value</code>：由<code>SET_PIN</code>指令设置的引脚“值”。</li>
+</ul>
 <h2 id="quad_gantry_level">quad_gantry_level<a class="headerlink" href="#quad_gantry_level" title="Permanent link">&para;</a></h2>
 <p><code>quad_gantry_level</code> 对象提供了以下信息（如果定义了 quad_gantry_level，则该对象可用）：</p>
 <ul>
@@ -2125,7 +2250,7 @@
 <p>以下信息可在<code>screws_tilt_adjust</code>对象中获取：</p>
 <ul>
 <li><code>error</code>: 如果最近的 <code>SCREWS_TILT_CALCULATE</code> 命令包含了 <code>MAX_DEVIATION</code> 参数，并且任何一个已探测的螺丝坐标超过了指定的 <code>MAX_DEVIATION</code>，则返回 True。</li>
-<li><code>max_deviation</code>: Return the last <code>MAX_DEVIATION</code> value of the most recent <code>SCREWS_TILT_CALCULATE</code> command.</li>
+<li><code>MAX_DEVERATION</code>：返回最新的<code>SPRWS_TILT_CALCULATE</code>命令的最后一个<code>MAX_DEVIATION</code>值。</li>
 <li><code>results["&lt;螺丝&gt;"]</code>：包含以下键的字典：<ul>
 <li><code>z</code>: 螺丝坐标测量的 Z 高度。</li>
 <li><code>sign</code>：一个字符串，指定进行必要的调整时旋转螺丝的方向。“CW”表示顺时针，“CCW”表示逆时针。</li>
@@ -2151,10 +2276,10 @@
 </ul>
 <h2 id="_2">温度传感器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>以下信息可在</p>
-<p><a href="Config_Reference.html#bmp280bme280bme680-temperature-sensor">bme280 config_section_name</a>, <a href="Config_Reference.html#htu21d-sensor">htu21d config_section_name</a>, <a href="Config_Reference.html#lm75-temperature-sensor">lm75 config_section_name</a>, <a href="Config_Reference.html#host-temperature-sensor">temperature_host config_section_name</a> and <a href="Config_Reference.html#combined-temperature-sensor">temperature_combined config_section_name</a> objects:</p>
+<p><a href="Config_Reference.html#bmp280bme280bme680-temperature-sensor">bme280 config_section_name</a>, <a href="Config_Reference.html#htu21d-sensor">htu21d config_section_name</a>, <a href="Config_Reference.html#sht31-sensor">sht3x config_section_name</a>, <a href="Config_Reference.html#lm75-temperature-sensor">lm75 config_section_name</a>, <a href="Config_Reference.html#host-temperature-sensor">temperature_host config_section_name</a> and <a href="Config_Reference.html#combined-temperature-sensor">temperature_combined config_section_name</a> objects:</p>
 <ul>
 <li><code>temperature</code>：上一次从传感器读取的温度。</li>
-<li><code>hemidity</code>、<code>pressure</code>和<code>gas</code>：传感器上一次读取的值（仅在bme280、htu21d和lm75传感器上）。</li>
+<li><code>humidity</code>, <code>pressure</code>, <code>gas</code>: The last read values from the sensor (only on bme280, htu21d, sht3x and lm75 sensors).</li>
 </ul>
 <h2 id="temperature_fan">temperature_fan<a class="headerlink" href="#temperature_fan" title="Permanent link">&para;</a></h2>
 <p><a href="Config_Reference.html#temperature_fan">temperature_fan some_name</a> 对象提供了以下信息：</p>
@@ -2174,7 +2299,7 @@
 <li><code>mcu_phase_offset</code>：微控制器步进位置与驱动器的"零"相位的相对位置。如果相位偏移未知，则此字段可能为空。</li>
 <li><code>phase_offset_position</code>：对应电机“零”相位的“指令位置”。如果相位偏移未知，则该字段可以为空。</li>
 <li><code>drv_status</code>：上次驱动状态查询结果。（仅报告非零字段。如果驱动没有被启用（因此没有轮询），则此字段将为 null。</li>
-<li><code>temperature</code>: The internal temperature reported by the driver. This field will be null if the driver is not enabled or if the driver does not support temperature reporting.</li>
+<li><code>temperature</code>：司机上报的车内温度。如果驱动程序未启用或驱动程序不支持温度报告，则此字段为空。</li>
 <li><code>run_current</code>：当前设置的运行电流。</li>
 <li><code>hold_current</code>：当前设置的保持电流。</li>
 </ul>
@@ -2186,14 +2311,14 @@
 <li><code>homed_axes</code>：当前被认为处于“已归位”状态的车轴。这是一个包含一个或多个"x"、"y"、"z"的字符串。</li>
 <li><code>axis_minimum</code>、<code>axis_maximum</code>：归位后的轴的行程限制（毫米）。可以访问此极限值的 x、y、z 分量（例如，<code>axis_minimum.x</code>、<code>axis_maximum.z</code>）。</li>
 <li>对于三角洲打印机，<code>cone_start_z</code> 是最大半径时的最大z高度(<code>printer.toolhead.cone_start_z</code>)。</li>
-<li><code>max_velocity</code>、<code>max_accel</code>、<code>max_accel_to_decel</code>和<code>square_corner_velocity</code>：当前生效的打印机限制。如果 <code>SET_VELOCITY_LIMIT</code>（或 <code>M204</code>）命令在运行时改变它们，这些值可能与配置文件设置不同。</li>
+<li><code>max_velocity</code>, <code>max_accel</code>, <code>minimum_cruise_ratio</code>, <code>square_corner_velocity</code>: The current printing limits that are in effect. This may differ from the config file settings if a <code>SET_VELOCITY_LIMIT</code> (or <code>M204</code>) command alters them at run-time.</li>
 <li><code>stalls</code>：由于工具头移动速度快于从 G 代码输入读取的移动速度，因此打印机必须暂停的总次数（自上次重新启动以来）。</li>
 </ul>
 <h2 id="dual_carriage">dual_carriage<a class="headerlink" href="#dual_carriage" title="Permanent link">&para;</a></h2>
-<p>The following information is available in <a href="Config_Reference.html#dual_carriage">dual_carriage</a> on a cartesian, hybrid_corexy or hybrid_corexz robot</p>
+<p>关于笛卡尔机器人、混合核心机器人或混合核心机器人，<a href="Config_Reference.html#dual_carriage">dual_carriage</a>中提供了以下信息</p>
 <ul>
-<li><code>carriage_0</code>: The mode of the carriage 0. Possible values are: "INACTIVE" and "PRIMARY".</li>
-<li><code>carriage_1</code>: The mode of the carriage 1. Possible values are: "INACTIVE", "PRIMARY", "COPY", and "MIRROR".</li>
+<li><code>Carty_0</code>：表示0的车厢模式。可能的值为：“非活动”和“主要”。</li>
+<li><code>Carrance_1</code>：马车1的模式，可选值为：Inactive、PRIMARY、COPY、MIRROR。</li>
 </ul>
 <h2 id="virtual_sdcard">virtual_sdcard<a class="headerlink" href="#virtual_sdcard" title="Permanent link">&para;</a></h2>
 <p><a href="Config_Reference.html#virtual_sdcard">virtual_sdcard</a>对象提供了以下信息：</p>
