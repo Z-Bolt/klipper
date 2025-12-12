@@ -334,19 +334,19 @@ class BedMeshCalibrate:
         self.compensation_amplitude = config.getfloat(
             'compensation_amplitude', 0.0
         )
-        self.x_min = config.getfloat(
-            'x_min', None
+        self.x_coordinate_min = config.getfloat(
+            'x_coordinate_min', None
         )
-        self.x_max = config.getfloat(
-            'x_max', None
+        self.x_coordinate_max = config.getfloat(
+            'x_coordinate_max', None
         )
         # Check params
-        if (self.x_min is not None and
-            self.x_max is not None):
-            if self.x_max <= self.x_min:
+        if (self.x_coordinate_min is not None and
+            self.x_coordinate_max is not None):
+            if self.x_coordinate_max <= self.x_coordinate_min:
                 raise config.error(
-                    "bed_mesh: x_max must be greater than "
-                    "x_min"
+                    "bed_mesh: x_coordinate_max must be greater than "
+                    "x_coordinate_min"
                 )
         self._init_mesh_config(config)
         self.probe_mgr = ProbeManager(
@@ -744,9 +744,9 @@ class BedMeshCalibrate:
             
             if self.compensation_amplitude != 0:
                 x = pos[0]
-                if self.x_min is not None and self.x_max is not None:
-                    comp_min = self.x_min
-                    comp_max = self.x_max
+                if self.x_coordinate_min is not None and self.x_coordinate_max is not None:
+                    comp_min = self.x_coordinate_min
+                    comp_max = self.x_coordinate_max
                 else:
                     comp_min = self.mesh_min[0]
                     comp_max = self.mesh_max[0]
