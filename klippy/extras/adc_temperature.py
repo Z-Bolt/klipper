@@ -66,7 +66,8 @@ class HelperTemperatureDiagnostics:
         try:
             last_temp = self.calc_temp_cb(last_value)
             tempstr = "%.3f" % (last_temp,)
-            subprocess.run(["/home/pi/klipper/scripts/off_psu.sh"])
+            subprocess.run(['pinctrl', 'set', '26', 'op', 'pu', 'dl'],
+                          check=False, timeout=2.0)
         except e:
             logging.exception("Error in calc_temp callback")
         return ("Sensor '%s' temperature %s not in range %.3f:%.3f"
