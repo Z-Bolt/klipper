@@ -331,6 +331,23 @@ class BedMeshCalibrate:
         self.adaptive_margin = config.getfloat('adaptive_margin', 0.0)
         self.bedmesh = bedmesh
         self.mesh_config = collections.OrderedDict()
+        self.compensation_amplitude = config.getfloat(
+            'compensation_amplitude', 0.0
+        )
+        self.x_coordinate_min = config.getfloat(
+            'x_coordinate_min', None
+        )
+        self.x_coordinate_max = config.getfloat(
+            'x_coordinate_max', None
+        )
+        # Check params
+        if (self.x_coordinate_min is not None and
+            self.x_coordinate_max is not None):
+            if self.x_coordinate_max <= self.x_coordinate_min:
+                raise config.error(
+                    "bed_mesh: x_coordinate_max must be greater than "
+                    "x_coordinate_min"
+                )
         self._init_mesh_config(config)
         self.probe_mgr = ProbeManager(
             config, self.orig_config, self.probe_finalize
@@ -724,6 +741,34 @@ class BedMeshCalibrate:
                     % (offset_pos[0], offset_pos[1], result[0], result[1])
                 )
             z_pos = result[2] - z_offset
+            
+            if self.compensation_amplitude != 0:
+                x = pos[0]
+                if self.x_coordinate_min is not None and self.x_coordinate_max is not None:
+                    comp_min = self.x_coordinate_min
+                    comp_max = self.x_coordinate_max
+                else:
+                    comp_min = self.mesh_min[0]
+                    comp_max = self.mesh_max[0]
+                    logging.info(
+                        "bed_mesh: X-compensation using mesh bounds: min=%.2f, max=%.2f",
+                        comp_min, comp_max
+                    )
+                if comp_max > comp_min:
+                    normalized_x = (x - comp_min) / (comp_max - comp_min)
+                    compensation_factor = 1 - abs(2 * normalized_x - 1)
+                    compensation_factor = constrain(compensation_factor, 0., 1.)
+                    x_compensation = self.compensation_amplitude * compensation_factor
+                    z_pos += x_compensation
+                    logging.debug(
+                        "bed_mesh: X compensation for point (%.2f, %.2f): "
+                        "comp_min=%.2f, comp_max=%.2f, normalized_x=%.3f, "
+                        "factor=%.3f, compensation=%.6f, z_before=%.6f, z_after=%.6f",
+                        pos[0], pos[1], comp_min, comp_max, normalized_x,
+                        compensation_factor, x_compensation,
+                        result[2] - z_offset - x_compensation, z_pos
+                    )
+
             if not isclose(pos[1], prev_pos[1], abs_tol=.1):
                 # y has changed, append row and start new
                 probed_matrix.append(row)
