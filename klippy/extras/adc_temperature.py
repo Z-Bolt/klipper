@@ -66,12 +66,11 @@ class HelperTemperatureDiagnostics:
         try:
             last_temp = self.calc_temp_cb(last_value)
             tempstr = "%.3f" % (last_temp,)
-            subprocess.run(["sudo", "/home/pi/klipper/scripts/off_psu.sh"])
+            subprocess.run(["/home/pi/klipper/scripts/off_psu.sh"])
         except e:
             logging.exception("Error in calc_temp callback")
         return ("Sensor '%s' temperature %s not in range %.3f:%.3f"
                 % (self.name, tempstr, self.min_temp, self.max_temp))
-
 
 ######################################################################
 # Linear interpolation
