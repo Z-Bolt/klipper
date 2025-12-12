@@ -10,7 +10,6 @@ TMC_FREQUENCY=12000000.
 
 Registers = {
     "GCONF":            0x00,
-    "GSTAT":            0x01,
     "IFCNT":            0x02,
     "SLAVECONF":        0x03,
     "IOIN":             0x04,
@@ -73,7 +72,7 @@ Registers = {
 }
 
 ReadRegisters = [
-    "GCONF", "CHOPCONF", "GSTAT", "DRV_STATUS", "FACTORY_CONF", "IOIN",
+    "GCONF", "CHOPCONF", "DRV_STATUS", "FACTORY_CONF", "IOIN",
     "LOST_STEPS", "MSCNT", "MSCURACT", "OTP_READ", "PWM_SCALE",
     "PWM_AUTO", "TSTEP"
 ]
@@ -150,11 +149,6 @@ Fields["GCONF"] = {
     "stop_enable":              0x01 << 15,
     "direct_mode":              0x01 << 16,
     "test_mode":                0x01 << 17
-}
-Fields["GSTAT"] = {
-    "reset":                    0x01 << 0,
-    "drv_err":                  0x01 << 1,
-    "uv_cp":                    0x01 << 2
 }
 Fields["GLOBALSCALER"] = {
     "globalscaler":             0xFF << 0
