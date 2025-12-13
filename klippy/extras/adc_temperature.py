@@ -4,7 +4,7 @@
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 import logging, bisect
-
+import subprocess
 
 ######################################################################
 # Interface between MCU adc and heater temperature callbacks
@@ -66,6 +66,8 @@ class HelperTemperatureDiagnostics:
         try:
             last_temp = self.calc_temp_cb(last_value)
             tempstr = "%.3f" % (last_temp,)
+            subprocess.run(['pinctrl', 'set', '26', 'op', 'pu', 'dl'],
+                           check=False, timeout=2.0)
         except e:
             logging.exception("Error in calc_temp callback")
         return ("Sensor '%s' temperature %s not in range %.3f:%.3f"
