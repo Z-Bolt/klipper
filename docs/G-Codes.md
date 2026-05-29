@@ -1133,12 +1133,27 @@ in the config file.
 
 #### PID_CALIBRATE
 `PID_CALIBRATE HEATER=<config_name> TARGET=<temperature>
-[WRITE_FILE=1]`: Perform a PID calibration test. The specified heater
+[WRITE_FILE=1] [ADAPTIVE=0]`: Perform a PID calibration test. The specified heater
 will be enabled until the specified target temperature is reached, and
 then the heater will be turned off and on for several cycles. If the
 WRITE_FILE parameter is enabled, then the file /tmp/heattest.txt will
 be created with a log of all temperature samples taken during the
 test.
+
+If an `[adaptive_pid]` config section exists for the heater, the
+results are saved to a temperature-specific profile (see
+`adaptive_pid` in Config_Reference.md) instead of overwriting the
+heater's main PID settings. The `ADAPTIVE` parameter can be used to
+force this behavior on or off.
+
+### [adaptive_pid]
+
+The following commands are available when an `adaptive_pid` config
+section is enabled.
+
+#### ADAPTIVE_PID_STATUS
+`ADAPTIVE_PID_STATUS HEATER=<config_name>`: List stored PID profiles
+and the currently active profile for the heater.
 
 ### [print_stats]
 

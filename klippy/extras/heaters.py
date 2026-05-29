@@ -202,6 +202,14 @@ class ControlPID:
         self.prev_temp_time = 0.
         self.prev_temp_deriv = 0.
         self.prev_temp_integ = 0.
+    def set_params(self, Kp, Ki, Kd):
+        self.Kp = Kp / PID_PARAM_BASE
+        self.Ki = Ki / PID_PARAM_BASE
+        self.Kd = Kd / PID_PARAM_BASE
+        self.temp_integ_max = 0.
+        if self.Ki:
+            self.temp_integ_max = self.heater_max_power / self.Ki
+        self.prev_temp_integ = 0.
     def temperature_update(self, read_time, temp, target_temp):
         time_diff = read_time - self.prev_temp_time
         # Calculate change of temperature
@@ -246,6 +254,7 @@ class PrinterHeaters:
         self.available_heaters = []
         self.available_sensors = []
         self.available_monitors = []
+        self.adaptive_pid = {}
         self.has_started = self.have_load_sensors = False
         self.printer.register_event_handler("klippy:ready", self._handle_ready)
         self.printer.register_event_handler("gcode:request_restart",
@@ -290,6 +299,11 @@ class PrinterHeaters:
             raise self.printer.config_error(
                 "Unknown heater '%s'" % (heater_name,))
         return self.heaters[heater_name]
+    def register_adaptive_pid(self, heater_name, adaptive):
+        if heater_name in self.adaptive_pid:
+            raise self.printer.config_error(
+                "adaptive_pid already registered for '%s'" % (heater_name,))
+        self.adaptive_pid[heater_name] = adaptive
     def setup_sensor(self, config):
         if not self.have_load_sensors:
             self.load_config(config)
@@ -355,6 +369,10 @@ class PrinterHeaters:
     def set_temperature(self, heater, temp, wait=False):
         toolhead = self.printer.lookup_object('toolhead')
         toolhead.register_lookahead_callback((lambda pt: None))
+        heater_name = heater.get_name().split()[-1]
+        adaptive = self.adaptive_pid.get(heater_name)
+        if adaptive is not None:
+            adaptive.apply_for_temp(temp)
         heater.set_temp(temp)
         if wait and temp:
             self._wait_for_temperature(heater)

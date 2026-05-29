@@ -1173,6 +1173,27 @@ Visual Examples:
 #  specified outside of the mesh.  This value is used to optimize the travel
 #  path when performing a "rapid scan".  The minimum value that may be specified
 #  is 1.  The default is no overshoot.
+#compensation_amplitude: 0.0
+#   Maximum Z adjustment (in mm) at the center of the X-axis support span
+#   to compensate for gantry/beam sag along X during mesh probing.
+#   Zero disables X compensation.
+#compensation_amplitude_y: 0.0
+#   Same as compensation_amplitude, but for beam sag along the Y axis.
+#   Useful for CoreXY machines where the bed moves on Y. Zero disables
+#   Y compensation.
+#x_coordinate_min:
+#x_coordinate_max:
+#   Optional X coordinates of beam supports. Default: mesh_min/mesh_max X.
+#y_coordinate_min:
+#y_coordinate_max:
+#   Optional Y coordinates of beam supports. Default: mesh_min/mesh_max Y.
+#compensation_shape: triangular
+#   Curve shape along each enabled axis: "triangular" (legacy default),
+#   "parabolic" (uniform load on a simply supported beam), or "blend".
+#compensation_blend: 0.5
+#   Used only when compensation_shape is "blend". 0.0 selects triangular,
+#   1.0 selects parabolic, values in between interpolate both curves.
+#   Peak amplitude at span center is unchanged for all shapes.
 ```
 
 ### [bed_tilt]
@@ -2586,6 +2607,45 @@ printer kinematics.
 ```
 
 ## Custom heaters and sensors
+
+### [adaptive_pid]
+
+Temperature-dependent PID profiles for heaters. When enabled, PID
+parameters are selected from the nearest calibration temperature
+whenever a heater target temperature is set (via M104, M109, M140,
+M190, SET_HEATER_TEMPERATURE, etc.).
+
+Declare one empty section per heater in the main `printer.cfg` file
+(above the SAVE_CONFIG block):
+
+```
+[adaptive_pid extruder]
+```
+
+The section name after `adaptive_pid` must match an existing heater
+config section (eg, `extruder`, `extruder1`, `heater_bed`). Do not
+add PID values to this section manually.
+
+PID profiles are written automatically to the SAVE_CONFIG autosave
+block at the bottom of `printer.cfg` when `SAVE_CONFIG` is run after
+`PID_CALIBRATE`. For example:
+
+```
+#*# [adaptive_pid extruder]
+#*# pid_200 = 22.200, 1.080, 114.000
+#*# pid_235 = 21.500, 1.020, 110.000
+```
+
+Each `pid_<temperature>` option stores `pid_Kp`, `pid_Ki`, and `pid_Kd`
+for that calibration temperature. Perform a calibration at each
+desired temperature:
+
+```
+PID_CALIBRATE HEATER=extruder TARGET=200
+SAVE_CONFIG
+PID_CALIBRATE HEATER=extruder TARGET=235
+SAVE_CONFIG
+```
 
 ### [verify_heater]
 

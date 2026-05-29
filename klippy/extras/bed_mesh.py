@@ -40,6 +40,23 @@ def lerp(t, v0, v1):
     return (1. - t) * v0 + t * v1
 
 
+# Beam bending compensation (simply supported beam).
+# t is normalized position in [0, 1] between supports.
+BEAM_COMPENSATION_SHAPES = ['triangular', 'parabolic', 'blend']
+
+
+def beam_bending_factor(t, shape='triangular', blend=0.):
+    if t <= 0. or t >= 1.:
+        return 0.
+    triangular = 1. - abs(2. * t - 1.)
+    parabolic = 4. * t * (1. - t)
+    if shape == 'parabolic':
+        return parabolic
+    if shape == 'blend':
+        return lerp(blend, triangular, parabolic)
+    return triangular
+
+
 # retrieve comma separated pair from config
 def parse_config_pair(config, option, default, minval=None, maxval=None):
     pair = config.getintlist(option, (default, default))
@@ -361,11 +378,28 @@ class BedMeshCalibrate:
         self.compensation_amplitude = config.getfloat(
             'compensation_amplitude', 0.0
         )
+        self.compensation_shape = config.get(
+            'compensation_shape', 'triangular').strip().lower()
+        if self.compensation_shape not in BEAM_COMPENSATION_SHAPES:
+            raise config.error(
+                "bed_mesh: compensation_shape must be one of: %s"
+                % (', '.join(BEAM_COMPENSATION_SHAPES),))
+        self.compensation_blend = config.getfloat(
+            'compensation_blend', 0.5, minval=0., maxval=1.)
+        self.compensation_amplitude_y = config.getfloat(
+            'compensation_amplitude_y', 0.0
+        )
         self.x_coordinate_min = config.getfloat(
             'x_coordinate_min', None
         )
         self.x_coordinate_max = config.getfloat(
             'x_coordinate_max', None
+        )
+        self.y_coordinate_min = config.getfloat(
+            'y_coordinate_min', None
+        )
+        self.y_coordinate_max = config.getfloat(
+            'y_coordinate_max', None
         )
         # Check params
         if (self.x_coordinate_min is not None and
@@ -374,6 +408,13 @@ class BedMeshCalibrate:
                 raise config.error(
                     "bed_mesh: x_coordinate_max must be greater than "
                     "x_coordinate_min"
+                )
+        if (self.y_coordinate_min is not None and
+                self.y_coordinate_max is not None):
+            if self.y_coordinate_max <= self.y_coordinate_min:
+                raise config.error(
+                    "bed_mesh: y_coordinate_max must be greater than "
+                    "y_coordinate_min"
                 )
         self._init_mesh_config(config)
         self.probe_mgr = ProbeManager(
@@ -391,6 +432,36 @@ class BedMeshCalibrate:
         self.gcode.register_command(
             'BED_MESH_CALIBRATE', self.cmd_BED_MESH_CALIBRATE,
             desc=self.cmd_BED_MESH_CALIBRATE_help)
+
+    def _prepare_axis_compensation(self, axis):
+        if axis == 'x':
+            amplitude = self.compensation_amplitude
+            coord_min = self.x_coordinate_min
+            coord_max = self.x_coordinate_max
+            mesh_min = self.mesh_min[0]
+            mesh_max = self.mesh_max[0]
+        else:
+            amplitude = self.compensation_amplitude_y
+            coord_min = self.y_coordinate_min
+            coord_max = self.y_coordinate_max
+            mesh_min = self.mesh_min[1]
+            mesh_max = self.mesh_max[1]
+        if not amplitude:
+            return None
+        comp_min = coord_min if coord_min is not None else mesh_min
+        comp_max = coord_max if coord_max is not None else mesh_max
+        span = comp_max - comp_min
+        if span <= 0.:
+            return None
+        return (amplitude, comp_min, 1. / span,
+                self.compensation_shape, self.compensation_blend)
+
+    def _apply_axis_compensation(self, z_pos, coord, comp):
+        if comp is None:
+            return z_pos
+        amp, comp_min, inv_span, shape, blend = comp
+        t = (coord - comp_min) * inv_span
+        return z_pos + amp * beam_bending_factor(t, shape, blend)
 
     def print_generated_points(self, print_func, truncate=False):
         x_offset = y_offset = 0.
@@ -765,6 +836,8 @@ class BedMeshCalibrate:
         probed_matrix = []
         row = []
         prev_pos = base_points[0]
+        beam_comp_x = self._prepare_axis_compensation('x')
+        beam_comp_y = self._prepare_axis_compensation('y')
         for pos, result in zip(base_points, positions):
             offset_pos = [p - o for p, o in zip(pos, offsets[:2])]
             if (
@@ -777,22 +850,10 @@ class BedMeshCalibrate:
                     % (offset_pos[0], offset_pos[1], result[0], result[1])
                 )
             z_pos = result[2] - z_offset
-            if self.compensation_amplitude != 0:
-                x = pos[0]
-                if self.x_coordinate_min is not None:
-                    comp_min = self.x_coordinate_min
-                else:
-                    comp_min = self.mesh_min[0]
-                if self.x_coordinate_max is not None:
-                    comp_max = self.x_coordinate_max
-                else:
-                    comp_max = self.mesh_max[0]
-                if comp_max > comp_min:
-                    normalized_x = (x - comp_min) / (comp_max - comp_min)
-                    compensation_factor = 1 - abs(2 * normalized_x - 1)
-                    compensation_factor = constrain(compensation_factor, 0., 1.)
-                    x_comp = self.compensation_amplitude * compensation_factor
-                    z_pos += x_comp
+            z_pos = self._apply_axis_compensation(
+                z_pos, pos[0], beam_comp_x)
+            z_pos = self._apply_axis_compensation(
+                z_pos, pos[1], beam_comp_y)
             if not isclose(pos[1], prev_pos[1], abs_tol=.1):
                 # y has changed, append row and start new
                 probed_matrix.append(row)

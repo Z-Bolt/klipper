@@ -17,6 +17,9 @@ class PIDCalibrate:
         heater_name = gcmd.get('HEATER')
         target = gcmd.get_float('TARGET')
         write_file = gcmd.get_int('WRITE_FILE', 0)
+        adaptive_name = 'adaptive_pid %s' % (heater_name,)
+        adaptive = self.printer.lookup_object(adaptive_name, None)
+        save_adaptive = gcmd.get_int('ADAPTIVE', adaptive is not None)
         pheaters = self.printer.lookup_object('heaters')
         try:
             heater = pheaters.lookup_heater(heater_name)
@@ -38,6 +41,19 @@ class PIDCalibrate:
         # Log and report results
         Kp, Ki, Kd = calibrate.calc_final_pid()
         logging.info("Autotune: final: Kp=%f Ki=%f Kd=%f", Kp, Ki, Kd)
+        if save_adaptive:
+            if adaptive is None:
+                raise gcmd.error(
+                    "ADAPTIVE=1 requires [adaptive_pid %s] in config"
+                    % (heater_name,))
+            adaptive.save_profile(target, Kp, Ki, Kd)
+            gcmd.respond_info(
+                "PID parameters for %.0fC: pid_Kp=%.3f pid_Ki=%.3f "
+                "pid_Kd=%.3f\n"
+                "Saved to adaptive_pid profile. The SAVE_CONFIG command "
+                "will update the printer config file and restart the "
+                "printer." % (target, Kp, Ki, Kd))
+            return
         gcmd.respond_info(
             "PID parameters: pid_Kp=%.3f pid_Ki=%.3f pid_Kd=%.3f\n"
             "The SAVE_CONFIG command will update the printer config file\n"
