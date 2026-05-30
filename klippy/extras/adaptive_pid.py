@@ -74,6 +74,8 @@ class AdaptivePID:
         prof = self.profiles[cal_temp]
         pheaters = self.printer.lookup_object('heaters')
         heater = pheaters.lookup_heater(self.heater_name)
+        if not isinstance(heater.control, heaters.ControlPID):
+            return None
         heater.control.set_params(prof['pid_Kp'], prof['pid_Ki'],
                                   prof['pid_Kd'])
         self.active_temp = cal_temp
