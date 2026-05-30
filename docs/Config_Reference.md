@@ -2647,6 +2647,30 @@ PID_CALIBRATE HEATER=extruder TARGET=235
 SAVE_CONFIG
 ```
 
+### [pid_calibrate]
+
+Optional defaults for `PID_CALIBRATE`. Add this section to the main
+`printer.cfg` to change autotune behavior for all heaters.
+
+```
+[pid_calibrate]
+#tuning: ziegler_nichols
+#   Tuning rule: ziegler_nichols, tyreus_luyben, some_overshoot, or
+#   no_overshoot. Tyreus-Luyben and no_overshoot are less aggressive
+#   and usually reduce temperature overshoot.
+#min_peaks: 12
+#   Minimum number of temperature peaks to record before finishing.
+#skip_peaks: 4
+#   Number of initial peaks to discard as warm-up transients.
+#sample_cycles: 3
+#   Number of stable oscillation cycles to average for the final PID.
+#tune_delta: 5.0
+#   Relay on/off temperature band in Celsius.
+#amplitude_tolerance: 0.25
+#   Reject cycles whose amplitude deviates more than this fraction from
+#   the median amplitude.
+```
+
 ### [verify_heater]
 
 Heater and temperature sensor verification. Heater verification is

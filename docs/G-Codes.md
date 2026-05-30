@@ -1133,12 +1133,28 @@ in the config file.
 
 #### PID_CALIBRATE
 `PID_CALIBRATE HEATER=<config_name> TARGET=<temperature>
-[WRITE_FILE=1] [ADAPTIVE=0]`: Perform a PID calibration test. The specified heater
+[WRITE_FILE=1] [ADAPTIVE=0] [TUNING=<method>] [MIN_PEAKS=<count>]
+[SKIP_PEAKS=<count>] [SAMPLE_CYCLES=<count>] [TUNE_DELTA=<celsius>]
+[AMPLITUDE_TOLERANCE=<ratio>]`: Perform a PID calibration test. The specified heater
 will be enabled until the specified target temperature is reached, and
 then the heater will be turned off and on for several cycles. If the
 WRITE_FILE parameter is enabled, then the file /tmp/heattest.txt will
 be created with a log of all temperature samples taken during the
 test.
+
+The autotune algorithm averages several stable oscillation cycles and
+supports multiple tuning rules. By default it averages 3 stable cycles
+using the classic Ziegler-Nichols rule. For less overshoot at high
+temperatures, try `TUNING=tyreus_luyben` or `TUNING=no_overshoot`.
+
+`TUNING` may be `ziegler_nichols` (default), `tyreus_luyben`,
+`some_overshoot`, or `no_overshoot`. `MIN_PEAKS` is the minimum number
+of recorded temperature peaks before calibration finishes (default 12).
+`SKIP_PEAKS` discards the first peaks as warm-up transients (default 4).
+`SAMPLE_CYCLES` is the number of stable cycles to average (default 3).
+`TUNE_DELTA` sets the relay on/off band in Celsius (default 5).
+`AMPLITUDE_TOLERANCE` filters outlier cycles by peak amplitude
+(default 0.25, meaning 25%).
 
 If an `[adaptive_pid]` config section exists for the heater, the
 results are saved to a temperature-specific profile (see
