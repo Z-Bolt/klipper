@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Z-Bolt toolchanger: dual-head tool changing with real-time dock sensing
 #
 # Replaces the macro based toolchanger logic that used to live in
