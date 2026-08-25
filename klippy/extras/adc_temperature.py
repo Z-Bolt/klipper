@@ -15,6 +15,19 @@ SAMPLE_COUNT = 8
 REPORT_TIME = 0.300
 RANGE_CHECK_COUNT = 4
 
+# Raspberry Pi GPIO 26 gates the printer PSU.  Thermal ADC faults drive
+# it low (dl) so heaters cannot run away; Klipper start drives it high
+# (dh) so FIRMWARE_RESTART is enough to power the MCU again.
+PSU_GPIO = '26'
+
+
+def _set_psu_gpio(drive):
+    try:
+        subprocess.run(['pinctrl', 'set', PSU_GPIO, 'op', 'pu', drive],
+                       check=False, timeout=2.0)
+    except Exception:
+        logging.exception("Unable to set PSU gpio %s %s", PSU_GPIO, drive)
+
 # Interface between ADC and heater temperature callbacks
 class PrinterADCtoTemperature:
     def __init__(self, config, adc_convert):
@@ -51,6 +64,10 @@ class HelperTemperatureDiagnostics:
         query_adc.register_adc(self.name, self.mcu_adc)
         error_mcu = self.printer.load_object(config, 'error_mcu')
         error_mcu.add_clarify("ADC out of range", self._clarify_adc_range)
+        # Config is parsed before MCU connect.  Drive the PSU enable pin
+        # high here so a previous thermal cut (dl) does not leave the
+        # printer MCU unpowered after FIRMWARE_RESTART.
+        _set_psu_gpio('dh')
     def setup_diag_minmax(self, min_temp, max_temp, min_adc, max_adc):
         self.min_temp, self.max_temp = min_temp, max_temp
         self.min_adc, self.max_adc = min_adc, max_adc
@@ -66,9 +83,8 @@ class HelperTemperatureDiagnostics:
         try:
             last_temp = self.calc_temp_cb(last_value)
             tempstr = "%.3f" % (last_temp,)
-            subprocess.run(['pinctrl', 'set', '26', 'op', 'pu', 'dl'],
-                           check=False, timeout=2.0)
-        except e:
+            _set_psu_gpio('dl')
+        except Exception:
             logging.exception("Error in calc_temp callback")
         return ("Sensor '%s' temperature %s not in range %.3f:%.3f"
                 % (self.name, tempstr, self.min_temp, self.max_temp))
