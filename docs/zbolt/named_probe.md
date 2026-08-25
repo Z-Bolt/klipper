@@ -337,32 +337,32 @@ gcode:
 
 ## Типичные проблемы
 
-1. **Unknown config object `named_probe …`**  
+1. **Unknown config object `named_probe …`**
    Файл не лежит в `~/klipper/klippy/extras/named_probe.py`, опечатка в имени
    или не сделан `FIRMWARE_RESTART`.
 
-2. **`ProbeEndstopWrapper.__init__() takes 2 positional arguments but 4 were given`**  
+2. **`ProbeEndstopWrapper.__init__() takes 2 positional arguments but 4 were given`**
    На хосте другая (более новая) версия `probe.py`. Нужна адаптация модуля
    под актуальный API.
 
-3. **`Pin '…' is not a valid pin name`**  
+3. **`Pin '…' is not a valid pin name`**
    В конфиге остался placeholder или неверный GPIO. Укажите реальный пин MCU
    (`PA2`, `expander:PBx`, с `^` / `!` при необходимости).
 
-4. **`Must home before probe`**  
+4. **`Must home before probe`**
    Сначала `G28` (Z через stock probe).
 
-5. **Проба T1 срабатывает «не тем» датчиком**  
+5. **Проба T1 срабатывает «не тем» датчиком**
    Убедитесь, что вызываете именно `PROBE_NAMED PROBE=t1`, а не `PROBE`.
    Проверьте пин секции `[named_probe t1]` мультиметром /
    `QUERY_PROBE_NAMED`.
 
-6. **Конфликт пина**  
+6. **Конфликт пина**
    Пин `named_probe` не должен совпадать с уже занятым (`[probe]`,
    endstop осей, fan, servo на том же MCU-пине). `expander:PA2` и `PA2`
    на основном MCU — **разные** пины.
 
-7. **Bed mesh / QGL «не видят» второй датчик**  
+7. **Bed mesh / QGL «не видят» второй датчик**
    Так и задумано. Mesh и QGL идут через stock `[probe]`. Для второй головы
    используйте офсет инструмента (`SET_GCODE_OFFSET` / переменные), а не
    второй mesh.

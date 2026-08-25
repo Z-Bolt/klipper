@@ -616,7 +616,8 @@ class ZBoltToolchanger:
 
     def _effective_reaction(self, code):
         reaction = self.reactions.get(code, 'error')
-        if reaction in ('pause', 'error', 'shutdown') and self.is_service_mode():
+        blocking = reaction in ('pause', 'error', 'shutdown')
+        if blocking and self.is_service_mode():
             # Nothing may block an assembler who is deliberately moving
             # heads around by hand.
             return 'warn'

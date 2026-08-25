@@ -68,7 +68,8 @@ class MultiplexHeater:
         if self.gcode_id is not None:
             if self.gcode_id in pheaters.gcode_id_to_sensor:
                 raise self.config.error(
-                    "G-Code sensor id %s already registered" % (self.gcode_id,))
+                    "G-Code sensor id %s already registered"
+                    % (self.gcode_id,))
             pheaters.gcode_id_to_sensor[self.gcode_id] = self
         gcode = self.printer.lookup_object('gcode')
         gcode.register_mux_command(

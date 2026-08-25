@@ -19,7 +19,6 @@
 | `klippy/extras/zbolt_toolchanger.py` | Модуль |
 | `klippy/extras/zbolt_toolchanger_tool.py` | Обёртка секций инструментов |
 | `docs/zbolt/zbolt_toolchanger.md` | Эта документация |
-| `test/zbolt/` | Офлайн-стенд и тесты |
 
 Рабочие примеры конфигурации — `klipper-config/zbolt_toolchanger.cfg`
 профилей S300/S310/S400/S600 HT Dual в репозитории `Config_printer`.

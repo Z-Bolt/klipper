@@ -7,5 +7,6 @@
 def load_config_prefix(config):
     printer = config.get_printer()
     parent_name = config.get('multiplex_heater')
-    parent = printer.load_object(config, 'multiplex_heater %s' % (parent_name,))
+    section = 'multiplex_heater %s' % (parent_name,)
+    parent = printer.load_object(config, section)
     return parent.add_segment(config)

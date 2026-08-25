@@ -22,7 +22,7 @@ from . import probe
 
 
 class NamedProbeSession:
-    """Like HomingViaProbeHelper probing, without registering probe:z_virtual_endstop."""
+    """HomingViaProbeHelper-style probing without probe:z_virtual_endstop."""
 
     def __init__(self, config, mcu_probe, param_helper):
         self.printer = config.get_printer()
