@@ -39,7 +39,10 @@ class MultiplexHeater:
                 % (segment_config.get_name(), parent, self.name))
         pheaters = self.printer.load_object(segment_config, 'heaters')
         seg_short = segment_config.get_name().split()[-1]
-        private_name = "_" + seg_short
+        # Hide from UI with a single leading '_'. Configs may already use
+        # that prefix on the section name; do not add a second one.
+        private_name = (seg_short if seg_short.startswith('_')
+                        else '_' + seg_short)
         wrapped = SectionNameWrapper(
             segment_config, "multiplex_heater_segment %s" % (private_name,))
         heater = pheaters.setup_heater(wrapped)
@@ -61,9 +64,6 @@ class MultiplexHeater:
                 "Heater %s already registered" % (self.name,))
         pheaters.heaters[self.name] = self
         pheaters.available_heaters.append(self.name)
-        # Z-Bolt / older Klipper: TEMPERATURE_WAIT is a single global command
-        # that resolves sensors via available_sensors + heaters dict.
-        # Upstream mux registration must not be used here.
         pheaters.available_sensors.append(self.name)
         if self.gcode_id is not None:
             if self.gcode_id in pheaters.gcode_id_to_sensor:
@@ -76,6 +76,10 @@ class MultiplexHeater:
             "SET_HEATER_TEMPERATURE", "HEATER", self.name,
             self.cmd_SET_HEATER_TEMPERATURE,
             desc=self.cmd_SET_HEATER_TEMPERATURE_help)
+        gcode.register_mux_command(
+            "TEMPERATURE_WAIT", "SENSOR", self.name,
+            pheaters.cmd_TEMPERATURE_WAIT,
+            desc=pheaters.cmd_TEMPERATURE_WAIT_help)
         gcode.register_mux_command(
             "SET_MULTIPLEX_HEATER", "HEATER", self.name,
             self.cmd_SET_MULTIPLEX_HEATER,
