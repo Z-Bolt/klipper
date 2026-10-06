@@ -156,37 +156,39 @@ FIRMWARE_RESTART
 дока). Соплесборник Bambu/Qidi к смене инструмента не относится.
 
 Чтобы включить чистку после `LOAD_FILAMENT` / `UNLOAD_FILAMENT`, добавьте
-`wipe_gcode` на инструмент. Без этой строки `TOOLCHANGER_WIPE` — no-op,
-поведение старых Dual не меняется.
+`wipe_gcode` на **каждый** инструмент: у левой и правой головы свои лотки
+и свои координаты. Без этой строки `TOOLCHANGER_WIPE` — no-op, поведение
+старых Dual не меняется.
 
 ```cfg
 [zbolt_toolchanger_tool t0]
 wipe_gcode:
-	NOZZLE_WIPE RETRACT={retract}
+	T0_NOZZLE_WIPE RETRACT={retract}
 
 [zbolt_toolchanger_tool t1]
 wipe_gcode:
-	NOZZLE_WIPE RETRACT={retract}
+	T1_NOZZLE_WIPE RETRACT={retract}
 ```
 
-`{retract}` = `1` после загрузки (`TOOLCHANGER_WIPE RETRACT=1`) и `0`
-после выгрузки.
+`LOAD_FILAMENT` вызывает `TOOLCHANGER_WIPE RETRACT=1` у активной головы,
+`UNLOAD_FILAMENT` — без втягивания. `{retract}` пробрасывается в макрос
+этого инструмента.
 
-Последовательность (координаты — свои, с CAD):
+Последовательность одна и та же, точки разные (свои мм с CAD):
 
-1. Точка 1 — заезд в лоток.
+1. Точка 1 — заезд в лоток этой головы.
 2. Если `RETRACT=1` — втянуть 10 мм на 30 мм/с.
 3. Точка 2 — очиститель: подъехать, 10 мм назад, подъехать, 10 мм назад,
    затем на высокой скорости заехать за очиститель.
 4. Точка 3 — силиконовая щётка: всю длину вперёд и назад.
 5. Обратно в точку 1.
 
-Пример макроса (подставьте мм; `p2_back_*` — точка в 10 мм от очистителя,
-`p2_past_*` — за ним):
+Координаты живут в `T0_NOZZLE_WIPE` / `T1_NOZZLE_WIPE`, траектория — в
+общем `_NOZZLE_WIPE` (`p2_back_*` — 10 мм от очистителя, `p2_past_*` — за
+ним):
 
 ```cfg
-[gcode_macro NOZZLE_WIPE]
-description: Чистка сопла на соплесборнике после load/unload
+[gcode_macro T0_NOZZLE_WIPE]
 variable_p1_x: 0
 variable_p1_y: 0
 variable_p2_x: 0
@@ -201,7 +203,28 @@ variable_p3_b_x: 0
 variable_p3_b_y: 0
 variable_wipe_z: 0.4
 gcode:
-	{% set m = printer["gcode_macro NOZZLE_WIPE"] %}
+	_NOZZLE_WIPE SRC=T0_NOZZLE_WIPE RETRACT={params.RETRACT|default(0)}
+
+[gcode_macro T1_NOZZLE_WIPE]
+variable_p1_x: 0
+variable_p1_y: 0
+variable_p2_x: 0
+variable_p2_y: 0
+variable_p2_back_x: 0
+variable_p2_back_y: 0
+variable_p2_past_x: 0
+variable_p2_past_y: 0
+variable_p3_a_x: 0
+variable_p3_a_y: 0
+variable_p3_b_x: 0
+variable_p3_b_y: 0
+variable_wipe_z: 0.4
+gcode:
+	_NOZZLE_WIPE SRC=T1_NOZZLE_WIPE RETRACT={params.RETRACT|default(0)}
+
+[gcode_macro _NOZZLE_WIPE]
+gcode:
+	{% set m = printer["gcode_macro " ~ params.SRC] %}
 	{% set retract = params.RETRACT|default(0)|int %}
 	G90
 	G1 Z{m.wipe_z} F900
