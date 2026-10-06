@@ -111,7 +111,8 @@ FIRMWARE_RESTART
 | `exit_xy` | Точка отъезда после захвата |
 | `approach_offset` | Смещение по X, с которого начинается медленный заход |
 | `retreat_speed` | `slow` или `fast` — скорость отхода после захвата |
-| `wipe_moves` | Список `dx, dy` относительно `safe_xy` — вытирание об сопливчик |
+| `wipe_moves` | Список `dx, dy` относительно `safe_xy` — вытирание об сопливчик у парковки. На парковку не влияет `wipe_gcode` |
+| `wipe_gcode` | Необязательно. Чистка на соплесборнике после `LOAD_FILAMENT` / `UNLOAD_FILAMENT` (`TOOLCHANGER_WIPE`). Старые конфиги без этой строки не меняются. В шаблоне: `{retract}`, `{fast}`, `{slow}`, `{tool_number}` |
 | `coupling` | `solenoid` (S300/S310) или `latch` (S400/S600) |
 | `solenoid_pin` | Имя `[output_pin]` электромагнита |
 | `release_delay` | Пауза после снятия электромагнита, с (бывш. `delay`) |
@@ -149,6 +150,82 @@ FIRMWARE_RESTART
 `{safe_y}`, `{tool_number}`, `{fast}` и `{slow}` (последние два — в мм/мин,
 готовые для `F`).
 
+### Чистка сопла после загрузки/выгрузки (`wipe_gcode`)
+
+Парковка по-прежнему всегда едет `wipe_moves` от `safe_xy` (сопливчик у
+дока). Соплесборник Bambu/Qidi к смене инструмента не относится.
+
+Чтобы включить чистку после `LOAD_FILAMENT` / `UNLOAD_FILAMENT`, добавьте
+`wipe_gcode` на инструмент. Без этой строки `TOOLCHANGER_WIPE` — no-op,
+поведение старых Dual не меняется.
+
+```cfg
+[zbolt_toolchanger_tool t0]
+wipe_gcode:
+	NOZZLE_WIPE RETRACT={retract}
+
+[zbolt_toolchanger_tool t1]
+wipe_gcode:
+	NOZZLE_WIPE RETRACT={retract}
+```
+
+`{retract}` = `1` после загрузки (`TOOLCHANGER_WIPE RETRACT=1`) и `0`
+после выгрузки.
+
+Последовательность (координаты — свои, с CAD):
+
+1. Точка 1 — заезд в лоток.
+2. Если `RETRACT=1` — втянуть 10 мм на 30 мм/с.
+3. Точка 2 — очиститель: подъехать, 10 мм назад, подъехать, 10 мм назад,
+   затем на высокой скорости заехать за очиститель.
+4. Точка 3 — силиконовая щётка: всю длину вперёд и назад.
+5. Обратно в точку 1.
+
+Пример макроса (подставьте мм; `p2_back_*` — точка в 10 мм от очистителя,
+`p2_past_*` — за ним):
+
+```cfg
+[gcode_macro NOZZLE_WIPE]
+description: Чистка сопла на соплесборнике после load/unload
+variable_p1_x: 0
+variable_p1_y: 0
+variable_p2_x: 0
+variable_p2_y: 0
+variable_p2_back_x: 0
+variable_p2_back_y: 0
+variable_p2_past_x: 0
+variable_p2_past_y: 0
+variable_p3_a_x: 0
+variable_p3_a_y: 0
+variable_p3_b_x: 0
+variable_p3_b_y: 0
+variable_wipe_z: 0.4
+gcode:
+	{% set m = printer["gcode_macro NOZZLE_WIPE"] %}
+	{% set retract = params.RETRACT|default(0)|int %}
+	G90
+	G1 Z{m.wipe_z} F900
+	G1 X{m.p1_x} Y{m.p1_y} F18000
+	{% if retract %}
+		G91
+		G1 E-10 F1800
+		G90
+	{% endif %}
+	G1 X{m.p2_x} Y{m.p2_y} F3600
+	G1 X{m.p2_back_x} Y{m.p2_back_y} F3600
+	G1 X{m.p2_x} Y{m.p2_y} F3600
+	G1 X{m.p2_back_x} Y{m.p2_back_y} F3600
+	G1 X{m.p2_past_x} Y{m.p2_past_y} F18000
+	G1 X{m.p3_a_x} Y{m.p3_a_y} F18000
+	G1 X{m.p3_b_x} Y{m.p3_b_y} F3600
+	G1 X{m.p3_a_x} Y{m.p3_a_y} F3600
+	G1 X{m.p1_x} Y{m.p1_y} F18000
+```
+
+`LOAD_FILAMENT` / `UNLOAD_FILAMENT` вызывают `TOOLCHANGER_WIPE` после
+движения филамента и `RESTORE_GCODE_STATE`.
+
+
 ---
 
 ## Команды
@@ -168,6 +245,7 @@ FIRMWARE_RESTART
 | `TOOLCHANGER_SAVE_ADJUST` | Сохранить подстройку Z с учётом офсета активной головы; вызывается из обёртки `SET_GCODE_OFFSET` |
 | `TOOLCHANGER_SERVICE_MODE [ENABLE=1\|0]` | Сервисный режим настройки; без параметра показывает текущий |
 | `TOOLCHANGER_GOTO TOOL=n POINT=park\|unpark\|safe\|stage\|exit [SPEED=]` | Подъехать к точке парковки |
+| `TOOLCHANGER_WIPE [TOOL=n] [RETRACT=0\|1]` | Чистка после load/unload. Без `wipe_gcode` — no-op. `RETRACT=1` после загрузки |
 | `TOOLCHANGER_SET_DOCK TOOL=n POINT=… [X= Y=]` | Записать координату точки (затем `SAVE_CONFIG`) |
 
 `[homing_override]` сводится к одной строке:

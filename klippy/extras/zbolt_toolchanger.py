@@ -134,6 +134,13 @@ class ToolchangerTool:
         self.retreat_speed = config.getchoice('retreat_speed', SPEED_CHOICES,
                                               'slow')
         self.wipe_moves = self._parse_wipe(config)
+        # Optional load/unload chute wipe (Bambu/Qidi).  Does not replace
+        # wipe_moves on park — old dock wipers stay as they are.
+        self.wipe_template = None
+        if config.get('wipe_gcode', None) is not None:
+            gcode_macro = self.printer.load_object(config, 'gcode_macro')
+            self.wipe_template = gcode_macro.load_template(config,
+                                                           'wipe_gcode')
         # Coupling
         self.coupling = config.getchoice('coupling', COUPLINGS, 'latch')
         self.solenoid_pin = config.get('solenoid_pin', None)
@@ -166,6 +173,7 @@ class ToolchangerTool:
                                                            'park_gcode')
         if config.get('get_gcode', None) is not None:
             self.get_template = gcode_macro.load_template(config, 'get_gcode')
+        # wipe_gcode may already have loaded gcode_macro above.
         # Dock sensor
         # Triggered = the head sits in this dock; add "!" to the pin to
         # match the wiring, exactly like any other Klipper endstop.
@@ -349,7 +357,7 @@ class ZBoltToolchanger:
         for name in ('SELECT', 'PARK', 'PICKUP', 'HOME', 'STATUS',
                      'QUERY_SENSORS', 'SET_STATE', 'RELEASE', 'COUPLE',
                      'CALIBRATE_OFFSET', 'SERVICE_MODE', 'GOTO', 'SET_DOCK',
-                     'SAVE_ADJUST'):
+                     'SAVE_ADJUST', 'WIPE'):
             command = 'TOOLCHANGER_%s' % (name,)
             handler = getattr(self, 'cmd_%s' % (command,))
             helptext = getattr(self, 'cmd_%s_help' % (command,))
@@ -797,8 +805,24 @@ class ZBoltToolchanger:
             'tool_number': tool.number,
             'fast': self.travel_speed * 60.,
             'slow': self.dock_speed * 60.,
+            'retract': 0,
         })
         return context
+
+    def _wipe_dock(self, tool):
+        """Park wipe against the dock wiper (wipe_moves from safe_xy)."""
+        for dx, dy in tool.wipe_moves:
+            self._move(tool.safe_xy[0] + dx, tool.safe_xy[1] + dy,
+                       self.travel_speed)
+
+    def _wipe_nozzle(self, tool, retract=False):
+        """Load/unload chute wipe.  No-op unless the tool has wipe_gcode."""
+        if tool.wipe_template is None:
+            return
+        context = self._template_context(tool)
+        context['retract'] = 1 if retract else 0
+        self.gcode.run_script_from_command(
+            tool.wipe_template.render(context))
 
     # ------------------------------------------------------------------
     # Park / pickup
@@ -835,10 +859,7 @@ class ZBoltToolchanger:
             self._move(tool.stage_xy[0], tool.stage_xy[1], fast)
         self._move(tool.safe_xy[0], tool.safe_xy[1], fast)
         self._check_abort()
-        # Wipe the nozzle on the purge block: offsets are relative to the
-        # safe point, which is how the S400/S600 macros expressed it.
-        for dx, dy in tool.wipe_moves:
-            self._move(tool.safe_xy[0] + dx, tool.safe_xy[1] + dy, fast)
+        self._wipe_dock(tool)
         # Align onto the dock row, then come in along X.
         self._move(tool.safe_xy[0], tool.unpark_xy[1], fast)
         if tool.approach_offset:
@@ -1114,6 +1135,20 @@ class ZBoltToolchanger:
             self._respond("T%d уже в парковке" % (number,))
             return
         self.park_tool(number)
+
+    cmd_TOOLCHANGER_WIPE_help = (
+        "Чистка сопла после загрузки/выгрузки. Без wipe_gcode — no-op. "
+        "RETRACT=1 — втягивание после загрузки (передаётся в шаблон).")
+    def cmd_TOOLCHANGER_WIPE(self, gcmd):
+        default = self.active_tool if self.active_tool is not None else -1
+        number = gcmd.get_int('TOOL', default)
+        if number < 0:
+            raise gcmd.error("Нет активного инструмента для TOOLCHANGER_WIPE")
+        tool = self._get_tool(number)
+        if tool.wipe_template is None:
+            return
+        retract = bool(gcmd.get_int('RETRACT', 0))
+        self._wipe_nozzle(tool, retract=retract)
 
     cmd_TOOLCHANGER_PICKUP_help = "Забрать инструмент из парковки"
     def cmd_TOOLCHANGER_PICKUP(self, gcmd):
