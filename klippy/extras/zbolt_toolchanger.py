@@ -124,10 +124,16 @@ class ToolchangerTool:
         #   park_xy   -> t<n>x_park / t<n>y_park
         #   unpark_xy -> t<n>x_unpark / t<n>y_unpark (defaults to park_xy)
         #   safe_xy   -> t<n>x_safe / t<n>y_safe
+        #   load_xy   -> LOAD/UNLOAD chute (optional; not the dock safe point)
         self.park_xy = config.getfloatlist('park_xy', count=2)
         self.unpark_xy = config.getfloatlist('unpark_xy', self.park_xy,
                                              count=2)
         self.safe_xy = config.getfloatlist('safe_xy', count=2)
+        load_xy = config.getfloatlist('load_xy', None, count=2)
+        # Old Dual macros went to (safe_x, park_y).  Keep that unless the
+        # machine has a poop chute at a different Y than the dock wiper.
+        self.load_xy = (load_xy if load_xy is not None
+                        else (self.safe_xy[0], self.park_xy[1]))
         self.stage_xy = config.getfloatlist('stage_xy', None, count=2)
         self.exit_xy = config.getfloatlist('exit_xy', None, count=2)
         self.approach_offset = config.getfloat('approach_offset', 0.)
@@ -227,6 +233,7 @@ class ToolchangerTool:
             'park_x': self.park_xy[0], 'park_y': self.park_xy[1],
             'unpark_x': self.unpark_xy[0], 'unpark_y': self.unpark_xy[1],
             'safe_x': self.safe_xy[0], 'safe_y': self.safe_xy[1],
+            'load_x': self.load_xy[0], 'load_y': self.load_xy[1],
         }
 
 
@@ -802,6 +809,7 @@ class ZBoltToolchanger:
             'park_x': tool.park_xy[0], 'park_y': tool.park_xy[1],
             'unpark_x': tool.unpark_xy[0], 'unpark_y': tool.unpark_xy[1],
             'safe_x': tool.safe_xy[0], 'safe_y': tool.safe_xy[1],
+            'load_x': tool.load_xy[0], 'load_y': tool.load_xy[1],
             'tool_number': tool.number,
             'fast': self.travel_speed * 60.,
             'slow': self.dock_speed * 60.,
