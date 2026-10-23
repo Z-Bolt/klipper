@@ -131,10 +131,27 @@ FIRMWARE_RESTART
 | `current_boost_phase` | `park`, `get` или `both` |
 | `offset_x_variable`, `offset_y_variable`, `offset_z_variable` | Имена переменных офсетов в `save_variables` |
 | `park_gcode`, `get_gcode` | Полная замена траектории своим g-кодом (необязательно) |
+| `before_change_gcode` | Необязательно. Свой g-код этого инструмента перед сменой на него (`T0` / `TOOLCHANGER_SELECT`). Общий `before_change_gcode` секции `[zbolt_toolchanger]` при этом тоже выполняется |
+| `after_change_gcode` | Необязательно. Свой g-код после того, как этот инструмент выбран и офсеты применены. В сервисном режиме пропускается, как и общий `after_change_gcode`. В шаблоне есть `{tool_number}` |
 
 Офсеты намеренно остаются в файле переменных: их правят при настройке
 принтера, и расширение перечитывает их на каждой смене инструмента, без
 рестарта. Вся парковочная геометрия, наоборот, живёт здесь.
+
+Порядок при `T0` / `TOOLCHANGER_SELECT`: общий `before_change_gcode`,
+затем `before_change_gcode` выбранного инструмента, смена, затем его
+`after_change_gcode`, затем общий `after_change_gcode`. Пример выбора
+катушки Spoolman для T0:
+
+```cfg
+[zbolt_toolchanger_tool t0]
+after_change_gcode:
+    {% if printer.save_variables.variables.spoolman_t0 %}
+    SET_ACTIVE_SPOOL TOOL=0 ID={printer.save_variables.variables.spoolman_t0}
+    {% else %}
+    CLEAR_ACTIVE_SPOOL TOOL=0
+    {% endif %}
+```
 
 ### Траектория парковки и захвата
 
@@ -360,7 +377,7 @@ z_offset = -0.13   ->   z_adjust = -0.13
 
 Что меняется:
 
-- `**after_change_gcode` не выполняется.** На машинах, где компенсация
+- `**after_change_gcode` не выполняется** — ни общий, ни у инструмента. На машинах, где компенсация
 перекоса включается этим хуком, она остаётся выключенной: `SET_SKEW`
 сдвигает координаты парковок, и настраивать их под включённой
 компенсацией бессмысленно

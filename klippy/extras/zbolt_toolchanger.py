@@ -179,6 +179,17 @@ class ToolchangerTool:
                                                            'park_gcode')
         if config.get('get_gcode', None) is not None:
             self.get_template = gcode_macro.load_template(config, 'get_gcode')
+        # Optional per-tool hooks around T<n> / TOOLCHANGER_SELECT.
+        # Global before_change_gcode / after_change_gcode still run for
+        # every tool; these fire only for this one.
+        self.before_change_template = None
+        self.after_change_template = None
+        if config.get('before_change_gcode', None) is not None:
+            self.before_change_template = gcode_macro.load_template(
+                config, 'before_change_gcode')
+        if config.get('after_change_gcode', None) is not None:
+            self.after_change_template = gcode_macro.load_template(
+                config, 'after_change_gcode')
         # wipe_gcode may already have loaded gcode_macro above.
         # Dock sensor
         # Triggered = the head sits in this dock; add "!" to the pin to
@@ -1020,14 +1031,19 @@ class ZBoltToolchanger:
             % (self.global_offset_variable,
                round(global_offset + delta, 5)))
 
-    def _run_hook(self, template):
-        if template is not None:
-            self.gcode.run_script_from_command(
-                template.render(self.gcode_macro.create_template_context()))
+    def _run_hook(self, template, tool=None):
+        if template is None:
+            return
+        if tool is None:
+            context = self.gcode_macro.create_template_context()
+        else:
+            context = self._template_context(tool)
+        self.gcode.run_script_from_command(template.render(context))
 
     def select_tool(self, number, gcmd=None, force=False):
         tool = self._get_tool(number)
         self._run_hook(self.before_change_template)
+        self._run_hook(tool.before_change_template, tool)
         toolhead = self.printer.lookup_object('toolhead')
         homed = toolhead.get_status(self.reactor.monotonic())['homed_axes']
         if 'x' not in homed or 'y' not in homed or 'z' not in homed:
@@ -1048,6 +1064,7 @@ class ZBoltToolchanger:
                 self.park_tool(self.active_tool)
             self.pickup_tool(number)
         if not self.is_service_mode():
+            self._run_hook(tool.after_change_template, tool)
             self._run_hook(self.after_change_template)
 
     # ------------------------------------------------------------------
@@ -1158,9 +1175,28 @@ class ZBoltToolchanger:
         retract = bool(gcmd.get_int('RETRACT', 0))
         self._wipe_nozzle(tool, retract=retract)
 
-    cmd_TOOLCHANGER_PICKUP_help = "Забрать инструмент из парковки"
+    cmd_TOOLCHANGER_PICKUP_help = (
+        "Забрать инструмент из парковки. "
+        "Не едет к доку, если на слайдере уже другая голова.")
     def cmd_TOOLCHANGER_PICKUP(self, gcmd):
-        self.pickup_tool(gcmd.get_int('TOOL'))
+        number = gcmd.get_int('TOOL')
+        self._get_tool(number)
+        # Dock sensors, not the remembered active_tool: after a restart the
+        # remembered tool can be wrong, but an empty dock is the head that
+        # is physically on the slider.  Driving into the other dock with
+        # that head still coupled rams it into the parked one.
+        self._sample_sensors()
+        carried = [t for t in self.tool_list
+                   if t.number != number and not t.is_docked()]
+        if carried:
+            names = ", ".join("T%d" % (t.number,) for t in carried)
+            raise gcmd.error(
+                "На слайдере уже %s. Сначала TOOLCHANGER_PARK, "
+                "потом TOOLCHANGER_PICKUP TOOL=%d" % (names, number))
+        if not self._get_tool(number).is_docked():
+            self._respond("T%d уже на слайдере" % (number,))
+            return
+        self.pickup_tool(number)
 
     cmd_TOOLCHANGER_HOME_help = (
         "Хоминг с восстановлением состояния тулченджера. "
