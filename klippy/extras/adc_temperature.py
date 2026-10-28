@@ -3,7 +3,7 @@
 # Copyright (C) 2016-2024  Kevin O'Connor <kevin@koconnor.net>
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
-import logging, bisect
+import logging, bisect, os, shutil
 import subprocess
 
 ######################################################################
@@ -15,18 +15,82 @@ SAMPLE_COUNT = 8
 REPORT_TIME = 0.300
 RANGE_CHECK_COUNT = 4
 
-# Raspberry Pi GPIO 26 gates the printer PSU.  Thermal ADC faults drive
-# it low (dl) so heaters cannot run away; Klipper start drives it high
-# (dh) so FIRMWARE_RESTART is enough to power the MCU again.
+# Header pin 37 gates the printer PSU on both hosts.  Thermal ADC faults
+# drive it low so heaters cannot run away; Klipper start drives it high
+# so FIRMWARE_RESTART is enough to power the MCU again.
+# Raspberry Pi: BCM GPIO 26 via pinctrl.  The level sticks after exit.
+# Rock Pi 4: GPIO4_D6 is sysfs gpio 158 (40-pin header pin 37).  gpioset
+# drops the level when it exits, so the sysfs node is used instead.
+# gpio-pin37.service exports that node; if it is not group-writable the
+# same helper is invoked through passwordless sudo.
 PSU_GPIO = '26'
+ROCK_PSU_SYSFS = '158'
+ROCK_PSU_HELPER = '/usr/local/sbin/gpio-pin37'
+_psu_gpio_noted = False
+
+
+def _board_model():
+    try:
+        with open('/proc/device-tree/model', 'rb') as f:
+            raw = f.read().replace(b'\x00', b' ')
+        return raw.decode('ascii', 'replace')
+    except OSError:
+        return ''
+
+
+def _note_psu_gpio(message):
+    global _psu_gpio_noted
+    if _psu_gpio_noted:
+        return
+    _psu_gpio_noted = True
+    logging.info(message)
+
+
+def _set_rock_psu_gpio(drive):
+    level = 'high' if drive == 'dh' else 'low'
+    path = '/sys/class/gpio/gpio%s/direction' % (ROCK_PSU_SYSFS,)
+    if os.access(path, os.W_OK):
+        with open(path, 'w') as f:
+            f.write(level + '\n')
+        _note_psu_gpio("PSU gpio: sysfs gpio %s %s" % (ROCK_PSU_SYSFS, level))
+        return True
+    if os.path.isfile(ROCK_PSU_HELPER):
+        action = 'on' if drive == 'dh' else 'off'
+        proc = subprocess.run(
+            ['sudo', '-n', ROCK_PSU_HELPER, action],
+            check=False, timeout=2.0,
+            stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+        if proc.returncode == 0:
+            _note_psu_gpio("PSU gpio: %s %s" % (ROCK_PSU_HELPER, action))
+            return True
+    return False
+
+
+def _set_pi_psu_gpio(drive):
+    subprocess.run(['pinctrl', 'set', PSU_GPIO, 'op', 'pu', drive],
+                   check=False, timeout=2.0)
+    _note_psu_gpio("PSU gpio: pinctrl %s %s" % (PSU_GPIO, drive))
+    return True
 
 
 def _set_psu_gpio(drive):
     try:
-        subprocess.run(['pinctrl', 'set', PSU_GPIO, 'op', 'pu', drive],
-                       check=False, timeout=2.0)
+        model = _board_model()
+        if 'Raspberry Pi' in model and shutil.which('pinctrl'):
+            _set_pi_psu_gpio(drive)
+            return
+        if 'ROCK Pi' in model or 'Radxa' in model:
+            if _set_rock_psu_gpio(drive):
+                return
+            _note_psu_gpio("PSU gpio is not writable on this Rock Pi")
+            return
+        # Keep the original command on hosts whose model is not exposed.
+        if shutil.which('pinctrl'):
+            _set_pi_psu_gpio(drive)
+            return
+        _note_psu_gpio("PSU gpio is not available on this host")
     except Exception:
-        logging.exception("Unable to set PSU gpio %s %s", PSU_GPIO, drive)
+        logging.exception("Unable to set PSU gpio %s", drive)
 
 # Interface between ADC and heater temperature callbacks
 class PrinterADCtoTemperature:
