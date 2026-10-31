@@ -847,18 +847,29 @@ class ZBoltToolchanger:
     # Park / pickup
     # ------------------------------------------------------------------
 
+    def _reread_docked(self, tool):
+        """True when the dock switch says this head is in its parking.
+
+        A switch edge can land a fraction of a second after the move that
+        caused it. Treating that lag as "not parked" used to launch a
+        second approach, which rammed the head already in the dock and
+        skipped steps on the carriage.
+        """
+        self._sample_sensors()
+        if tool.is_docked():
+            return True
+        self.reactor.pause(self.reactor.monotonic() + self.guard_confirm_time)
+        self._sample_sensors(wait_moves=False)
+        return bool(tool.is_docked())
+
     def park_tool(self, number):
         tool = self._get_tool(number)
         self.phase = PHASE_PARK
         try:
-            for attempt in range(self.verify_retries + 1):
-                self._run_park(tool)
-                if self._verify_state(None):
-                    break
-                if attempt < self.verify_retries:
-                    self._respond("T%d не подтвердила парковку, повтор"
-                                  % (tool.number,))
-                    continue
+            # One approach only. A retry drives the carriage back into the
+            # dock and, once the head is already there, shifts the slider.
+            seated = self._run_park(tool)
+            if not seated or not self._verify_state(None):
                 self._react('park_failed', "T%d, %s"
                             % (tool.number, self._describe_sensors()))
         finally:
@@ -870,7 +881,7 @@ class ZBoltToolchanger:
         if tool.park_template is not None:
             self.gcode.run_script_from_command(
                 tool.park_template.render(self._template_context(tool)))
-            return
+            return True
         fast, slow = self.travel_speed, self.dock_speed
         self._apply_speed_factor()
         self._clear_xy_offset()
@@ -891,10 +902,16 @@ class ZBoltToolchanger:
         try:
             self._move(tool.park_xy[0], tool.park_xy[1], slow)
             self._release_coupling(tool)
+            # Leave the slot only after the head has actually stayed.
+            # Moving +Y while the solenoid still holds it drags the head
+            # out of the dock and loses carriage steps.
+            if not self._reread_docked(tool):
+                return False
             self._move(tool.unpark_xy[0], tool.safe_xy[1], slow)
         finally:
             if boost:
                 self._set_current_boost(tool, False)
+        return True
 
     def pickup_tool(self, number):
         tool = self._get_tool(number)
@@ -904,7 +921,14 @@ class ZBoltToolchanger:
                 self._run_pickup(tool)
                 if self._verify_state(tool.number):
                     break
-                if attempt < self.verify_retries:
+                self.reactor.pause(self.reactor.monotonic()
+                                   + self.guard_confirm_time)
+                self._sample_sensors(wait_moves=False)
+                if self._verify_state(tool.number):
+                    break
+                # The head already left the dock: another approach would
+                # drive it back into the parking.
+                if tool.is_docked() and attempt < self.verify_retries:
                     self._respond("T%d не подтвердила захват, повтор"
                                   % (tool.number,))
                     continue
