@@ -632,6 +632,21 @@ class ZBoltToolchanger:
     def _respond(self, message):
         self.gcode.respond_info("[+] %s" % (message,))
 
+    def _announce(self, message):
+        """Operator progress: klippy.log, the console and the panel.
+
+        respond_info reaches the console and the log. The panel (KlipperScreen)
+        does not keep those lines on the main view, so the same text is also
+        put on display_status, which the screen shows as the status line, and
+        sent as action:notification, which the screen shows as a popup.
+        """
+        logging.info("zbolt_toolchanger: %s", message)
+        self.gcode.respond_info("[+] %s" % (message,), log=False)
+        self.gcode.respond_raw("// action:notification %s" % (message,))
+        display = self.printer.lookup_object('display_status', None)
+        if display is not None:
+            display.message = message
+
     def _respond_error(self, message):
         self.gcode.respond_raw("!! %s" % (message,))
 
@@ -1379,11 +1394,12 @@ class ZBoltToolchanger:
         if reference is None or reference.number == number:
             raise gcmd.error("Нужен опорный инструмент, отличный от T%d"
                              % (number,))
-        self._respond("Запуск калибровки Z-офсета T%d по опорной T%d"
-                      % (number, reference.number))
+        self._announce("Калибровка Z: T%d по опорной T%d. Хоминг"
+                       % (number, reference.number))
         # One homing for both measurements: the result is their difference,
         # so re-homing in between would throw the common reference away.
         self.gcode.run_script_from_command("G28")
+        self._announce("Калибровка Z: нагрев сопел до %.0f°" % (temp,))
         for tool_obj in self.tool_list:
             self.gcode.run_script_from_command(
                 "SET_HEATER_TEMPERATURE HEATER=%s TARGET=%.0f"
@@ -1393,7 +1409,8 @@ class ZBoltToolchanger:
                 "TEMPERATURE_WAIT SENSOR=%s MINIMUM=%.0f"
                 % (tool_obj.extruder_name, temp))
         if stabilize:
-            self._respond("Термостабилизация — %.0f с" % (stabilize,))
+            self._announce("Калибровка Z: термостабилизация %.0f с"
+                           % (stabilize,))
             self.printer.lookup_object('toolhead').dwell(stabilize)
         point = self.home_z_position or self._bed_centre()
         z_ref = self._probe_with_tool(reference, point, samples, probe)
@@ -1403,12 +1420,14 @@ class ZBoltToolchanger:
         # that point all cancel out, so nothing but the head-to-head
         # difference survives.
         value = round(z_tool - z_ref, 3)
-        self._respond("T%d: z=%.3f, T%d: z=%.3f -> офсет T%d = %.3f мм"
-                      % (reference.number, z_ref, number, z_tool, number,
-                         value))
         self.gcode.run_script_from_command(
             "SAVE_VARIABLE VARIABLE=%s VALUE=%.3f" % (variable, value))
+        self._announce("Калибровка Z: T%d z=%.3f, T%d z=%.3f. "
+                       "Офсет T%d = %.3f мм, сохранён"
+                       % (reference.number, z_ref, number, z_tool, number,
+                          value))
         self.gcode.run_script_from_command("TURN_OFF_HEATERS")
+        self._announce("Калибровка Z завершена, нагреватели выключены")
 
     def _probe_with_tool(self, tool, point, samples, probe):
         """Probe one physical spot with one tool.
@@ -1420,6 +1439,8 @@ class ZBoltToolchanger:
         and both bed shape and axis_twist_compensation would leak into the
         result.
         """
+        self._announce("Калибровка Z: измерение головы T%d, проб: %d"
+                       % (tool.number, samples))
         self.select_tool(tool.number)
         self.gcode.run_script_from_command("G90")
         self.gcode.run_script_from_command(
@@ -1429,6 +1450,8 @@ class ZBoltToolchanger:
         self.gcode.run_script_from_command("PROBE SAMPLES=%d" % (samples,))
         z = float(probe.get_status(
             self.reactor.monotonic())['last_z_result'])
+        self._announce("Калибровка Z: T%d, результат z=%.3f"
+                       % (tool.number, z))
         self._lift_z(self.calibrate_lift)
         return z
 
