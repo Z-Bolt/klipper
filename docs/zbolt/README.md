@@ -9,6 +9,7 @@ Z-Bolt. Все они лежат в `klippy/extras/` и приезжают на 
 | Дополнительные Z-датчики на головах | `named_probe.py` | [named_probe.md](named_probe.md) | `S800` |
 | Сегментный стол и камера | `multiplex_heater.py`, `multiplex_heater_segment.py` | [multiplex_heater.md](multiplex_heater.md) | `S800` |
 | Тулченджер двухголовых принтеров | `zbolt_toolchanger.py`, `zbolt_toolchanger_tool.py` | `zbolt_toolchanger.md` | `TCH-extra` |
+| Компенсация температурного дрейфа Z | `thermal_z_comp.py` | [thermal_z_comp.md](thermal_z_comp.md) | `test-thermal-z-comp` |
 
 Расширения обкатываются по отдельным веткам и сливаются в `Z-BoltUI3.1`
 после проверки на реальных машинах, поэтому часть файлов из таблицы может
@@ -28,3 +29,5 @@ Z-Bolt. Все они лежат в `klippy/extras/` и приезжают на 
 | S300 / S310 HT Dual | да, сцепка соленоидом | — | — |
 | S400 / S600 HT Dual | да, механическая защёлка | — | — |
 | S800 HT Dual | нет: две головы на слайдере с подъёмом серво | да, датчик на T1 | да, 4 плиты стола + 2 нагревателя камеры |
+
+На S300 (тест, ветка `test-thermal-z-comp`) дополнительно подключается `[thermal_z_comp]`.
